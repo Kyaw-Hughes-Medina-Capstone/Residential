@@ -19,7 +19,7 @@ public class WorkOrder {
 	private User tenant_id;
 
 	@Column(nullable = false)
-	private int manager_id;
+	private User manager_id;
 
 	@Column(nullable = false)
 	private String description;
@@ -28,8 +28,16 @@ public class WorkOrder {
 	@Column(nullable = false)
 	private Date date;
 
-	public WorkOrder(int id, Property property_id, User tenant_id, int manager_id, String description, Date date) {
+	public WorkOrder(int id, Property property_id, User tenant_id, User manager_id, String description, Date date) {
 		this.id = id;
+		this.property_id = property_id;
+		this.tenant_id = tenant_id;
+		this.manager_id = manager_id;
+		this.description = description;
+		this.date = date;
+	}
+
+	public WorkOrder(Property property_id, User tenant_id, User manager_id, String description, Date date) {
 		this.property_id = property_id;
 		this.tenant_id = tenant_id;
 		this.manager_id = manager_id;
@@ -64,11 +72,11 @@ public class WorkOrder {
 		this.tenant_id = tenant_id;
 	}
 
-	public int getManager_id() {
+	public User getManager_id() {
 		return manager_id;
 	}
 
-	public void setManager_id(int manager_id) {
+	public void setManager_id(User manager_id) {
 		this.manager_id = manager_id;
 	}
 

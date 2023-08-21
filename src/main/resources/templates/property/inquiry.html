@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials :: head"/>
+
+</head>
+<body>
+<nav th:replace="partials :: navbar"/>
+<fieldset>
+	<legend>Inquire about a property</legend>
+	<form th:action="@{/property/{id}/inquire}" th:method="post">
+		Start date:
+		<input type="date" name="start_date"/><br/>
+		End date:
+		<input type="date" name="end_date"/><br/>
+		People:
+		<input type="number" name="people"/><br/>
+		Pets:
+		<input type="number" name="pets"/><br/>
+		Property:
+		<input type="number" name="property"/><br/>
+		Tenant:
+		<input type="number" name="tenant"/><br/>
+		Manager:
+		<input type="number" name="manager"/><br/>
+
+		<input type="submit" value="Submit"/>
+	</form>
+
+</fieldset>
+<div th:replace="partials :: footer"/>
+</body>
+</html>

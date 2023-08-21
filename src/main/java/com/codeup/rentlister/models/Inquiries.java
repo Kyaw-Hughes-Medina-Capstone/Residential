@@ -23,7 +23,6 @@ public class Inquiries {
 	@JoinColumn(name = "property_id", referencedColumnName = "id", nullable = false)
 	private Property property;
 
-	//Nullable values
 	@Column
 	private Date start_date;
 	@Column
@@ -32,6 +31,12 @@ public class Inquiries {
 	private int people;
 	@Column
 	private int pets;
+
+	public Inquiries(int startDate, int endDate, int people, int pets, Property property, User tenant, User manager) {
+	}
+
+	public Inquiries() {
+	}
 
 	public int getId() {
 		return id;

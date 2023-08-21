@@ -37,7 +37,7 @@ public class PropertyController {
 	}
 
 	@GetMapping("/property/create")
-	public String showPpropertyCreateForm(Model model) {
+	public String showPropertyCreateForm(Model model) {
 		model.addAttribute("property", new Property());
 		return "property/create";
 	}
@@ -72,7 +72,7 @@ public class PropertyController {
 		return "property/show";
 	}
 
-	@GetMapping("/ads/{id}/edit")
+	@GetMapping("/property/{id}/edit")
 	public String editOneListing(@PathVariable int id, Model model) {
 		Property property = propertyDao.findPropertyById(id);
 		model.addAttribute("property", property);
