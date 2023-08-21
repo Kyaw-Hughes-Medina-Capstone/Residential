@@ -52,7 +52,7 @@ public class EmailService {
 	public void sendAWorkOrderEmail(WorkOrder workOrder, String subject, String body){
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setFrom(from);
-		msg.setTo(workOrder.getManager_id().getEmail()); //add .getTenant for receipt? WIP
+		msg.setTo(workOrder.getManager().getEmail()); //add .getTenant for receipt? WIP
 		msg.setSubject(subject);
 		msg.setText(body);
 
@@ -63,6 +63,4 @@ public class EmailService {
 			System.err.println(ex.getMessage());
 		}
 	}
-
-
 }

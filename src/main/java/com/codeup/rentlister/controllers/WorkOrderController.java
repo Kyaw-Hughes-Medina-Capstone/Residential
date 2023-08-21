@@ -7,6 +7,7 @@ import com.codeup.rentlister.repositories.PropertyRepository;
 import com.codeup.rentlister.repositories.UserRepository;
 import com.codeup.rentlister.repositories.WorkOrderRepository;
 import com.codeup.rentlister.services.EmailService;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
@@ -43,18 +44,21 @@ public class WorkOrderController {
 	}
 
 	@PostMapping("/property/workorder")
-	public String createProperty(
-			@RequestParam(name = "property_id") Property property_id, //populated by logged in user? WIP
-			@RequestParam(name = "tenant_id") User tenant_id, //populated by logged in user? WIP
-			@RequestParam(name = "manager_id") User manager_id, // property.manager_id? WIP
+	public String createWorkOrder(
+			@RequestParam(name = "property_id") int propertyId,
 			@RequestParam(name = "description") String description,
-			@RequestParam(name = "date") Date date){ //current date
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		WorkOrder workOrder = new WorkOrder(property_id, tenant_id, manager_id, description, date);
-		workOrderDao.save(workOrder);
+			@RequestParam(name = "date") Date date) {
+
+		User tenant = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Property property = propertyDao.findPropertyById(propertyId); // Get property from repository based on property_id
+		User manager = property.getManager(); // Get manager from property
+
+		WorkOrder workOrder = new WorkOrder(tenant, manager, property, description, date);
+		System.out.println(workOrder.toString());
 
 		emailService.sendAWorkOrderEmail(workOrder, "A tenant submitted a work order", "Check your account for more information");
 		return "redirect:/property/workorder";
 	}
+
 
 }

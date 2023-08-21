@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <head th:replace="partials :: head"/>
+    <head th:replace="~{partials :: head}"/>
     <meta charset="UTF-8">
     <title>Edit a Property Listing</title>
 </head>
 <body>
-<nav th:replace="partials :: navbar"/>
+<nav th:replace="~{partials :: navbar}"/>
 <fieldset>
 
     <form th:action="@{/templates/property/{id}/edit(id=${property.id})}" th:method="post" th:object="${post}">
@@ -36,6 +36,6 @@
         <input type="text" name="longitude"/><br/>
     </form>
 </fieldset>
-<div th:replace="partials :: footer"/>
+<div th:replace="~{partials :: footer}"/>
 </body>
 </html>

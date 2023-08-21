@@ -1,5 +1,8 @@
 package com.codeup.rentlister.models;
 import jakarta.persistence.*;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.List;
@@ -32,7 +35,24 @@ public class Inquiries {
 	@Column
 	private int pets;
 
-	public Inquiries(int startDate, int endDate, int people, int pets, Property property, User tenant, User manager) {
+	public Inquiries(Date start_date, Date end_date, int people, int pets, Property property, User tenant, User manager) {
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.people = people;
+		this.pets = pets;
+		this.property = property;
+		this.tenant = tenant;
+		this.manager = manager;
+	}
+
+	public Inquiries(User tenant, User manager, Property property, Date start_date, Date end_date, int people, int pets) {
+		this.tenant = tenant;
+		this.manager = manager;
+		this.property = property;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.people = people;
+		this.pets = pets;
 	}
 
 	public Inquiries() {
@@ -102,3 +122,5 @@ public class Inquiries {
 		this.pets = pets;
 	}
 }
+
+

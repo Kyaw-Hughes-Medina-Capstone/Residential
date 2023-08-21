@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head th:replace="partials :: head"/>
+    <head th:replace="~{partials :: head}"/>
     <meta charset="UTF-8">
     <title>All property listings</title>
     <style>
@@ -9,7 +9,7 @@
     </style>
 </head>
 <body>
-<nav th:replace="partials :: navbar"/>
+<nav th:replace="~{partials :: navbar}"/>
 
 <div th:each="property : ${property}" class="card">
     <a th:href="@{/property/{id}(id=${property.id})}">
@@ -29,6 +29,6 @@
 
 </div>
 
-<div th:replace="partials :: footer"/>
+<div th:replace="~{partials :: footer}"/>
 </body>
 </html>

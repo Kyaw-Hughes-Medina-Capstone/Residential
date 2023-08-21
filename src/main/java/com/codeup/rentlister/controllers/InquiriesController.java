@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Controller
 public class InquiriesController {
@@ -42,19 +43,21 @@ public class InquiriesController {
 
 	@PostMapping("/property/{id}/inquiry")
 	public String createInquiry(
-			@RequestParam(name = "start_date") int start_date,
-			@RequestParam(name = "end_date") int end_date,
+			@PathVariable int id,
+			@RequestParam(name = "start_date") Date start_date,
+			@RequestParam(name = "end_date") Date end_date,
 			@RequestParam(name = "people") int people,
-			@RequestParam(name = "pets") int pets,
-			@RequestParam(name = "property") Property property,
-			@RequestParam(name = "tenant") User tenant, //can be taken from user logged in? WIP
-			@RequestParam(name = "manager") User manager) { //manager populated from property.manager_id? WIP
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Inquiries inquiries = new Inquiries(start_date, end_date, people, pets, property, tenant, manager);
+			@RequestParam(name = "pets") int pets) {
+
+		User tenant = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Property property = propertyDao.findPropertyById(id); // Get property from repository based on id
+		User manager = property.getManager(); // Get manager from property
+
+		Inquiries inquiries = new Inquiries(tenant, manager, property, start_date, end_date, people, pets);
 		inquiriesDao.save(inquiries);
 
 		emailService.sendAnInquiryEmail(inquiries, "You have an inquiry about a property!", "Check your account for more information.");
 		return "redirect:/property/inquiry";
-
 	}
+
 }

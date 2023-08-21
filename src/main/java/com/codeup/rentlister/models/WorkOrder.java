@@ -2,90 +2,66 @@ package com.codeup.rentlister.models;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "workorders")
-public class WorkOrder {
+public class WorkOrder{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@OneToOne
-	@JoinColumn(name = "property_id", referencedColumnName = "id")
-	private Property property_id;
+	@ManyToOne
+	@JoinColumn(name = "tenant_id", referencedColumnName = "id", nullable = false)
+	private User tenant;
 
-	@OneToOne
-	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
-	private User tenant_id;
+	@ManyToOne
+	@JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = false)
+	private User manager;
 
-	@Column(nullable = false)
-	private User manager_id;
+	@ManyToOne
+	@JoinColumn(name = "property_id", referencedColumnName = "id", nullable = false)
+	private Property property;
 
-	@Column(nullable = false)
+	@Column
 	private String description;
-
-	@Temporal(TemporalType.DATE)
-	@Column(nullable = false)
+	@Column
 	private Date date;
 
-	public WorkOrder(int id, Property property_id, User tenant_id, User manager_id, String description, Date date) {
-		this.id = id;
-		this.property_id = property_id;
-		this.tenant_id = tenant_id;
-		this.manager_id = manager_id;
-		this.description = description;
-		this.date = date;
-	}
 
-	public WorkOrder(Property property_id, User tenant_id, User manager_id, String description, Date date) {
-		this.property_id = property_id;
-		this.tenant_id = tenant_id;
-		this.manager_id = manager_id;
-		this.description = description;
+	public WorkOrder(User tenant, User manager, Property property, String description, Date date){
+		this.tenant = tenant;
+		this.manager = manager;
+		this.property = property;
 		this.date = date;
+		this.description = description;
 	}
 
 	public WorkOrder() {
 	}
 
-	public int getId() {
-		return id;
+	public User getTenant() {
+		return tenant;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setTenant(User tenant) {
+		this.tenant = tenant;
 	}
 
-	public Property getProperty_id() {
-		return property_id;
+	public User getManager() {
+		return manager;
 	}
 
-	public void setProperty_id(Property property_id) {
-		this.property_id = property_id;
+	public void setManager(User manager) {
+		this.manager = manager;
 	}
 
-	public User getTenant_id() {
-		return tenant_id;
+	public Property getProperty() {
+		return property;
 	}
 
-	public void setTenant_id(User tenant_id) {
-		this.tenant_id = tenant_id;
-	}
-
-	public User getManager_id() {
-		return manager_id;
-	}
-
-	public void setManager_id(User manager_id) {
-		this.manager_id = manager_id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setProperty(Property property) {
+		this.property = property;
 	}
 
 	public Date getDate() {
@@ -94,5 +70,13 @@ public class WorkOrder {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

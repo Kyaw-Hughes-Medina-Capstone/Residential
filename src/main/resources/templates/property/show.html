@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <head th:replace="partials :: head"/>
+    <head th:replace="~{partials :: head}"/>
     <meta charset="UTF-8">
 </head>
 <body>
-<nav th:replace="partials :: navbar"/>
+<nav th:replace="~{partials :: navbar}"/>
 
 <p th:text="${property.address}"></p>
 <p th:text="${property.bath}"></p>
@@ -28,6 +28,6 @@
 <p>Posted by: <span th:text="${property.manager.name}"></span></p>
 
 
-<div th:replace="partials :: footer"/>
+<div th:replace="~{partials :: footer}"/>
 </body>
 </html>
