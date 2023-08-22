@@ -1,4 +1,4 @@
-package com.codeup.rentlister.controllers;
-
-public class InquiryController {
-}
+//package com.codeup.rentlister.controllers;
+//
+//public class InquiryController {
+//}

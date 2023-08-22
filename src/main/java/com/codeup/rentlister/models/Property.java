@@ -1,8 +1,7 @@
 package com.codeup.rentlister.models;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
-import java.util.List;
+
 
 @Entity
 @Table(name = "property")
@@ -11,13 +10,13 @@ public class Property {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@ManyToOne
-	@JoinColumn(name = "manager_id", referencedColumnName = "id")
-	private User manager;
+//	@ManyToOne
+//	@JoinColumn(name = "manager_id", referencedColumnName = "id")
+//	private User manager;
 
-	@OneToOne
-	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
-	private User tenant;
+//	@OneToOne
+//	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
+//	private User tenant;
 
 	@Column(nullable = false)
 	private String type;
@@ -25,8 +24,26 @@ public class Property {
 	@Column
 	private int rent;
 
+	@Column
+	private int area;
+
+	@Column
+	private int beds;
+
+	@Column
+	private int bath;
+
 	@Column(nullable = false)
-	private int zip;
+	private String img1;
+
+	@Column(nullable = false)
+	private String img2;
+
+	@Column(nullable = false)
+	private String img3;
+
+	@Column(nullable = false)
+	private String img4;
 
 	@Column(nullable = false)
 	private String address;
@@ -37,40 +54,67 @@ public class Property {
 	@Column(nullable = false)
 	private String state;
 
-	@Column
-	private int beds;
-
-	@Column
-	private int bath;
-
 	@Column(nullable = false)
-	private String pets;
+	private int zip;
 
-	@Column(nullable = false)
-	private int year;
-
-	@Column(nullable = false, precision = 8, scale = 6)
-	private BigDecimal latitude;
-
-	@Column(nullable = false, precision = 8, scale = 6)
-	private BigDecimal longitude;
-
-	public Property() {
+	@Override
+	public String toString() {
+		return "Property{" +
+				"id=" + id +
+				", type='" + type + '\'' +
+				", rent=" + rent +
+				", area=" + area +
+				", beds=" + beds +
+				", bath=" + bath +
+				", img1='" + img1 + '\'' +
+				", img2='" + img2 + '\'' +
+				", img3='" + img3 + '\'' +
+				", img4='" + img4 + '\'' +
+				", address='" + address + '\'' +
+				", city='" + city + '\'' +
+				", state='" + state + '\'' +
+				", zip=" + zip +
+				", pets=" + pets +
+				", description='" + description + '\'' +
+				'}';
 	}
 
-	public Property(String type, int rent, int zip, String address, String city, String state, int beds, int bath, String pets, int year, BigDecimal latitude, BigDecimal longitude) {
+	@Column
+	private boolean pets;
+
+	@Column(nullable = false, columnDefinition = "MEDIUMTEXT")
+	private String description;
+
+
+	public Property(int id, String type, int rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, boolean pets, String description) {
+		this.id = id;
 		this.type = type;
 		this.rent = rent;
-		this.zip = zip;
+		this.area = area;
+		this.beds = beds;
+		this.bath = bath;
+		this.img1 = img1;
+		this.img2 = img2;
+		this.img3 = img3;
+		this.img4 = img4;
 		this.address = address;
 		this.city = city;
 		this.state = state;
-		this.beds = beds;
-		this.bath = bath;
+		this.zip = zip;
 		this.pets = pets;
-		this.year = year;
-		this.latitude = latitude;
-		this.longitude = longitude;
+		this.description = description;
+	}
+
+
+
+	public Property() {
+
+	}
+
+	public Property(String type, float rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, String pets, String description) {
+	}
+
+	public Property(String type, float rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String city, String state, int zip, String pets, String description) {
 	}
 
 	public int getId() {
@@ -81,21 +125,6 @@ public class Property {
 		this.id = id;
 	}
 
-	public User getManager() {
-		return manager;
-	}
-
-	public void setManager(User manager) {
-		this.manager = manager;
-	}
-
-	public User getTenant() {
-		return tenant;
-	}
-
-	public void setTenant(User tenant) {
-		this.tenant = tenant;
-	}
 
 	public String getType() {
 		return type;
@@ -113,12 +142,60 @@ public class Property {
 		this.rent = rent;
 	}
 
-	public int getZip() {
-		return zip;
+	public int getArea() {
+		return area;
 	}
 
-	public void setZip(int zip) {
-		this.zip = zip;
+	public void setArea(int area) {
+		this.area = area;
+	}
+
+	public int getBeds() {
+		return beds;
+	}
+
+	public void setBeds(int beds) {
+		this.beds = beds;
+	}
+
+	public int getBath() {
+		return bath;
+	}
+
+	public void setBath(int bath) {
+		this.bath = bath;
+	}
+
+	public String getImg1() {
+		return img1;
+	}
+
+	public void setImg1(String img1) {
+		this.img1 = img1;
+	}
+
+	public String getImg2() {
+		return img2;
+	}
+
+	public void setImg2(String img2) {
+		this.img2 = img2;
+	}
+
+	public String getImg3() {
+		return img3;
+	}
+
+	public void setImg3(String img3) {
+		this.img3 = img3;
+	}
+
+	public String getImg4() {
+		return img4;
+	}
+
+	public void setImg4(String img4) {
+		this.img4 = img4;
 	}
 
 	public String getAddress() {
@@ -145,51 +222,28 @@ public class Property {
 		this.state = state;
 	}
 
-	public int getBeds() {
-		return beds;
+	public int getZip() {
+		return zip;
 	}
 
-	public void setBeds(int beds) {
-		this.beds = beds;
+	public void setZip(int zip) {
+		this.zip = zip;
 	}
 
-	public int getBath() {
-		return bath;
-	}
-
-	public void setBath(int bath) {
-		this.bath = bath;
-	}
-
-	public String getPets() {
+	public boolean isPets() {
 		return pets;
 	}
 
-	public void setPets(String pets) {
+	public void setPets(boolean pets) {
 		this.pets = pets;
 	}
 
-	public int getYear() {
-		return year;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setYear(int year) {
-		this.year = year;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public BigDecimal getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(BigDecimal latitude) {
-		this.latitude = latitude;
-	}
-
-	public BigDecimal getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(BigDecimal longitude) {
-		this.longitude = longitude;
-	}
 }
