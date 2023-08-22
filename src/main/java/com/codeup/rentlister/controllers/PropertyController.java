@@ -64,7 +64,6 @@ public class PropertyController {
 		return "redirect:/property";
 	}
 
-
 	@GetMapping("/property/{id}")
 	public String propertyView(@PathVariable int id, Model model) {
 		Property property = propertyDao.findPropertyById(id);

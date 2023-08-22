@@ -9,13 +9,10 @@
 <fieldset>
   <legend>Submit a work order</legend>
   <form th:action="@{/property/workorder}" th:method="post">
-    Date:
-    <input type="date" name="date"/><br/>
     Description:
     <input type="text" name="description"/><br/>
     <input type="submit" value="Submit"/>
   </form>
-
 </fieldset>
 
 <div th:replace="~{partials :: footer}"/>

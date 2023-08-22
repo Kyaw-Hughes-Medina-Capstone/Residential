@@ -1,6 +1,7 @@
 package com.codeup.rentlister.models;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -25,11 +26,11 @@ public class WorkOrder{
 
 	@Column
 	private String description;
-	@Column
-	private Date date;
 
+	@Column(length = 255)
+	private String date;
 
-	public WorkOrder(User tenant, User manager, Property property, String description, Date date){
+	public WorkOrder(User tenant, User manager, Property property, String description, String date){
 		this.tenant = tenant;
 		this.manager = manager;
 		this.property = property;
@@ -64,11 +65,11 @@ public class WorkOrder{
 		this.property = property;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

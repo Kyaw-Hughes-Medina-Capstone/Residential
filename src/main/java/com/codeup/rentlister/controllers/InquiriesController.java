@@ -2,6 +2,7 @@ package com.codeup.rentlister.controllers;
 import com.codeup.rentlister.models.Inquiries;
 import com.codeup.rentlister.models.Property;
 import com.codeup.rentlister.models.User;
+import com.codeup.rentlister.models.WorkOrder;
 import com.codeup.rentlister.repositories.InquiriesRepository;
 import com.codeup.rentlister.repositories.PropertyRepository;
 import com.codeup.rentlister.repositories.UserRepository;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Controller
@@ -44,20 +47,30 @@ public class InquiriesController {
 	@PostMapping("/property/{id}/inquiry")
 	public String createInquiry(
 			@PathVariable int id,
-			@RequestParam(name = "start_date") Date start_date,
-			@RequestParam(name = "end_date") Date end_date,
+			@RequestParam(name = "start_date") String start_date,
+			@RequestParam(name = "end_date") String end_date,
 			@RequestParam(name = "people") int people,
-			@RequestParam(name = "pets") int pets) {
+			@RequestParam(name = "pets") String pets) {
 
-		User tenant = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Property property = propertyDao.findPropertyById(id); // Get property from repository based on id
-		User manager = property.getManager(); // Get manager from property
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		int userId = user.getId();//tenant by current user -> tenant_id
+		User tenant = userDao.findUserById(userId); //USER NEEDS TO BE LOGGED IN TO SUBMIT INQUIRY
 
-		Inquiries inquiries = new Inquiries(tenant, manager, property, start_date, end_date, people, pets);
-		inquiriesDao.save(inquiries);
+		Property property = propertyDao.findPropertyById(id);
 
-		emailService.sendAnInquiryEmail(inquiries, "You have an inquiry about a property!", "Check your account for more information.");
-		return "redirect:/property/inquiry";
+		User manager = property.getManager(); //get manager by user_id -> property -> manager_id
+
+		Inquiries inquiry = new Inquiries(start_date, end_date, people, pets, property, tenant, manager);
+		inquiry.setStart_date(start_date);
+		inquiry.setEnd_date(end_date);
+
+		inquiriesDao.save(inquiry);
+
+		// emailService.sendAnInquiryEmail(inquiry, "You have an inquiry about a property!", "Check your account for more information.");
+
+		return "redirect:/property/" + id;
 	}
+
+
 
 }

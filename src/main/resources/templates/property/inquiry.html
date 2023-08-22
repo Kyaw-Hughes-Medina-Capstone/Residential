@@ -5,9 +5,11 @@
 </head>
 <body>
 <nav th:replace="~{partials :: navbar}"/>
+
 <fieldset>
 	<legend>Inquire about a property</legend>
-	<form th:action="@{/property/{id}/inquire}" th:method="post">
+	<form th:action="@{'/property/' + ${id} + '/inquiry'}" th:method="post">
+
 		Start date:
 		<input type="date" name="start_date"/><br/>
 		End date:
@@ -17,10 +19,12 @@
 		Pets:
 		<input type="text" name="pets"/><br/>
 
+		<input type="hidden" name="id" th:value="${id}"/>
+
 		<input type="submit" value="Submit"/>
 	</form>
-
 </fieldset>
+
 <div th:replace="~{partials :: footer}"/>
 </body>
 </html>

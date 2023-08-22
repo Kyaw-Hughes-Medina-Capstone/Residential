@@ -8,6 +8,8 @@ import com.codeup.rentlister.repositories.UserRepository;
 import com.codeup.rentlister.repositories.WorkOrderRepository;
 import com.codeup.rentlister.services.EmailService;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import org.hibernate.jdbc.Work;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Controller
@@ -45,20 +49,24 @@ public class WorkOrderController {
 
 	@PostMapping("/property/workorder")
 	public String createWorkOrder(
-			@RequestParam(name = "property_id") int propertyId,
-			@RequestParam(name = "description") String description,
-			@RequestParam(name = "date") Date date) {
+			@RequestParam(name = "description") String description) {
 
-		User tenant = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Property property = propertyDao.findPropertyById(propertyId); // Get property from repository based on property_id
-		User manager = property.getManager(); // Get manager from property
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		int userId = user.getId();
+		User tenant = userDao.findUserById(userId); //tenant by current user -> tenant_id
+
+		//USER NEEDS TO BE LOGGED IN TO SUBMIT WORK ORDER
+		Property property = propertyDao.findPropertyByTenantId(userId);
+
+		User manager = property.getManager(); //get manager by user_id -> property -> manager_id
+
+		String date = LocalDate.now().toString();
 
 		WorkOrder workOrder = new WorkOrder(tenant, manager, property, description, date);
-		System.out.println(workOrder.toString());
 
-		emailService.sendAWorkOrderEmail(workOrder, "A tenant submitted a work order", "Check your account for more information");
+		workOrderDao.save(workOrder);
+
 		return "redirect:/property/workorder";
 	}
-
 
 }

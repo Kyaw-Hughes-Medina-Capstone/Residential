@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "inquiries")
 public class Inquiries {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -26,16 +27,19 @@ public class Inquiries {
 	@JoinColumn(name = "property_id", referencedColumnName = "id", nullable = false)
 	private Property property;
 
-	@Column
-	private Date start_date;
-	@Column
-	private Date end_date;
+	@Column(length = 255)
+	private String start_date;
+
+	@Column(length = 255)
+	private String end_date;
+
 	@Column
 	private int people;
+
 	@Column
-	private int pets;
+	private String pets;
 
-	public Inquiries(Date start_date, Date end_date, int people, int pets, Property property, User tenant, User manager) {
+	public Inquiries(String start_date, String end_date, int people, String pets, Property property, User tenant, User manager) {
 		this.start_date = start_date;
 		this.end_date = end_date;
 		this.people = people;
@@ -43,16 +47,6 @@ public class Inquiries {
 		this.property = property;
 		this.tenant = tenant;
 		this.manager = manager;
-	}
-
-	public Inquiries(User tenant, User manager, Property property, Date start_date, Date end_date, int people, int pets) {
-		this.tenant = tenant;
-		this.manager = manager;
-		this.property = property;
-		this.start_date = start_date;
-		this.end_date = end_date;
-		this.people = people;
-		this.pets = pets;
 	}
 
 	public Inquiries() {
@@ -90,19 +84,19 @@ public class Inquiries {
 		this.property = property;
 	}
 
-	public Date getStart_date() {
+	public String getStart_date() {
 		return start_date;
 	}
 
-	public void setStart_date(Date start_date) {
+	public void setStart_date(String start_date) {
 		this.start_date = start_date;
 	}
 
-	public Date getEnd_date() {
+	public String getEnd_date() {
 		return end_date;
 	}
 
-	public void setEnd_date(Date end_date) {
+	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
 
@@ -114,11 +108,11 @@ public class Inquiries {
 		this.people = people;
 	}
 
-	public int getPets() {
+	public String getPets() {
 		return pets;
 	}
 
-	public void setPets(int pets) {
+	public void setPets(String pets) {
 		this.pets = pets;
 	}
 }
