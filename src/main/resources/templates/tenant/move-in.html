@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <head th:replace="partials :: head"/>
+  <meta charset="UTF-8">
+  <title>Move-In Form</title>
+</head>
+<body>
+<nav th:replace="partials :: navbar"/>
+
+
+<div class="main-block">
+  <h1>Move In Inspection Form</h1>
+  <form class="row g-3" th:action="@{/tenant/move-in}" method="post" th:object="${move_in}">
+    <div class="col-md-9">
+      <label for="location" class="form-label">Property Location</label>
+      <input type="text" class="form-control" id="location" name="location" required th:field="*{location}">
+    </div>
+    <div class="col-md-3">
+      <label for="date" class="form-label">Inspection Date</label>
+      <input type="text" class="form-control" id="date" name="date" required>
+    </div>
+    <h5>Inspection: Please mark each item for its existing condition. Provide any remarks that describe conditions requiring attention</h5>
+    <div>
+      <table>
+        <tr>
+          <th class="list-area"> Exterior</th>
+          <th>Good Condition</th>
+          <th>Needs Attention</th>
+          <th>Not Applicable</th>
+          <th>Remarks if item needs attention</th>
+        </tr>
+        <tr>
+          <td class="first-col">1. Foundation</td>
+          <td><input type="radio" value="none" name="foundation" /></td>
+          <td><input type="radio" value="none" name="foundation" /></td>
+          <td><input type="radio" value="none" name="foundation"  /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">2. Walls</td>
+          <td><input type="radio" value="none" name="e-walls" /></td>
+          <td><input type="radio" value="none" name="e-walls" /></td>
+          <td><input type="radio" value="none" name="e-walls" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">3. Roof</td>
+          <td><input type="radio" value="none" name="roof" /></td>
+          <td><input type="radio" value="none" name="roof" /></td>
+          <td><input type="radio" value="none" name="roof" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">4. Electric Fixtures</td>
+          <td><input type="radio" value="none" name="e-electric" /></td>
+          <td><input type="radio" value="none" name="e-electric" /></td>
+          <td><input type="radio" value="none" name="e-electric" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">5. Window/Screen</td>
+          <td><input type="radio" value="none" name="e-window" /></td>
+          <td><input type="radio" value="none" name="e-window" /></td>
+          <td><input type="radio" value="none" name="e-window" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">6. Exterior Door</td>
+          <td><input type="radio" value="none" name="e-door" /></td>
+          <td><input type="radio" value="none" name="e-door" /></td>
+          <td><input type="radio" value="none" name="e-door" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">7. Gutters</td>
+          <td><input type="radio" value="none" name="gutters" /></td>
+          <td><input type="radio" value="none" name="gutters" /></td>
+          <td><input type="radio" value="none" name="gutters" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">8. Shutters</td>
+          <td><input type="radio" value="none" name="shutters" /></td>
+          <td><input type="radio" value="none" name="shutters" /></td>
+          <td><input type="radio" value="none" name="shutters" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <th class="list-area"> Interior</th>
+          <th>Good Condition</th>
+          <th>Needs Attention</th>
+          <th>Not Applicable</th>
+          <th>Remarks if item needs attention</th>
+        </tr>
+        <tr>
+          <td class="first-col">1. Floor</td>
+          <td><input type="radio" value="none" name="floor" /></td>
+          <td><input type="radio" value="none" name="floor" /></td>
+          <td><input type="radio" value="none" name="floor" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">2. Walls</td>
+          <td><input type="radio" value="none" name="i-walls" /></td>
+          <td><input type="radio" value="none" name="i-walls" /></td>
+          <td><input type="radio" value="none" name="i-walls" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">3. Ceiling</td>
+          <td><input type="radio" value="none" name="ceiling" /></td>
+          <td><input type="radio" value="none" name="ceiling" /></td>
+          <td><input type="radio" value="none" name="ceiling" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">4. Electric Fixtures</td>
+          <td><input type="radio" value="none" name="i-electric" /></td>
+          <td><input type="radio" value="none" name="i-electric" /></td>
+          <td><input type="radio" value="none" name="i-electric" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">5. Windows</td>
+          <td><input type="radio" value="none" name="i-window" /></td>
+          <td><input type="radio" value="none" name="i-window" /></td>
+          <td><input type="radio" value="none" name="i-window" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">6. Doors/Locks</td>
+          <td><input type="radio" value="none" name="i-door" /></td>
+          <td><input type="radio" value="none" name="i-door" /></td>
+          <td><input type="radio" value="none" name="i-door" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">7. Closet/Cabinets</td>
+          <td><input type="radio" value="none" name="closet" /></td>
+          <td><input type="radio" value="none" name="closet" /></td>
+          <td><input type="radio" value="none" name="closet" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">8. Stove</td>
+          <td><input type="radio" value="none" name="stove" /></td>
+          <td><input type="radio" value="none" name="stove" /></td>
+          <td><input type="radio" value="none" name="stove" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <th class="list-area"> SYSTEMS</th>
+          <th>Good Condition</th>
+          <th>Needs Attention</th>
+          <th>Not Applicable</th>
+          <th>Remarks if item needs attention</th>
+        </tr>
+        <tr>
+          <td class="first-col">1. Cooling System</td>
+          <td><input type="radio" value="none" name="cool" /></td>
+          <td><input type="radio" value="none" name="cool" /></td>
+          <td><input type="radio" value="none" name="cool" /></td>
+          <td><input type="text" value=" " name="remark" class="remark"/></td>
+        </tr>
+        <tr>
+          <td class="first-col">2. Heating System</td>
+          <td><input type="radio" value="none" name="heat" /></td>
+          <td><input type="radio" value="none" name="heat" /></td>
+          <td><input type="radio" value="none" name="heat" /></td>
+          <td><input type="text" value=" " name="remark" class="remark"/></td>
+        </tr>
+        <tr>
+          <td class="first-col">3. Electrical</td>
+          <td><input type="radio" value="none" name="elec" /></td>
+          <td><input type="radio" value="none" name="elec" /></td>
+          <td><input type="radio" value="none" name="elec" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">4. Plumbing</td>
+          <td><input type="radio" value="none" name="plumb" /></td>
+          <td><input type="radio" value="none" name="plumb" /></td>
+          <td><input type="radio" value="none" name="plumb" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">5. Security System</td>
+          <td><input type="radio" value="none" name="security" /></td>
+          <td><input type="radio" value="none" name="security" /></td>
+          <td><input type="radio" value="none" name="security" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">6. Garage Door</td>
+          <td><input type="radio" value="none" name="garage" /></td>
+          <td><input type="radio" value="none" name="garage"  /></td>
+          <td><input type="radio" value="none" name="garage"  /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">7. Water Heater</td>
+          <td><input type="radio" value="none" name="water" /></td>
+          <td><input type="radio" value="none" name="water" /></td>
+          <td><input type="radio" value="none" name="water" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">8. Sprinkler System</td>
+          <td><input type="radio" value="none" name="sprinkler" /></td>
+          <td><input type="radio" value="none" name="sprinkler" /></td>
+          <td><input type="radio" value="none" name="sprinkler" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+        <tr>
+          <td class="first-col">9. Water Softener</td>
+          <td><input type="radio" value="none" name="softener" /></td>
+          <td><input type="radio" value="none" name="softener" /></td>
+          <td><input type="radio" value="none" name="softener" /></td>
+          <td><input type="text" value=" " name="remark" /></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" name="agreeCheck" required>
+        <label class="form-check-label" for="invalidCheck" >
+          Agree to terms and conditions
+        </label>
+      </div>
+    </div>
+    <div class="d-grid col-2 mx-auto">
+    <button type="button" class="btn btn-secondary">Send</button>
+    </div>
+  </form>
+</div>
+<div th:replace="partials :: footer"/>
+</body>
+</html>
