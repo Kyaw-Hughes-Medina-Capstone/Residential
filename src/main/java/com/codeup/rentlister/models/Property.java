@@ -58,7 +58,8 @@ public class Property {
 	public Property() {
 	}
 
-	public Property(String type, int rent, int zip, String address, String city, String state, int beds, int bath, String pets, int year, BigDecimal latitude, BigDecimal longitude) {
+	public Property(User manager, String type, int rent, int zip, String address, String city, String state, int beds, int bath, String pets, int year, BigDecimal latitude, BigDecimal longitude) {
+		this.manager = manager;
 		this.type = type;
 		this.rent = rent;
 		this.zip = zip;

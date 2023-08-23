@@ -66,6 +66,8 @@ public class WorkOrderController {
 
 		workOrderDao.save(workOrder);
 
+		emailService.sendAWorkOrderEmail(workOrder, "A work order has been submitted to one of your properties!", "Check your account for more information.");
+
 		return "redirect:/property/workorder";
 	}
 

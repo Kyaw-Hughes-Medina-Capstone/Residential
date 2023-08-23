@@ -66,11 +66,8 @@ public class InquiriesController {
 
 		inquiriesDao.save(inquiry);
 
-		// emailService.sendAnInquiryEmail(inquiry, "You have an inquiry about a property!", "Check your account for more information.");
+		 emailService.sendAnInquiryEmail(inquiry, "You have an inquiry about a property!", "Check your account for more information.");
 
 		return "redirect:/property/" + id;
 	}
-
-
-
 }

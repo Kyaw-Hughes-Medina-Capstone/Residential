@@ -57,7 +57,9 @@ public class PropertyController {
 			@RequestParam(name = "latitude") BigDecimal latitude,
 			@RequestParam(name = "longitude") BigDecimal longitude) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Property property = new Property(type, rent, zip, address, city, state, beds, bath, pets, year, latitude, longitude);
+		int userId = user.getId();
+		User manager = userDao.findUserById(userId);
+		Property property = new Property(manager, type, rent, zip, address, city, state, beds, bath, pets, year, latitude, longitude);
 		propertyDao.save(property);
 
 		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
