@@ -35,32 +35,6 @@ public class PropertyController {
 		return "property/create";
 	}
 
-//	@PostMapping("/property/create")
-//	public String createProperty(
-//			@RequestParam(name = "type") String type,
-//			@RequestParam(name = "rent") float rent,
-//			@RequestParam(name = "area") int area,
-//			@RequestParam(name = "beds") int beds,
-//			@RequestParam(name = "bath") int bath,
-//			@RequestParam(name = "img1") String img1,
-//			@RequestParam(name = "img2") String img2,
-//			@RequestParam(name = "img3") String img3,
-//			@RequestParam(name = "img4") String img4,
-//			@RequestParam(name = "address") String address,
-//			@RequestParam(name = "city") String city,
-//			@RequestParam(name = "state") String state,
-//			@RequestParam(name = "zip") int zip,
-//			@RequestParam(name = "pets") String pets,
-//			@RequestParam(name = "description") String description) {
-////		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		Property property = new Property(type, rent, area, beds, bath, img1, img2, img3, img4, address, city, state, zip, pets, description);
-//		System.out.println(property);
-//		propertyDao.save(property);
-//
-////		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
-//		return "redirect:/property";
-//	}
-
 	@PostMapping("/property/create")
 	public String createProperty(
 			@ModelAttribute Property property) {
