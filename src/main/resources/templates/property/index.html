@@ -9,7 +9,7 @@
 <body>
 <nav th:replace="partials :: navbar"/>
 
-<div th:each="property : ${property}">
+<div >
     <div class="search">
     <div class="mapSearch">
         <input type="text" id="zipcodeInput" name="keyword" placeholder="Enter City/State/Zip Code" class="searchBar">
@@ -55,119 +55,23 @@
 
         <div id="map" class="map"></div>
 
-        <div class="card-content row g-3">
-            <div class="card col-md-5"  >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}" ></h5>
-                    <p class="card-text" th:text="${property.beds}" ></p>
-                    <p></p>
-                    <a href="#" class="btn btn-primary">see more</a>
-                </div>
-            </div>
-            <div class="card col-md-5" >
-            <a th:href="@{/property/{id}(id=${property.id})}"></a>
-            <img th:src="${property.img1}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${property.rent}">$</h5>
-                <p class="card-text" th:text="${property.beds}"> , <span th:text="${property.bath}" ></span></p>
-                <a href="#" class="btn btn-primary">see more</a>
-            </div>
-        </div>
-            <div class="card col-md-5"  >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}" ></h5>
-                    <p class="card-text" th:text="${property.beds}" ></p>
-                    <p></p>
-                    <a href="#" class="btn btn-primary">see more</a>
-                </div>
-            </div>
-            <div class="card col-md-5" >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}">$</h5>
-                    <p class="card-text" th:text="${property.beds}"> , <span th:text="${property.bath}" ></span></p>
-                    <a href="#" class="btn btn-primary">see more</a>
-                </div>
-            </div>
-            <div class="card col-md-5"  >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}" ></h5>
-                    <p class="card-text" th:text="${property.beds}" ></p>
-                    <p></p>
-                    <a href="#" class="btn btn-primary">see more</a>
-                </div>
-            </div>
-            <div class="card col-md-5" >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}">$</h5>
-                    <p class="card-text" th:text="${property.beds}"> , <span th:text="${property.bath}" ></span></p>
-                    <a href="#" class="btn btn-primary">see more</a>
-                </div>
-            </div>
-            <div class="card col-md-5"  >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}" ></h5>
-                    <p class="card-text" th:text="${property.beds}" ></p>
-                    <p></p>
-                    <a href="#" class="btn btn-primary">see more</a>
-                </div>
-            </div>
-            <div class="card col-md-5" >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}">$</h5>
-                    <p class="card-text" th:text="${property.beds}"> , <span th:text="${property.bath}" ></span></p>
-                    <a href="#" class="btn btn-primary">see more</a>
-                </div>
-            </div>
-            <div class="card col-md-5"  >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}" ></h5>
-                    <p class="card-text" th:text="${property.beds}" ></p>
-                    <p></p>
-                    <a href="#" class="btn btn-primary">see more</a>
-                </div>
-            </div>
-            <div class="card col-md-5" >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}">$</h5>
-                    <p class="card-text" th:text="${property.beds}"> , <span th:text="${property.bath}" ></span></p>
-                    <a href="#" class="btn btn-primary">see more</a>
-                </div>
-            </div>
-            <div class="card col-md-5"  >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}" ></h5>
-                    <p class="card-text" th:text="${property.beds}" ></p>
-                    <p></p>
-                    <a href="#" class="btn btn-primary">see more</a>
-                </div>
-            </div>
-            <div class="card col-md-5" >
-                <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                <img th:src="${property.img1}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${property.rent}">$</h5>
-                    <p class="card-text" th:text="${property.beds}"> , <span th:text="${property.bath}" ></span></p>
-                    <a href="#" class="btn btn-primary">see more</a>
+        <div class="row properties">
+            <div class="card-content col-lg-6" th:each="property : ${property}">
+                <div class="card">
+                    <a th:href="@{/property/{id}(id=${property.id})}"></a>
+                    <img th:src="${property.img1}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <span th:text="${property.city}"></span>,
+                            <span class="card-text" th:text="${property.state}"></span>
+                        </h3>
+                        <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
+                        <p class="card-text">
+                            <span th:text="${property.beds}"></span> bedrooms,
+                            <span th:text="${property.bath}"></span> bathrooms
+                        </p>
+                        <a th:href="@{/property/show}" class="btn btn-primary">see more</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,8 +1,8 @@
 *{
     margin: 0;
     font-family: 'Roboto Slab', serif;
-    /*color: #1d2525;*/
-    color: white;
+    color: #1d2525;
+    /*color: white;*/
 }
 
 body{
@@ -56,21 +56,23 @@ h2{
     position: sticky;
     top: 10px;
     left: 30px;
+    right:30px;
     border: #313636 solid 2px;
     /*margin: 20px;*/
 }
 
 
-.card-content {
-    width: 45%;
+.properties {
+    max-width: 50%;
     flex-grow: 1;
-    justify-content: center;
-    overflow-y: auto;
-    margin: 0;
+    justify-content: flex-end;
+    margin: 0 0 0 30px;
+    color: black;
 }
 .card{
     margin:0 10px 10px 20px;
     padding:5px;
+    color: black;
 }
 
 .search{

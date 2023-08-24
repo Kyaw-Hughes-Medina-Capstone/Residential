@@ -29,10 +29,7 @@ public class TenantController {
     @PostMapping("/tenant/move-in")
     public String createMoveIn(
             @ModelAttribute MoveInForm moveInForm) {
-//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         moveInDao.save(moveInForm);
-
-//		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
         return "/tenant/index";
     }
 }
