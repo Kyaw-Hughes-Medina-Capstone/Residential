@@ -8,6 +8,9 @@
     background-color: #1d2525;
 
 }
+body{
+    background-color: dimgrey;
+}
 .nav-item{
     margin: 10px;
 }
@@ -29,6 +32,58 @@ h1{
     margin: 40px 0px 80px 0px;
     font-weight: bolder;
 }
+h2{
+    text-align: center;
+}
 .create-listings{
     margin:20px 30px;
+}
+.content-container {
+    width:100%;
+    margin: 20px 0 20px 0;
+    display: flex;
+}
+
+.map {
+    width: 45%;
+    height: 100vh;
+    position: sticky;
+    top: 10px;
+    left: 30px;
+    border: #313636 solid 2px;
+    /*margin: 20px;*/
+}
+
+
+.card-content {
+    width: 45%;
+    flex-grow: 1;
+    justify-content: center;
+    overflow-y: auto;
+    margin: 0;
+}
+.card{
+    margin:0 10px 10px 20px;
+    padding:5px;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+}
+.mapSearch{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.filter-form{
+    width: 50%;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+    margin:20px;
+    background-color: dimgrey;
+    text-align: center;
 }
