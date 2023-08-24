@@ -2,26 +2,33 @@ package com.codeup.rentlister.controllers;
 import com.codeup.rentlister.models.Property;
 import com.codeup.rentlister.repositories.PropertyRepository;
 
+import com.codeup.rentlister.services.PropertyService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class PropertyController {
 
-//	private EmailService emailService;
 
-	private final PropertyRepository propertyDao;
 
-	public PropertyController(PropertyRepository propertyDao) {
-		this.propertyDao = propertyDao;
-	}
+	//	private EmailService emailService;
+	private PropertyService propertyService;
+	private PropertyRepository propertyDao;
+
+
 
 //	private final UserRepository userDao;
 
 
+	public PropertyController(PropertyService propertyService, PropertyRepository propertyDao) {
+		this.propertyService = propertyService;
+		this.propertyDao = propertyDao;
+	}
 
 	@GetMapping("/property")
 	public String index(Model model){
@@ -45,6 +52,33 @@ public class PropertyController {
 //		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
 		return "redirect:/property";
 	}
+
+	@GetMapping("/filtered-properties")
+	public String showFilteredPropertiesPage(Model model) {
+
+		return "/filtered-properties";
+	}
+
+	@PostMapping("/filtered-properties")
+	public String filterProperties(
+			@RequestParam(required = false) String type,
+			@RequestParam(required = false) String city,
+			@RequestParam(required = false) Integer minBedrooms,
+			@RequestParam(required = false) Integer minBathrooms,
+			@RequestParam(required = false) Integer maxPrice,
+			@RequestParam(required = false) Integer minPrice,
+			Model model
+	) {
+
+		List<Property> filteredProperties = propertyService.filterProperties(type, city, minBedrooms, minBathrooms, maxPrice, minPrice);
+		model.addAttribute("filteredProperty", filteredProperties);
+
+		return "/property/filter";
+	}
+
+
+
+
 
 
 	@GetMapping("/property/{id}")
