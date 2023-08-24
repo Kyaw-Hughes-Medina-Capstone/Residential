@@ -68,8 +68,13 @@ public class PropertyController {
 			@RequestParam(required = false) Integer maxPrice,
 			@RequestParam(required = false) Integer minPrice,
 			Model model
-	) {
 
+	) {
+		if(type != null && type.isEmpty()){
+			type = null;
+		}if(city != null && city.isEmpty()){
+			city =null;
+		}
 		List<Property> filteredProperties = propertyService.filterProperties(type, city, minBedrooms, minBathrooms, maxPrice, minPrice);
 		model.addAttribute("filteredProperty", filteredProperties);
 
