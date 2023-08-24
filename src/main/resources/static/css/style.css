@@ -1,8 +1,10 @@
 *{
     margin: 0;
     font-family: 'Roboto Slab', serif;
-    color: #1d2525;
+    /*color: #1d2525;*/
+    color: white;
 }
+
 body{
     background-color: rgb(82 86 89);
 }
@@ -92,3 +94,49 @@ h2{
     text-align: center;
 }
 
+
+.main-block {
+    align-items: center;
+    padding: 3px;
+    margin: 5px 8em;
+}
+
+input {
+    width: calc(100% - 10px);
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    color: black;
+}
+
+input:hover {
+    outline: none;
+    border: 1px solid #095484;
+}
+th, td {
+    width: 15%;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    vertical-align: unset;
+    line-height: 18px;
+    font-weight: 400;
+    word-break: break-all;
+}
+.first-col, .additional-question  .first-col, .course-rate .first-col {
+    width: 24%;
+    text-align: left;
+}
+.question, .comments {
+    margin: 15px 0 5px;
+}
+
+.question-answer, table {
+    width: 100%;
+}
+@media (min-width: 568px) {
+    th, td {
+        word-break: keep-all;
+    }
+}
