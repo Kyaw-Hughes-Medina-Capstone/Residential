@@ -73,8 +73,33 @@ h2{
     margin:0 10px 10px 20px;
     padding:5px;
     color: black;
+    width: 100%;
+    height: 100%;
+}
+.landing-card{
+    margin:0 10px 10px 20px;
+    padding:5px;
+    color: black;
+    width: 100%;
+    height: 100%;
+    background-color: #cccccc;
+    border-radius: 5px;
+}
+.video-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    padding-bottom: 40%; /* 16:9 aspect ratio */
 }
 
+.loop-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
 .search{
     display: flex;
     align-items: center;
