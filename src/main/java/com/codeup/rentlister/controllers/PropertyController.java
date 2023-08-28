@@ -45,6 +45,10 @@ public class PropertyController {
 //		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
 		return "redirect:/property";
 	}
+	@GetMapping("/contact")
+	public String contact(){
+		return"/contact";
+	}
 	@GetMapping("/home")
 	public String landing(Model model){
 		model.addAttribute("property", propertyDao.findAll());

@@ -51,7 +51,7 @@
             <div class="card-content col-lg-6" th:each="property : ${property}">
                 <div class="card">
                     <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                    <img th:src="${property.img1}" class="card-img-top" alt="...">
+                    <img th:src="${property.img1}" class="img-top" alt="..." height="200">
                     <div class="card-body">
                         <h3 class="card-title">
                             <span th:text="${property.city}"></span>,
