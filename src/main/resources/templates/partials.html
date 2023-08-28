@@ -22,15 +22,16 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/property}">For Rent</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/property}">Properties</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">For Tenants</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                             <li><a class="dropdown-item" th:href="@{/tenant/lease}">Application</a></li>
                             <li><a class="dropdown-item" th:href="@{/tenant/move-in}">Checklists</a></li>
-                            <li><a class="dropdown-item" href="#">Make a Payment</a></li>
+                            <li><a class="dropdown-item" th:href="@{/tenant/payment}">Make a Payment</a></li>
                             <li><a class="dropdown-item" href="#">Work Order</a></li>
-                            <li><a class="dropdown-item" href="#">Forms</a></li>
+                            <li><a class="dropdown-item" th:href="@{/tenant/forms}">Forms</a></li>
+                            <li><a class="dropdown-item" th:href="@{/tenant/faq}">FAQ</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
