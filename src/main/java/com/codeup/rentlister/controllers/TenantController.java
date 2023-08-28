@@ -32,4 +32,16 @@ public class TenantController {
         moveInDao.save(moveInForm);
         return "/tenant/index";
     }
+    @GetMapping("/tenant/faq")
+    public String question(){
+        return "/tenant/faq";
+    }
+    @GetMapping("/tenant/forms")
+    public String forms(){
+        return "/tenant/forms";
+    }
+    @GetMapping("/tenant/payment")
+    public String payment(){
+        return "/tenant/payment";
+    }
 }
