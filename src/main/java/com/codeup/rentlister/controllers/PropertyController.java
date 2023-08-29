@@ -1,19 +1,22 @@
 package com.codeup.rentlister.controllers;
-import com.codeup.rentlister.models.Property;
-import com.codeup.rentlister.repositories.PropertyRepository;
 
+import com.codeup.rentlister.models.Property;
+import com.codeup.rentlister.models.Review;
+import com.codeup.rentlister.models.User;
+import com.codeup.rentlister.models.WorkOrder;
+import com.codeup.rentlister.repositories.PropertyRepository;
+import com.codeup.rentlister.repositories.ReviewRepository;
 import com.codeup.rentlister.repositories.UserRepository;
 import com.codeup.rentlister.services.EmailService;
 import com.codeup.rentlister.services.PropertyService;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Properties;
 
 @Controller
 public class PropertyController {
@@ -21,6 +24,7 @@ public class PropertyController {
 	private EmailService emailService;
 	private PropertyService propertyService;
 	private PropertyRepository propertyDao;
+	private ReviewRepository reviewDao;
 	private final UserRepository userDao;
 
 	public PropertyController(EmailService emailService, PropertyService propertyService, PropertyRepository propertyDao, UserRepository userDao) {
@@ -102,4 +106,5 @@ public class PropertyController {
 		propertyDao.save(propertyToUpdate);
 		return "redirect:/property/" + id;
 	}
+
 }
