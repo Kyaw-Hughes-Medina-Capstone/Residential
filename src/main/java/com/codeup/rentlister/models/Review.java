@@ -5,13 +5,14 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "review")
 public class Review {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-	private User user;
+	@JoinColumn(name = "tenant_id", referencedColumnName = "id", nullable = false)
+	private User tenant;
 
 	@ManyToOne
 	@JoinColumn(name = "property_id", referencedColumnName = "id", nullable = false)
@@ -26,8 +27,8 @@ public class Review {
 	public Review(){
 	}
 
-	public Review(User user, Property property, int rating, String description) {
-		this.user = user;
+	public Review(User tenant, Property property, int rating, String description) {
+		this.tenant = tenant;
 		this.property = property;
 		this.rating = rating;
 		this.description = description;

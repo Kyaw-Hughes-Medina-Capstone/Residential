@@ -38,16 +38,17 @@ public class ReviewController {
 	}
 
 	@PostMapping("/property/{id}/review")
-	public String createReview(@RequestParam(name = "rating") Integer rating,
-							   @RequestParam(name = "description") String description,
-							   @PathVariable int id){
+	public String createReview(
+			@PathVariable int id,
+			@RequestParam(name = "rating") int rating,
+			@RequestParam(name = "description") String description){
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		int userId = user.getId();//tenant by current user -> tenant_id
 		User tenant = userDao.findUserById(userId); //USER NEEDS TO BE LOGGED IN TO SUBMIT REVIEW
 
 		Property property = propertyDao.findPropertyById(id);
-		Review review = new Review(user, property, rating, description);
+		Review review = new Review(tenant, property, rating, description);
 		reviewDao.save(review);
 
 //		emailService.sendAReviewEmail(review, "You have a review on a property!", "Check your account for more information.");

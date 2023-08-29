@@ -1,11 +1,6 @@
 package com.codeup.rentlister.models;
-import jakarta.persistence.*;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
-import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "inquiries")

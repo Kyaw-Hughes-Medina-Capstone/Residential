@@ -11,7 +11,7 @@
 <fieldset>
   <legend>Submit a review</legend>
 
-  <form th:action="@{/property/review}" th:method="post">
+  <form th:action="@{'/property/' + ${id} + '/review'}" th:method="post">
     Rating:
     <input type="number" name="rating"/><br/>
     Description:

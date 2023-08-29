@@ -56,9 +56,7 @@ public class InquiriesController {
 		User tenant = userDao.findUserById(userId); //USER NEEDS TO BE LOGGED IN TO SUBMIT INQUIRY
 
 		Property property = propertyDao.findPropertyById(id);
-
 		User manager = property.getManager(); //get manager by user_id -> property -> manager_id
-
 		Inquiries inquiry = new Inquiries(start_date, end_date, people, pets, property, tenant, manager);
 		inquiry.setStart_date(start_date);
 		inquiry.setEnd_date(end_date);
