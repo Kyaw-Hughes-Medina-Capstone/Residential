@@ -18,6 +18,11 @@
 <p th:text="${property.type}"></p>
 <p th:text="${property.zip}"></p>
 
+<div th:each="review: ${reviews}">
+    <p>Review Rating: <span th:text="${review.rating}"></span></p>
+    <p>Review Description: <span th:text="${review.description}"></span></p>
+</div>
+
 <div>
     <a th:href="@{/property/edit/{id}(id=${property.id})}">Edit</a>
 </div>

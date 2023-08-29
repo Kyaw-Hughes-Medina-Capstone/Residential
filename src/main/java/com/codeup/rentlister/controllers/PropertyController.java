@@ -27,11 +27,12 @@ public class PropertyController {
 	private ReviewRepository reviewDao;
 	private final UserRepository userDao;
 
-	public PropertyController(EmailService emailService, PropertyService propertyService, PropertyRepository propertyDao, UserRepository userDao) {
+	public PropertyController(EmailService emailService, PropertyService propertyService, PropertyRepository propertyDao, UserRepository userDao, ReviewRepository reviewDao) {
 		this.emailService = emailService;
 		this.propertyService = propertyService;
 		this.propertyDao = propertyDao;
 		this.userDao = userDao;
+		this.reviewDao = reviewDao;
 	}
 
 	@GetMapping("/property")
@@ -87,9 +88,12 @@ public class PropertyController {
 	@GetMapping("/property/{id}")
 	public String propertyView(@PathVariable int id, Model model) {
 		Property property = propertyDao.findPropertyById(id);
+		List<Review> reviews = reviewDao.findReviewsByPropertyId(id);
 		model.addAttribute("property", property);
+		model.addAttribute("reviews", reviews);
 		return "property/show";
 	}
+
 
 	@GetMapping("/property/{id}/edit")
 	public String editOneListing(@PathVariable int id, Model model) {
