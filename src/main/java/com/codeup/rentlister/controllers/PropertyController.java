@@ -1,9 +1,7 @@
 package com.codeup.rentlister.controllers;
 
-import com.codeup.rentlister.models.Property;
-import com.codeup.rentlister.models.Review;
-import com.codeup.rentlister.models.User;
-import com.codeup.rentlister.models.WorkOrder;
+import com.codeup.rentlister.models.*;
+import com.codeup.rentlister.repositories.InquiriesRepository;
 import com.codeup.rentlister.repositories.PropertyRepository;
 import com.codeup.rentlister.repositories.ReviewRepository;
 import com.codeup.rentlister.repositories.UserRepository;
@@ -25,14 +23,16 @@ public class PropertyController {
 	private PropertyService propertyService;
 	private PropertyRepository propertyDao;
 	private ReviewRepository reviewDao;
+	private InquiriesRepository inquiryDao;
 	private final UserRepository userDao;
 
-	public PropertyController(EmailService emailService, PropertyService propertyService, PropertyRepository propertyDao, UserRepository userDao, ReviewRepository reviewDao) {
+	public PropertyController(EmailService emailService, PropertyService propertyService, PropertyRepository propertyDao, UserRepository userDao, ReviewRepository reviewDao, InquiriesRepository inquiryDao) {
 		this.emailService = emailService;
 		this.propertyService = propertyService;
 		this.propertyDao = propertyDao;
 		this.userDao = userDao;
 		this.reviewDao = reviewDao;
+		this.inquiryDao = inquiryDao;
 	}
 
 	@GetMapping("/property")
@@ -89,11 +89,12 @@ public class PropertyController {
 	public String propertyView(@PathVariable int id, Model model) {
 		Property property = propertyDao.findPropertyById(id);
 		List<Review> reviews = reviewDao.findReviewsByPropertyId(id);
+		List<Inquiries> inquiries = inquiryDao.findInquiriesByPropertyId(id);
 		model.addAttribute("property", property);
 		model.addAttribute("reviews", reviews);
+		model.addAttribute("inquiries", inquiries);
 		return "property/show";
 	}
-
 
 	@GetMapping("/property/{id}/edit")
 	public String editOneListing(@PathVariable int id, Model model) {
@@ -110,5 +111,7 @@ public class PropertyController {
 		propertyDao.save(propertyToUpdate);
 		return "redirect:/property/" + id;
 	}
+
+
 
 }

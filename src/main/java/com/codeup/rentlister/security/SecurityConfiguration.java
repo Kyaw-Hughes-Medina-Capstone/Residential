@@ -24,11 +24,9 @@ public class SecurityConfiguration {
 		http
 				.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())) // Set X-Frame-Options header
 				.authorizeHttpRequests(requests -> requests
-						/* Pages that require authentication
-						 * only authenticated users can create and edit ads */
+						/* Pages that require authentication */
 						.requestMatchers("").authenticated()
-						/* Pages that do not require authentication
-						 * anyone can visit the home page, register, login, and view ads */
+						/* Pages that do not require authentication */
 						.requestMatchers("/home", "/", "/property", "/property/*", "/sign-up", "/login", "/property/create", "/property/*/edit", "/property/show", "property/*/inquiry", "property/workorder", "tenant/lease", "tenant/move-in", "tenant/index", "KXZ-logo.png", "residentialLease.pdf", "/filtered-properties", "/static/js/map.js", "/property/*/review").permitAll()
 						// allow loading of static resources
 						.requestMatchers("/css/**", "/js/**", "/img/**").permitAll()

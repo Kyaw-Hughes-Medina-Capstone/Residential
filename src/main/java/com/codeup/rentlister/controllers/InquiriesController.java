@@ -46,25 +46,27 @@ public class InquiriesController {
 	@PostMapping("/property/{id}/inquiry")
 	public String createInquiry(
 			@PathVariable int id,
-			@RequestParam(name = "start_date") String start_date,
-			@RequestParam(name = "end_date") String end_date,
-			@RequestParam(name = "people") int people,
-			@RequestParam(name = "pets") String pets) {
+			@RequestParam String start_date,
+			@RequestParam String end_date,
+			@RequestParam int people,
+			@RequestParam String pets) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		int userId = user.getId();//tenant by current user -> tenant_id
-		User tenant = userDao.findUserById(userId); //USER NEEDS TO BE LOGGED IN TO SUBMIT INQUIRY
+		User user = getCurrentUser();
+		User tenant = userDao.findUserById(user.getId());
 
 		Property property = propertyDao.findPropertyById(id);
-		User manager = property.getManager(); //get manager by user_id -> property -> manager_id
-		Inquiries inquiry = new Inquiries(start_date, end_date, people, pets, property, tenant, manager);
-		inquiry.setStart_date(start_date);
-		inquiry.setEnd_date(end_date);
+		User manager = property.getManager();
 
+		Inquiries inquiry = new Inquiries(start_date, end_date, people, pets, property, tenant, manager);
 		inquiriesDao.save(inquiry);
 
 		emailService.sendAnInquiryEmail(inquiry, "You have an inquiry about a property!", "Check your account for more information.");
 
 		return "redirect:/property/" + id;
 	}
+
+	private User getCurrentUser() {
+		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
+
 }

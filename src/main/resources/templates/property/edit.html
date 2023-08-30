@@ -9,7 +9,7 @@
 <nav th:replace="~{partials :: navbar}"/>
 <fieldset>
 
-    <form th:action="@{/templates/property/{id}/edit(id=${property.id})}" th:method="post" th:object="${post}">
+    <form th:action="@{/property/{id}/edit(id=${property.id})}" th:method="post" th:object="${post}">
         Type:
         <input type="text" name="type"/><br/>
         Rent:

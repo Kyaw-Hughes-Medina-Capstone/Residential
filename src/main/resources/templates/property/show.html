@@ -18,13 +18,23 @@
 <p th:text="${property.type}"></p>
 <p th:text="${property.zip}"></p>
 
-<div th:each="review: ${reviews}">
+<div th:each="review: ${reviews}" class="card">
     <p>Review Rating: <span th:text="${review.rating}"></span></p>
     <p>Review Description: <span th:text="${review.description}"></span></p>
 </div>
 
-<div>
-    <a th:href="@{/property/edit/{id}(id=${property.id})}">Edit</a>
+<div th:each="inquiry : ${inquiries}">
+    <th:block th:if="${inquiry.property.manager.id == #authentication.principal.id}">
+        <div class="card">
+            <p>inquiry: <span th:text="${inquiry.start_date}"></span></p>
+            <p>Description: <span th:text="${inquiry.end_date}"></span></p>
+            <p>Description: <span th:text="${inquiry.tenant.email}"></span></p>
+        </div>
+
+        <div>
+            <a th:href="@{/property/{id}/edit(id=${property.id})}">Edit</a>
+        </div>
+    </th:block>
 </div>
 
 <p>Posted by: <span th:text="${property.manager.name}"></span></p>

@@ -2,8 +2,8 @@ mapboxgl.accessToken = accessKey;
 let map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v12',
-    center: [-97.733330, 30.266666],
-    zoom: 9,
+    center: [30.274672822809205, -97.74034452371761],
+    zoom: 15,
 });
 
 // document.getElementById('searchButton').addEventListener('click', function (event) {
