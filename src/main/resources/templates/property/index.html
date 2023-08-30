@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <link th:href="@{'https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet'} "/>
-    <head th:replace="partials :: head"/>
-    <meta charset="UTF-8">
-    <title>All property listings</title>
+    <head th:replace="partials :: head">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+        <link th:href="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css}" rel="stylesheet">
+        <title>All property listings</title>
+    </head>
 </head>
 <body>
 <nav th:replace="partials :: navbar"/>
 
-<div >
+<div>
     <div class="search">
-        <div class="mapSearch">
-            <input type="text" id="zipcodeInput" name="keyword" placeholder="Enter City/State/Zip Code" class="searchBar">
-            <button id="searchButton" type="button" class="searchButton">Search</button>
-        </div>
         <form class="filter-form row g-3 " th:action="@{/filtered-properties}" method="post">
             <h2>Available Properties</h2>
             <div class="col-md-4">
@@ -23,15 +21,17 @@
             <div class="col-md-4">
                 <input type="text" class="form-control-filter " id="propertyCities" name="city" placeholder="Any Cities">
             </div>
+<!--            <div class="col-md-4">-->
+<!--                <input type="text" class="form-control-filter" id="zip" name="zip" placeholder="Zip Code" >-->
+<!--            </div>-->
             <div class="col-md-4">
                 <input type="text" class="form-control-filter " id="beds" name="minBedrooms" placeholder="Any Bed">
             </div>
             <div class="col-md-4">
                 <input type="text" class="form-control-filter" id="bath" name="minBathrooms" placeholder="Any Bath">
             </div>
-
             <div class="col-md-4">
-                <input type="text" class="form-control-filter " id="priceMin" name="minPrice" placeholder="Price Min">
+                <input type="text" class="form-control-filter" id="priceMin" name="minPrice" placeholder="Price Min">
             </div>
             <div class="col-md-4">
                 <input type="text" class="form-control-filter" id="priceMax" name="maxPrice" placeholder="Price Max">
@@ -40,23 +40,23 @@
                 <button class="btn btn-primary" type="submit">Search</button>
             </div>
         </form>
+
     </div>
 
-
     <div class="content-container">
-
         <div id="map" class="map"></div>
 
         <div class="row properties">
-            <div class="card-content col-lg-6" th:each="property : ${property}">
+                        <div id="property-data" class="card-content col-lg-6" th:each="property : ${property}"
+                             data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
+<!--            <div class="card-content col-lg-6" th:each="property : ${property}">-->
                 <div class="card">
                     <a th:href="@{/property/{id}(id=${property.id})}"></a>
                     <img th:src="${property.img1}" class="img-top" alt="..." height="200">
                     <div class="card-body">
-                        <h3 class="card-title">
-                            <span th:text="${property.city}"></span>,
-                            <span class="card-text" th:text="${property.state}"></span>
-                        </h3>
+                        <h4 class="card-address "
+                             th:text="${property.address + ', ' + property.city + ', '+ property.state + ', ' + property.zip}">
+                        </h4>
                         <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
                         <p class="card-text">
                             <span th:text="${property.beds}"></span> bedrooms,
@@ -70,10 +70,11 @@
     </div>
 </div>
 
-
-<script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js}"></script>
+<script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js}"></script>
 <script type="text/javascript" th:src="@{/js/keys.js}"></script>
 <script type="text/javascript" th:src="@{/js/map.js}"></script>
 <div th:replace="partials :: footer"/>
+
 </body>
 </html>
+
