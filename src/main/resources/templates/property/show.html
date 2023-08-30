@@ -4,19 +4,31 @@
 <head>
     <head th:replace="~{partials :: head}"/>
     <meta charset="UTF-8">
+    <link th:href="@{'https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet'} "/>
 </head>
 <body>
 <nav th:replace="~{partials :: navbar}"/>
 
-<p th:text="${property.address}"></p>
-<p th:text="${property.bath}"></p>
-<p th:text="${property.beds}"></p>
-<p th:text="${property.city}"></p>
-<p th:text="${property.pets}"></p>
+<div id="map" class="map-listing"></div>
+
+Monthly cost:
 <p th:text="${property.rent}"></p>
-<p th:text="${property.state}"></p>
+Type:
 <p th:text="${property.type}"></p>
+Bathrooms:
+<p th:text="${property.bath}"></p>
+Bedrooms
+<p th:text="${property.beds}"></p>
+Pets:
+<p th:text="${property.pets}"></p>
+
+<div>
+Address:
+<p th:text="${property.address}">Address:</p>
+<p th:text="${property.city}"></p>
+<p th:text="${property.state}"></p>
 <p th:text="${property.zip}"></p>
+</div>
 
 <div th:each="review: ${reviews}" class="card">
     <p>Review Rating: <span th:text="${review.rating}"></span></p>
@@ -39,7 +51,9 @@
 
 <p>Posted by: <span th:text="${property.manager.name}"></span></p>
 
-
+<script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js}"></script>
+<script type="text/javascript" th:src="@{/js/keys.js}"></script>
+<script type="text/javascript" th:src="@{/js/map.js}"></script>
 <div th:replace="~{partials :: footer}"/>
 </body>
 </html>

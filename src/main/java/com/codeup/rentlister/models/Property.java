@@ -56,6 +56,8 @@ public class Property {
 	@Column(nullable = false)
 	private int zip;
 
+	@Column
+
 	@Override
 	public String toString() {
 		return "Property{" +

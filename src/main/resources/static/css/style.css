@@ -61,6 +61,16 @@ h2{
     /*margin: 20px;*/
 }
 
+.map-listing {
+    width: 25vh;
+    height: 25vh;
+    top: 10px;
+    left: 30px;
+    right:30px;
+    border: #313636 solid 2px;
+    /*margin: 20px;*/
+}
+
 
 .properties {
     max-width: 50%;
