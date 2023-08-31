@@ -97,21 +97,27 @@ public class PropertyController {
 	}
 
 	@GetMapping("/property/{id}/edit")
-	public String editOneListing(@PathVariable int id, Model model) {
+	public String editProperty(@PathVariable int id, Model model) {
 		Property property = propertyDao.findPropertyById(id);
 		model.addAttribute("property", property);
-		return "/property/edit";
+		return "property/edit";
 	}
 
 	@PostMapping("/property/{id}/edit")
 	public String editProperty(@PathVariable int id, @ModelAttribute Property property) {
 		Property propertyToUpdate = propertyDao.findPropertyById(id);
+		propertyToUpdate.setRent(property.getRent());
+		propertyToUpdate.setType(property.getType());
 		propertyToUpdate.setBeds(property.getBeds());
 		propertyToUpdate.setBath(property.getBath());
+		propertyToUpdate.setPets(property.isPets());
+		propertyToUpdate.setAddress(property.getAddress());
+		propertyToUpdate.setCity(property.getCity());
+		propertyToUpdate.setState(property.getState());
+		propertyToUpdate.setZip(propertyToUpdate.getZip());
+		propertyToUpdate.setLatitude(property.getLatitude());
+		propertyToUpdate.setLongitude(property.getLongitude());
 		propertyDao.save(propertyToUpdate);
 		return "redirect:/property/" + id;
 	}
-
-
-
 }

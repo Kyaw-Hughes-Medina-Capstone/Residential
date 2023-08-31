@@ -2,6 +2,8 @@ package com.codeup.rentlister.models;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "property")
 public class Property {
@@ -56,7 +58,11 @@ public class Property {
 	@Column(nullable = false)
 	private int zip;
 
-	@Column
+	@Column(nullable = false, precision = 8, scale = 6)
+	private BigDecimal latitude;
+
+	@Column(nullable = false, precision = 8, scale = 6)
+	private BigDecimal longitude;
 
 	@Override
 	public String toString() {
@@ -257,5 +263,21 @@ public class Property {
 
 	public void setTenant(User tenant) {
 		this.tenant = tenant;
+	}
+
+	public BigDecimal getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
 	}
 }

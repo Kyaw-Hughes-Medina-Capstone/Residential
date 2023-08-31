@@ -9,33 +9,34 @@
 <nav th:replace="~{partials :: navbar}"/>
 <fieldset>
 
-    <form th:action="@{/property/{id}/edit(id=${property.id})}" th:method="post" th:object="${post}">
+    <form th:action="@{/property/{id}/edit(id=${property.id})}" th:method="post" th:object="${property}">
         Type:
-        <input type="text" name="type"/><br/>
+        <input type="text" th:field="*{type}"/><br/>
         Rent:
-        <input type="number" name="rent"/><br/>
+        <input type="number" th:field="*{rent}"/><br/>
         Zip:
-        <input type="number" name="zip"/><br/>
+        <input type="number" th:field="*{zip}"/><br/>
         Address:
-        <input type="text" name="address"/><br/>
+        <input type="text" th:field="*{address}"/><br/>
         City:
-        <input type="text" name="city"/><br/>
+        <input type="text" th:field="*{city}"/><br/>
         State:
-        <input type="text" name="state"/><br/>
+        <input type="text" th:field="*{state}"/><br/>
         Beds:
-        <input type="number" name="beds"/><br/>
+        <input type="number" th:field="*{beds}"/><br/>
         Bath:
-        <input type="number" name="bath"/><br/>
+        <input type="number" th:field="*{bath}"/><br/>
         Pets:
-        <input type="text" name="pets"/><br/>
-        Year:
-        <input type="number" name="yr"/><br/>
+        <input type="text" th:field="*{pets}"/><br/>
         Latitude:
-        <input type="text" name="latitude"/><br/>
+        <input type="text" th:field="*{latitude}"/><br/>
         Longitude:
-        <input type="text" name="longitude"/><br/>
+        <input type="text" th:field="*{longitude}"/><br/>
+
+        <button type="submit">Save Changes</button>
     </form>
 </fieldset>
+
 <div th:replace="~{partials :: footer}"/>
 </body>
 </html>
