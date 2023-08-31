@@ -103,11 +103,12 @@ public class Inquiries {
 		this.people = people;
 	}
 
-	public String Pets() {
+	public String getPets() {
 		return pets;
 	}
 
 	public void setPets(String pets) {
 		this.pets = pets;
 	}
+
 }
