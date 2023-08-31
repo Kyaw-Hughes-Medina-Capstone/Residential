@@ -10,6 +10,7 @@
 <body>
 <nav th:replace="~{partials :: navbar}"/>
 
+
 <div th:each="inquiry : ${inquiries}" class="col-3">
     <th:block th:if="${inquiry.property.manager.id == #authentication.principal.id}">
         <div class="card">
@@ -21,6 +22,7 @@
             <p>Email: <span th:text="${inquiry.tenant.email}"></span></p>
             <p>Number: <span th:text="${inquiry.tenant.number}"></span></p>
         </div>
+
 
         <div>
             <a th:href="@{/property/{id}/edit(id=${property.id})}">Edit</a>

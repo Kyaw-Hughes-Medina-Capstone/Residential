@@ -27,10 +27,6 @@ public class InquiriesController {
 		this.emailService = emailService;
 	}
 
-	@GetMapping("/home")
-	public String showHome(){
-		return "/home";
-	}
 
 	@GetMapping("/property/{id}/inquiry")
 	public String showInquiryCreateForm(@PathVariable int id, Model model) {

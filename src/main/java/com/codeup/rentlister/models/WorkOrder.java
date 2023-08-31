@@ -7,77 +7,89 @@ import java.util.List;
 
 @Entity
 @Table(name = "workorders")
-public class WorkOrder{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+public class WorkOrder {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@ManyToOne
-	@JoinColumn(name = "tenant_id", referencedColumnName = "id", nullable = false)
-	private User tenant;
+    @OneToOne
+    @JoinColumn(name = "property_id", referencedColumnName = "id")
+    private Property property_id;
 
-	@ManyToOne
-	@JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = false)
-	private User manager;
+    @OneToOne
+    @JoinColumn(name = "tenant_id", referencedColumnName = "id")
+    private User tenant_id;
 
-	@ManyToOne
-	@JoinColumn(name = "property_id", referencedColumnName = "id", nullable = false)
-	private Property property;
+    @Column(nullable = false)
+    private int manager_id;
 
-	@Column
-	private String description;
+    @Column(nullable = false)
+    private String description;
 
-	@Column(length = 255)
-	private String date;
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date date;
 
-	public WorkOrder(User tenant, User manager, Property property, String description, String date){
-		this.tenant = tenant;
-		this.manager = manager;
-		this.property = property;
-		this.date = date;
-		this.description = description;
-	}
+    public WorkOrder(int id, Property property_id, User tenant_id, int manager_id, String description, Date date) {
+        this.id = id;
+        this.property_id = property_id;
+        this.tenant_id = tenant_id;
+        this.manager_id = manager_id;
+        this.description = description;
+        this.date = date;
+    }
 
-	public WorkOrder() {
-	}
+    public WorkOrder() {
+    }
 
-	public User getTenant() {
-		return tenant;
-	}
+    public WorkOrder(User tenant, User manager, Property property, String description, String date) {
+    }
 
-	public void setTenant(User tenant) {
-		this.tenant = tenant;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public User getManager() {
-		return manager;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setManager(User manager) {
-		this.manager = manager;
-	}
+    public Property getProperty_id() {
+        return property_id;
+    }
 
-	public Property getProperty() {
-		return property;
-	}
+    public void setProperty_id(Property property_id) {
+        this.property_id = property_id;
+    }
 
-	public void setProperty(Property property) {
-		this.property = property;
-	}
+    public User getTenant_id() {
+        return tenant_id;
+    }
 
-	public String getDate() {
-		return date;
-	}
+    public void setTenant_id(User tenant_id) {
+        this.tenant_id = tenant_id;
+    }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+    public int getManager_id() {
+        return manager_id;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setManager_id(int manager_id) {
+        this.manager_id = manager_id;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }
