@@ -1,12 +1,15 @@
 package com.codeup.rentlister.controllers;
 import com.codeup.rentlister.models.Property;
 import com.codeup.rentlister.repositories.PropertyRepository;
-
+import com.codeup.rentlister.repositories.UserRepository;
+import com.codeup.rentlister.services.EmailService;
+import org.apache.catalina.User;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
 import com.codeup.rentlister.services.PropertyService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import java.lang.String;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,18 +18,23 @@ import java.util.List;
 @Controller
 public class PropertyController {
 
-//	private EmailService emailService;
-	private PropertyService propertyService;
-
+	private final EmailService emailService;
 	private final PropertyRepository propertyDao;
+	private final UserRepository userDao;
+	private final PropertyService propertyService;
+
 	@Value("${mapBoxKey}")
 	private String mapBoxKey;
-	public PropertyController(PropertyService propertyService, PropertyRepository propertyDao) {
-		this.propertyService = propertyService;
+
+	public PropertyController(EmailService emailService, PropertyRepository propertyDao, UserRepository userDao, PropertyService propertyService) {
+		this.emailService = emailService;
 		this.propertyDao = propertyDao;
+		this.userDao = userDao;
+		this.propertyService = propertyService;
 	}
 
-//Home Page
+
+	//Home Page
 	@GetMapping("/home")
 	public String landing(Model model){
 		model.addAttribute("property", propertyDao.findAll());
@@ -47,14 +55,15 @@ public class PropertyController {
 		return "property/create";
 	}
 
+
 	@PostMapping("/property/create")
 	public String createProperty(
 			@ModelAttribute Property property) {
-//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		System.out.println(property);
 		propertyDao.save(property);
 
-//		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
+		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
 		return "redirect:/property";
 	}
 	@GetMapping("/filtered-properties")
@@ -117,8 +126,12 @@ public class PropertyController {
 		propertyDao.save(propertyToUpdate);
 		return "redirect:/ads/" + id;
 	}
-	@GetMapping("/about")
-	public String about() {
-		return "/about";
-	}
 }
+
+
+
+
+
+
+
+
