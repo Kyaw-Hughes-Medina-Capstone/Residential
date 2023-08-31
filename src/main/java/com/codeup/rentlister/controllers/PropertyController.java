@@ -117,4 +117,8 @@ public class PropertyController {
 		propertyDao.save(propertyToUpdate);
 		return "redirect:/ads/" + id;
 	}
+	@GetMapping("/about")
+	public String about() {
+		return "/about";
+	}
 }
