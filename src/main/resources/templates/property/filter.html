@@ -37,7 +37,7 @@
         <input type="text" class="form-control-filter" id="priceMax" name="maxPrice" placeholder="Price Max">
       </div>
       <div class="col-md-4">
-        <button class="btn btn-primary" type="submit">Search</button>
+        <button class="btn btn-secondary" type="submit">Search</button>
       </div>
     </form>
   </div>
@@ -48,7 +48,7 @@
     <div id="map" class="map"></div>
 
     <div class="row properties">
-      <p>Filtered Property Count: <span th:text="${#lists.size(filteredProperty)}"></span></p>
+      <p> <span th:text="${#lists.size(filteredProperty)}"></span>  Properties Found!</p>
 
       <div class="card-content col-lg-6" th:each="property : ${filteredProperty}">
         <div class="card">
@@ -63,7 +63,7 @@
               <span th:text="${property.beds}"></span> bedrooms,
               <span th:text="${property.bath}"></span> bathrooms
             </p>
-            <a th:href="@{/property/show}" class="btn btn-primary">see more</a>
+            <a th:href="@{/property/show}" class="btn btn-secondary">see more</a>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
 <body>
 <nav th:replace="partials :: navbar"/>
 
-<h1>Managing Properties, Building Futures</h1>
+<h2>Managing Properties, Building Futures</h2>
 
 
 <div class="video-container">
@@ -31,7 +31,7 @@
 <!--            src="https://www.canva.com/design/DAFsjjU8G7c/watch?embed&autoplay=1&loop=1&muted=1" allowfullscreen="allowfullscreen" allow="fullscreen">-->
 <!--    </iframe>-->
 <!--</div>-->
-<h1 class="recent">Recent Listings</h1>
+<h2 class="recent">Recent Listings</h2>
 <div class="row ">
     <div class="card-content col-lg-2" th:each="property,limit : ${property}">
         <div class="landing-card" th:if="${limit.count} <= 6">
@@ -43,7 +43,7 @@
                     <span class="card-text" th:text="${property.state}"></span>
                 </h3>
                 <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
-                <a th:href="@{/property/show}" class="btn btn-primary">see more</a>
+                <a th:href="@{/property/show}" class="btn btn-secondary">see more</a>
             </div>
         </div>
     </div>

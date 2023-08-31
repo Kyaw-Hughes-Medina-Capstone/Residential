@@ -14,7 +14,7 @@
 <div>
     <div class="search">
         <form class="filter-form row g-3 " th:action="@{/filtered-properties}" method="post">
-            <h2>Available Properties</h2>
+            <h3>Available Properties</h3>
             <div class="col-md-4">
                 <input type="text" class="form-control-filter " id="type" name="type" placeholder="Any Type">
             </div>
@@ -37,7 +37,7 @@
                 <input type="text" class="form-control-filter" id="priceMax" name="maxPrice" placeholder="Price Max">
             </div>
             <div class="col-md-4">
-                <button class="btn btn-primary" type="submit">Search</button>
+                <button class="btn btn-secondary" type="submit">Search</button>
             </div>
         </form>
 
@@ -62,7 +62,7 @@
                             <span th:text="${property.beds}"></span> bedrooms,
                             <span th:text="${property.bath}"></span> bathrooms
                         </p>
-                        <a th:href="@{/property/show}" class="btn btn-primary">see more</a>
+                        <a th:href="@{/property/show}" class="btn btn-secondary">see more</a>
                     </div>
                 </div>
             </div>
