@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-	private UserRepository userDao;
-	private PasswordEncoder passwordEncoder;
+	private final UserRepository userDao;
+	private final PasswordEncoder passwordEncoder;
 
 	public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
 		this.userDao = userDao;
@@ -30,5 +30,10 @@ public class UserController {
 		User.setPassword(hash.toString());
 		userDao.save(User);
 		return "redirect:/property";
+	}
+
+	@GetMapping("/contact")
+	public String showContact(){
+		return "users/contact";
 	}
 }

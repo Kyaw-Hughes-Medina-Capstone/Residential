@@ -1,7 +1,7 @@
 package com.codeup.rentlister.controllers;
 import com.codeup.rentlister.models.Property;
 import com.codeup.rentlister.models.User;
-import com.codeup.rentlister.models.UserWithRoles;
+//import com.codeup.rentlister.models.UserWithRoles;
 import com.codeup.rentlister.models.WorkOrder;
 import com.codeup.rentlister.repositories.PropertyRepository;
 import com.codeup.rentlister.repositories.UserRepository;

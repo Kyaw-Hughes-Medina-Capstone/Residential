@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    font-family: 'Roboto Slab', serif;
+    color: #1d2525;
+    /*color: white;*/
+}
+
+body{
+    background-color: rgb(82 86 89);
+}
+
+.navbar{
+    background-color: #1d2525;
+
+}
+body{
+    background-color: dimgrey;
+}
+.nav-item{
+    margin: 10px;
+}
+a:link{
+    text-decoration: none;
+}
+a:visited{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+a:active{
+    text-decoration: none;
+}
+
+h1{
+    text-align: center;
+    margin: 60px 0px 60px 0px;
+    font-weight: bolder;
+    color: white;
+}
+h2{
+    text-align: center;
+}
+.create-listings{
+    margin:20px 30px;
+}
+.content-container {
+    width:100%;
+    margin: 20px 0 20px 0;
+    display: flex;
+}
+
+.map {
+    width: 45%;
+    height: 100vh;
+    position: sticky;
+    top: 10px;
+    left: 30px;
+    right:30px;
+    border: #313636 solid 2px;
+    /*margin: 20px;*/
+}
+
+.map-listing {
+    width: 25vh;
+    height: 25vh;
+    top: 10px;
+    left: 30px;
+    right:30px;
+    border: #313636 solid 2px;
+    /*margin: 20px;*/
+}
+
+
+.properties {
+    max-width: 50%;
+    flex-grow: 1;
+    justify-content: flex-end;
+    margin: 0 0 0 30px;
+    color: black;
+}
+.card{
+    margin:0 10px 10px 20px;
+    padding:5px;
+    color: black;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+}
+.mapSearch{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.filter-form{
+    width: 50%;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+    margin:20px;
+    background-color: dimgrey;
+    text-align: center;
+}
+
+
+.main-block {
+    align-items: center;
+    padding: 3px;
+    margin: 5px 8em;
+}
+
+input {
+    width: calc(100% - 10px);
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    color: black;
+}
+
+input:hover {
+    outline: none;
+    border: 1px solid #095484;
+}
+th, td {
+    width: 15%;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    vertical-align: unset;
+    line-height: 18px;
+    font-weight: 400;
+    word-break: break-all;
+}
+.first-col, .additional-question  .first-col, .course-rate .first-col {
+    width: 24%;
+    text-align: left;
+}
+.question, .comments {
+    margin: 15px 0 5px;
+}
+
+.question-answer, table {
+    width: 100%;
+}
+@media (min-width: 568px) {
+    th, td {
+        word-break: keep-all;
+    }
+}

@@ -5,11 +5,13 @@ import jakarta.persistence.*;
 import java.util.Properties;
 
 @Entity
+
 @Table(name = "images")
 public class Images {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 
 	@ManyToOne
 	@JoinColumn(name = "property_id", referencedColumnName = "id")
