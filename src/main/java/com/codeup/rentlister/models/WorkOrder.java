@@ -1,7 +1,9 @@
 package com.codeup.rentlister.models;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "workorders")
@@ -38,6 +40,9 @@ public class WorkOrder {
     }
 
     public WorkOrder() {
+    }
+
+    public WorkOrder(User tenant, User manager, Property property, String description, String date) {
     }
 
     public int getId() {

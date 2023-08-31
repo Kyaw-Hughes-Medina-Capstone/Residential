@@ -33,5 +33,7 @@ build/
 ### VS Code ###
 .vscode/
 application.properties
+
 keys.js
 test.html
+

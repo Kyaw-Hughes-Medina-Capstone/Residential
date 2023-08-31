@@ -52,5 +52,4 @@ public class SecurityConfiguration {
                 .httpBasic(withDefaults());
         return http.build();
     }
-
 }

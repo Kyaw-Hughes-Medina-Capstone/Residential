@@ -20,9 +20,9 @@
             <div class="col-md-4">
                 <input type="text" class="form-control-filter " id="propertyCities" name="city" placeholder="Any Cities">
             </div>
-<!--            <div class="col-md-4">-->
-<!--                <input type="text" class="form-control-filter" id="zip" name="zip" placeholder="Zip Code" >-->
-<!--            </div>-->
+            <!--            <div class="col-md-4">-->
+            <!--                <input type="text" class="form-control-filter" id="zip" name="zip" placeholder="Zip Code" >-->
+            <!--            </div>-->
             <div class="col-md-4">
                 <input type="text" class="form-control-filter " id="beds" name="minBedrooms" placeholder="Any Bed">
             </div>
@@ -46,15 +46,15 @@
         <div id="map" class="map"></div>
 
         <div class="row properties">
-                        <div id="property-data" class="card-content col-lg-6" th:each="property : ${property}"
-                             data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
-<!--            <div class="card-content col-lg-6" th:each="property : ${property}">-->
+            <div id="property-data" class="card-content col-lg-6" th:each="property : ${property}"
+                 data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
+                <!--            <div class="card-content col-lg-6" th:each="property : ${property}">-->
                 <div class="card">
                     <a th:href="@{/property/{id}(id=${property.id})}"></a>
                     <img th:src="${property.img1}" class="img-top" alt="..." height="200">
                     <div class="card-body">
                         <h4 class="card-address"
-                             th:text="${property.address + ', ' + property.city + ', '+ property.state + ', ' + property.zip}">
+                            th:text="${property.address + ', ' + property.city + ', '+ property.state + ', ' + property.zip}">
                         </h4>
                         <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
                         <p class="card-text">
@@ -71,10 +71,9 @@
 
 <script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js}"></script>
 <script th:inline="javascript">const mapBoxKey = [[${mapBoxKey}]];
-    console.log(mapBoxKey);</script>
+console.log(mapBoxKey);</script>
 <script type="text/javascript" th:src="@{/js/map.js}"></script>
 <div th:replace="partials :: footer"/>
 
 </body>
 </html>
-

@@ -103,35 +103,11 @@ public class PropertyController {
 
 
 
-	@GetMapping("/property/{id}")
-	public String propertyView(@PathVariable int id, Model model) {
-		Property property = propertyDao.findPropertyById(id);
-		model.addAttribute("property", property);
-		model.addAttribute("mapBoxKey", mapBoxKey);
-		return "property/show";
-	}
-
-	@GetMapping("/ads/{id}/edit")
-	public String editOneListing(@PathVariable int id, Model model) {
-		Property property = propertyDao.findPropertyById(id);
-		model.addAttribute("property", property);
-		return "/property/edit";
-	}
-
-	@PostMapping("/property/{id}/edit")
-	public String editProperty(@PathVariable int id, @ModelAttribute Property property) {
-		Property propertyToUpdate = propertyDao.findPropertyById(id);
-		propertyToUpdate.setBeds(property.getBeds());
-		propertyToUpdate.setBath(property.getBath());
-		propertyDao.save(propertyToUpdate);
-		return "redirect:/ads/" + id;
-	}
+//	@GetMapping("/property/{id}")
+//	public String propertyView(@PathVariable int id, Model model) {
+//		Property property = propertyDao.findPropertyById(id);
+//		model.addAttribute("property", property);
+//		model.addAttribute("mapBoxKey", mapBoxKey);
+//		return "property/show";
+//	}
 }
-
-
-
-
-
-
-
-

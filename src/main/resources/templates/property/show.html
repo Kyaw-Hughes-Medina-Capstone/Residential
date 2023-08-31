@@ -1,31 +1,91 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <head>
-    <head th:replace="partials :: head"/>
+    <head th:replace="~{partials :: head}"/>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" />
+
 </head>
 <body>
-<nav th:replace="partials :: navbar"/>
+<nav th:replace="~{partials :: navbar}"/>
 
-<p th:text="${property.address}"></p>
-<p th:text="${property.bath}"></p>
-<p th:text="${property.beds}"></p>
-<p th:text="${property.city}"></p>
-<p th:text="${property.pets}"></p>
-<p th:text="${property.rent}"></p>
-<p th:text="${property.state}"></p>
-<p th:text="${property.type}"></p>
-<p th:text="${property.year}"></p>
-<p th:text="${property.zip}"></p>
 
-<div>
-    <a th:href="@{/property/edit/{id}(id=${property.id})}">Edit</a>
+<div th:each="inquiry : ${inquiries}" class="col-3">
+    <th:block th:if="${inquiry.property.manager.id == #authentication.principal.id}">
+        <div class="card">
+            <header>Inquiry request</header>
+            <p>Start: <span th:text="${inquiry.start_date}"></span></p>
+            <p>End: <span th:text="${inquiry.end_date}"></span></p>
+            <p>People: <span th:text="${inquiry.people}"></span></p>
+            <p>Pets: <span th:text="${inquiry.pets}"></span></p>
+            <p>Email: <span th:text="${inquiry.tenant.email}"></span></p>
+            <p>Number: <span th:text="${inquiry.tenant.number}"></span></p>
+        </div>
+
+
+        <div>
+            <a th:href="@{/property/{id}/edit(id=${property.id})}">Edit</a>
+        </div>
+    </th:block>
 </div>
+
+<div id="map" class="map-listing"></div>
+
+Monthly cost:
+<p th:text="${property.rent}"></p>
+Type:
+<p th:text="${property.type}"></p>
+Bedrooms:
+<p th:text="${property.beds}"></p>
+Bathrooms:
+<p th:text="${property.bath}"></p>
+Pets:
+<p th:text="${property.pets}"></p>
+
+<div class="col-4">
+    Address:
+    <p th:text="${property.address}">Address:</p>
+    <p th:text="${property.city}"></p>
+    <p th:text="${property.state}"></p>
+    <p th:text="${property.zip}"></p>
+</div>
+
+<div th:each="review: ${reviews}" class="card col-4">
+    <p>Review Rating: <span th:text="${review.rating}"></span></p>
+    <p>Review Description: <span th:text="${review.description}"></span></p>
+</div>
+
+
 
 <p>Posted by: <span th:text="${property.manager.name}"></span></p>
 
+<script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js}"></script>
+<script type="text/javascript" th:src="@{/js/keys.js}"></script>
 
-<div th:replace="partials :: footer"/>
+<script th:inline="javascript">
+    const latitude = /*[[${property.latitude}]]*/ null;
+    const longitude = /*[[${property.longitude}]]*/ null;
+
+    function initializeMap() {
+        if (latitude !== null && longitude !== null) {
+            mapboxgl.accessToken = accessKey;
+
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v12',
+                center: [longitude, latitude],
+                zoom: 12
+            });
+
+            new mapboxgl.Marker().setLngLat([longitude, latitude]).addTo(map);
+        }
+    }
+    window.onload = initializeMap;
+</script>
+
+<script type="text/javascript" th:src="@{/js/map.js}"></script>
+
+<div th:replace="~{partials :: footer}"/>
 </body>
 </html>

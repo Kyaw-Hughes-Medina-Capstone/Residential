@@ -3,6 +3,7 @@ package com.codeup.rentlister.models;
 import jakarta.persistence.*;
 
 
+
 @Entity
 @Table(name = "property")
 public class Property {
@@ -10,13 +11,13 @@ public class Property {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-//	@ManyToOne
-//	@JoinColumn(name = "manager_id", referencedColumnName = "id")
-//	private User manager;
+	@ManyToOne
+	@JoinColumn(name = "manager_id", referencedColumnName = "id")
+	private User manager;
 
-//	@OneToOne
-//	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
-//	private User tenant;
+	@OneToOne
+	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
+	private User tenant;
 
 	@Column(nullable = false)
 	private String type;
@@ -124,7 +125,6 @@ public class Property {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getType() {
 		return type;
@@ -246,4 +246,7 @@ public class Property {
 		this.description = description;
 	}
 
+	public User getManager() {
+		return manager;
+	}
 }

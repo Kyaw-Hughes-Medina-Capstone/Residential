@@ -2,6 +2,7 @@ package com.codeup.rentlister.models;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "inquiries")
@@ -31,6 +32,13 @@ public class Inquiries {
     private int people;
     @Column
     private int pets;
+
+    public Inquiries(String startDate, String endDate, int people, String pets, Property property, User tenant, User manager) {
+    }
+
+    public Inquiries() {
+
+    }
 
     public int getId() {
         return id;

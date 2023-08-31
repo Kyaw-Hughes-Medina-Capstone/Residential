@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 @Service("propertyService")
 public class PropertyService {
+
     private final PropertyRepository propertyDao;
 
     public PropertyService(PropertyRepository propertyDao) {
@@ -34,6 +35,7 @@ public class PropertyService {
 
         return filteredProperties;
     }
+
 
 
 }
