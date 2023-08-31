@@ -2,6 +2,7 @@ package com.codeup.rentlister.models;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "property")
@@ -10,13 +11,13 @@ public class Property {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-//	@ManyToOne
-//	@JoinColumn(name = "manager_id", referencedColumnName = "id")
-//	private User manager;
+	@ManyToOne
+	@JoinColumn(name = "manager_id", referencedColumnName = "id")
+	private User manager;
 
-//	@OneToOne
-//	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
-//	private User tenant;
+	@OneToOne
+	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
+	private User tenant;
 
 	@Column(nullable = false)
 	private String type;
@@ -57,6 +58,12 @@ public class Property {
 	@Column(nullable = false)
 	private int zip;
 
+	@Column(nullable = false, precision = 8, scale = 6)
+	private BigDecimal latitude;
+
+	@Column(nullable = false, precision = 8, scale = 6)
+	private BigDecimal longitude;
+
 	@Override
 	public String toString() {
 		return "Property{" +
@@ -82,9 +89,8 @@ public class Property {
 	@Column
 	private boolean pets;
 
-	@Column(nullable = false, columnDefinition = "MEDIUMTEXT")
+	@Column(nullable = false)
 	private String description;
-
 
 	public Property(int id, String type, int rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, boolean pets, String description) {
 		this.id = id;
@@ -105,8 +111,6 @@ public class Property {
 		this.description = description;
 	}
 
-
-
 	public Property() {
 
 	}
@@ -124,7 +128,6 @@ public class Property {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getType() {
 		return type;
@@ -246,4 +249,35 @@ public class Property {
 		this.description = description;
 	}
 
+	public User getManager() {
+		return manager;
+	}
+
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
+
+	public User getTenant() {
+		return tenant;
+	}
+
+	public void setTenant(User tenant) {
+		this.tenant = tenant;
+	}
+
+	public BigDecimal getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
+	}
 }
