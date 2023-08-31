@@ -13,4 +13,8 @@ public class HelloController {
     public String hello() {
         return "Hello from Spring!";
     }
+    @GetMapping("/about")
+    public String about() {
+        return "/about";
+    }
 }

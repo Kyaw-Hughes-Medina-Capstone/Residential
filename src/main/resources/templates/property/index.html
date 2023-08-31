@@ -4,7 +4,6 @@
     <head th:replace="partials :: head">
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-        <link th:href="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css}" rel="stylesheet">
         <title>All property listings</title>
     </head>
 </head>
@@ -54,7 +53,7 @@
                     <a th:href="@{/property/{id}(id=${property.id})}"></a>
                     <img th:src="${property.img1}" class="img-top" alt="..." height="200">
                     <div class="card-body">
-                        <h4 class="card-address "
+                        <h4 class="card-address"
                              th:text="${property.address + ', ' + property.city + ', '+ property.state + ', ' + property.zip}">
                         </h4>
                         <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
@@ -71,7 +70,8 @@
 </div>
 
 <script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js}"></script>
-<script type="text/javascript" th:src="@{/js/keys.js}"></script>
+<script th:inline="javascript">const mapBoxKey = [[${mapBoxKey}]];
+    console.log(mapBoxKey);</script>
 <script type="text/javascript" th:src="@{/js/map.js}"></script>
 <div th:replace="partials :: footer"/>
 

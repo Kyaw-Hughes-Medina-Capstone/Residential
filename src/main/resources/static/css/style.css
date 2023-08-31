@@ -1,5 +1,5 @@
 :root{
-    --background--color: #0c0909;
+    --background--color: #2f2e2e;
     --nav--color: #1d2525;
     --primary-color: #ffffff;
     --secondary-color: #3d3f41;
@@ -91,7 +91,7 @@ p{
     height: 95%;
     background-color: var(--secondary-color);
 }
-.map {
+#map {
     width: 45%;
     height: 100vh;
     position: sticky;
@@ -101,6 +101,7 @@ p{
     border:#cccccc solid 3px;
     /*margin: 20px;*/
 }
+
 .row{
     display: flex;
     align-items: center;
@@ -121,11 +122,6 @@ p{
     justify-content: center;
     margin-left: 0;
 }
-/*.mapSearch{*/
-/*    width: 50%;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*}*/
 .filter-form{
     width: 50%;
     flex-flow: wrap;
@@ -375,4 +371,14 @@ textarea {
 
 hr {
     border-color: rgba(255,255,255,.6);
+}
+.about{
+    margin:0 30px 10px 30px;
+}
+.about, p{
+    text-transform: none;
+    text-align: left;
+}
+.about, h5{
+    padding: 20px 10px;
 }

@@ -3,6 +3,7 @@ import com.codeup.rentlister.models.Property;
 import com.codeup.rentlister.repositories.PropertyRepository;
 
 import com.codeup.rentlister.services.PropertyService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -18,7 +19,8 @@ public class PropertyController {
 	private PropertyService propertyService;
 
 	private final PropertyRepository propertyDao;
-
+	@Value("${mapBoxKey}")
+	private String mapBoxKey;
 	public PropertyController(PropertyService propertyService, PropertyRepository propertyDao) {
 		this.propertyService = propertyService;
 		this.propertyDao = propertyDao;
@@ -35,6 +37,7 @@ public class PropertyController {
 	@GetMapping("/property")
 	public String index(Model model){
 		model.addAttribute("property", propertyDao.findAll());
+		model.addAttribute("mapBoxKey", mapBoxKey);
 		return "property/index";
 	}
 
@@ -56,7 +59,7 @@ public class PropertyController {
 	}
 	@GetMapping("/filtered-properties")
 	public String showFilteredPropertiesPage(Model model) {
-
+		model.addAttribute("mapBoxKey", mapBoxKey);
 		return "/filtered-properties";
 	}
 
@@ -80,7 +83,7 @@ public class PropertyController {
 
 		List<Property> filteredProperties = propertyService.filterProperties(type, city, zip, minBedrooms, minBathrooms, maxPrice, minPrice);
 		model.addAttribute("filteredProperty", filteredProperties);
-
+		model.addAttribute("mapBoxKey", mapBoxKey);
 		return "/property/filter";
 	}
 
@@ -95,6 +98,7 @@ public class PropertyController {
 	public String propertyView(@PathVariable int id, Model model) {
 		Property property = propertyDao.findPropertyById(id);
 		model.addAttribute("property", property);
+		model.addAttribute("mapBoxKey", mapBoxKey);
 		return "property/show";
 	}
 
