@@ -1,10 +1,6 @@
 package com.codeup.rentlister.controllers;
-import com.codeup.rentlister.models.Inquiries;
-import com.codeup.rentlister.models.Property;
-import com.codeup.rentlister.models.User;
-import com.codeup.rentlister.repositories.InquiriesRepository;
-import com.codeup.rentlister.repositories.PropertyRepository;
-import com.codeup.rentlister.repositories.UserRepository;
+import com.codeup.rentlister.models.*;
+import com.codeup.rentlister.repositories.*;
 import com.codeup.rentlister.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
@@ -31,10 +27,6 @@ public class InquiriesController {
 		this.emailService = emailService;
 	}
 
-	@GetMapping("/home")
-	public String showHome(){
-		return "/home";
-	}
 
 	@GetMapping("/property/{id}/inquiry")
 	public String showInquiryCreateForm(@PathVariable int id, Model model) {

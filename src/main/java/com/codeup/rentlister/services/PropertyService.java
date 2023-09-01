@@ -9,19 +9,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 @Service("propertyService")
 public class PropertyService {
+
     private final PropertyRepository propertyDao;
 
     public PropertyService(PropertyRepository propertyDao) {
         this.propertyDao = propertyDao;
     }
 
-    public List<Property> filterProperties(String type, String city, Integer minBedrooms, Integer minBathrooms, Integer maxPrice, Integer minPrice) {
+    public List<Property> filterProperties(String type, String city,Integer zip, Integer minBedrooms, Integer minBathrooms, Integer maxPrice, Integer minPrice) {
         List<Property> allProperties = propertyDao.findAll();
 
         List<Property> filteredProperties = allProperties.stream()
                 .filter(property ->
                         (type == null || type.equals(property.getType())) &&
                                 (city == null || city.equals(property.getCity())) &&
+                                (zip == null || zip.equals(property.getZip())) &&
                                 (minBedrooms == null || property.getBeds() >= minBedrooms) &&
                                 (minBathrooms == null || property.getBath() >= minBathrooms) &&
                                 (maxPrice == null || property.getRent() <= maxPrice) &&
@@ -33,6 +35,7 @@ public class PropertyService {
 
         return filteredProperties;
     }
+
 
 
 }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials :: head"/>
+<meta charset="UTF-8">
+<title>Forms</title>
+</head>
+<body class="lease">
+<nav th:replace="partials :: navbar"/>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <iframe th:src="@{/residentialLease.pdf}" width="100%" ></iframe>
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <iframe th:src="@{/residentialLease.pdf}" width="100%" ></iframe>
+        <h5 class="card-title">Notice of Tenant's Intent to Vacate</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <iframe th:src="@{/residentialLease.pdf}" width="100%" ></iframe>
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <iframe th:src="@{/residentialLease.pdf}" width="100%" ></iframe>
+        <h5 class="card-title">Notice of Tenant's Intent to Vacate</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="partials :: footer"/>
+</body>
+</html>

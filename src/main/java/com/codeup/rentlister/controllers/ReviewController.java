@@ -1,11 +1,7 @@
 package com.codeup.rentlister.controllers;
 
-import com.codeup.rentlister.models.Property;
-import com.codeup.rentlister.models.Review;
-import com.codeup.rentlister.models.User;
-import com.codeup.rentlister.repositories.PropertyRepository;
-import com.codeup.rentlister.repositories.ReviewRepository;
-import com.codeup.rentlister.repositories.UserRepository;
+import com.codeup.rentlister.models.*;
+import com.codeup.rentlister.repositories.*;
 import com.codeup.rentlister.services.EmailService;
 import com.codeup.rentlister.services.PropertyService;
 import org.springframework.security.core.context.SecurityContextHolder;

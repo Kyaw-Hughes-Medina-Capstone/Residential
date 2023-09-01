@@ -67,11 +67,11 @@ public class MoveInForm {
                 '}';
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -499,7 +499,7 @@ public class MoveInForm {
         this.agreeCheck = agreeCheck;
     }
 
-    public MoveInForm(int id, String location, String inspectionDate, InspectionCondition foundationCondition, String foundationRemarks, InspectionCondition wallsECondition, String wallsERemarks, InspectionCondition roofCondition, String roofRemarks, InspectionCondition electricECondition, String electricERemarks, InspectionCondition windowECondition, String windowERemarks, InspectionCondition doorECondition, String doorERemarks, InspectionCondition gutterCondition, String gutterRemarks, InspectionCondition shutterCondition, String shutterRemarks, InspectionCondition floorCondition, String floorRemarks, InspectionCondition wallsICondition, String wallsIRemarks, InspectionCondition ceilingCondition, String ceilingRemarks, InspectionCondition electricICondition, String electricIRemarks, InspectionCondition windowICondition, String windowIRemarks, InspectionCondition doorICondition, String doorIRemarks, InspectionCondition closetCondition, String closetRemarks, InspectionCondition stoveCondition, String stoveRemarks, InspectionCondition coolCondition, String coolRemarks, InspectionCondition heatCondition, String heatRemarks, InspectionCondition electricCondition, String electricRemarks, InspectionCondition plumbCondition, String plumbRemarks, InspectionCondition securityCondition, String securityRemarks, InspectionCondition garageCondition, String garageRemarks, InspectionCondition waterCondition, String waterRemarks, InspectionCondition sprinklerCondition, String sprinklerRemarks, InspectionCondition softenerCondition, String softenerRemarks, boolean agreeCheck) {
+    public MoveInForm(Long id, String location, String inspectionDate, InspectionCondition foundationCondition, String foundationRemarks, InspectionCondition wallsECondition, String wallsERemarks, InspectionCondition roofCondition, String roofRemarks, InspectionCondition electricECondition, String electricERemarks, InspectionCondition windowECondition, String windowERemarks, InspectionCondition doorECondition, String doorERemarks, InspectionCondition gutterCondition, String gutterRemarks, InspectionCondition shutterCondition, String shutterRemarks, InspectionCondition floorCondition, String floorRemarks, InspectionCondition wallsICondition, String wallsIRemarks, InspectionCondition ceilingCondition, String ceilingRemarks, InspectionCondition electricICondition, String electricIRemarks, InspectionCondition windowICondition, String windowIRemarks, InspectionCondition doorICondition, String doorIRemarks, InspectionCondition closetCondition, String closetRemarks, InspectionCondition stoveCondition, String stoveRemarks, InspectionCondition coolCondition, String coolRemarks, InspectionCondition heatCondition, String heatRemarks, InspectionCondition electricCondition, String electricRemarks, InspectionCondition plumbCondition, String plumbRemarks, InspectionCondition securityCondition, String securityRemarks, InspectionCondition garageCondition, String garageRemarks, InspectionCondition waterCondition, String waterRemarks, InspectionCondition sprinklerCondition, String sprinklerRemarks, InspectionCondition softenerCondition, String softenerRemarks, boolean agreeCheck) {
         this.id = id;
         this.location = location;
         this.inspectionDate = inspectionDate;
@@ -558,12 +558,12 @@ public class MoveInForm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(nullable = false)
     private String location;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition ="Date")
     private String inspectionDate;
 
     @Enumerated
@@ -579,170 +579,148 @@ public class MoveInForm {
 
     @Column
     private String wallsERemarks;
-
     @Enumerated
     @Column
     private InspectionCondition roofCondition;
 
     @Column
     private String roofRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition electricECondition;
 
     @Column
     private String electricERemarks;
-
     @Enumerated
     @Column
     private InspectionCondition windowECondition;
 
     @Column
     private String windowERemarks;
-
     @Enumerated
     @Column
     private InspectionCondition doorECondition;
 
     @Column
     private String doorERemarks;
-
     @Enumerated
     @Column
     private InspectionCondition gutterCondition;
 
     @Column
     private String gutterRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition shutterCondition;
 
     @Column
     private String shutterRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition floorCondition;
 
     @Column
     private String floorRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition wallsICondition;
 
     @Column
     private String wallsIRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition ceilingCondition;
 
     @Column
     private String ceilingRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition electricICondition;
 
     @Column
     private String electricIRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition windowICondition;
 
     @Column
     private String windowIRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition doorICondition;
 
     @Column
     private String doorIRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition closetCondition;
 
     @Column
     private String closetRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition stoveCondition;
 
     @Column
     private String stoveRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition coolCondition;
 
     @Column
     private String coolRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition heatCondition;
 
     @Column
     private String heatRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition electricCondition;
 
     @Column
     private String electricRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition plumbCondition;
 
     @Column
     private String plumbRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition securityCondition;
 
     @Column
     private String securityRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition garageCondition;
 
     @Column
     private String garageRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition waterCondition;
 
     @Column
     private String waterRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition sprinklerCondition;
 
     @Column
     private String sprinklerRemarks;
-
     @Enumerated
     @Column
     private InspectionCondition softenerCondition;
 
     @Column
     private String softenerRemarks;
-
     @Column(nullable = false)
     private boolean agreeCheck;
+
+
 
     public enum InspectionCondition {
         GOOD_CONDITION,
