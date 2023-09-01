@@ -41,6 +41,11 @@ public class PropertyController {
 		return "home";
 	}
 
+	@GetMapping("/about")
+	public String about(){
+		return "about";
+	}
+
 
 	@GetMapping("/property")
 	public String index(Model model){
