@@ -41,9 +41,9 @@ public class SecurityConfiguration {
                         .requestMatchers("/property/create", "/property/*/edit", "property/workorder").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view */
-                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/landing.mov", "/chip.png").permitAll()
+                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/tenant/*", "/contact").permitAll()
                         // allow loading of static resources
-                        .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/img/**", "/pdf/**", "/landing.mov", "/residentialLease.pdf").permitAll()
                 )
                 /* Login configuration */
                 .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/home"))

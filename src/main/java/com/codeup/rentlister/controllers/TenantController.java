@@ -21,6 +21,7 @@ public class TenantController {
     public String leaseForm(){
         return "tenant/lease";
     }
+
     @GetMapping("/tenant/move-in")
     public String moveInForm(Model model){
         model.addAttribute("move_in", new MoveInForm());
