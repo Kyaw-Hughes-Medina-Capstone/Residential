@@ -44,7 +44,7 @@
                     <span class="card-text" th:text="${property.state}"></span>
                 </h3>
                 <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
-                <a th:href="@{/property/show}" class="btn btn-secondary">see more</a>
+                <a th:href="@{/property/{id}(id=${property.id})}" class="btn btn-secondary">see more</a>
             </div>
         </div>
     </div>

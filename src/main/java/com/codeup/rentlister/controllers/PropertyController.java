@@ -60,12 +60,10 @@ public class PropertyController {
 		return "property/create";
 	}
 
-
 	@PostMapping("/property/create")
 	public String createProperty(
 			@ModelAttribute Property property) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println(property);
 		propertyDao.save(property);
 
 		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
@@ -106,13 +104,11 @@ public class PropertyController {
 		return"/contact";
 	}
 
-
-
-//	@GetMapping("/property/{id}")
-//	public String propertyView(@PathVariable int id, Model model) {
-//		Property property = propertyDao.findPropertyById(id);
-//		model.addAttribute("property", property);
-//		model.addAttribute("mapBoxKey", mapBoxKey);
-//		return "property/show";
-//	}
+	@GetMapping("/property/{id}")
+	public String propertyView(@PathVariable int id, Model model) {
+		Property property = propertyDao.findPropertyById(id);
+		model.addAttribute("property", property);
+		model.addAttribute("mapBoxKey", mapBoxKey);
+		return "property/show";
+	}
 }

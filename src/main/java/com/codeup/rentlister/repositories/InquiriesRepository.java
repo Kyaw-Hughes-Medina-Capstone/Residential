@@ -9,4 +9,5 @@ public interface InquiriesRepository extends JpaRepository<Inquiries, Integer> {
 
 	Inquiries findInquiryById(int id);
 	List<Inquiries> findInquiriesByPropertyId(int id);
+
 }

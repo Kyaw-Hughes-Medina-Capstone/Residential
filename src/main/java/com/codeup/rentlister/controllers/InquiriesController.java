@@ -27,7 +27,6 @@ public class InquiriesController {
 		this.emailService = emailService;
 	}
 
-
 	@GetMapping("/property/{id}/inquiry")
 	public String showInquiryCreateForm(@PathVariable int id, Model model) {
 		Property property = propertyDao.findPropertyById(id);
@@ -49,7 +48,9 @@ public class InquiriesController {
 		Property property = propertyDao.findPropertyById(id);
 		User manager = property.getManager();
 
-		Inquiries inquiry = new Inquiries(start_date, end_date, people, pets, property, tenant, manager);
+		Inquiries inquiry = new Inquiries(tenant, manager, property, start_date, end_date, people, pets);
+
+		System.out.println("inquiry = " + inquiry.toString());
 		inquiriesDao.save(inquiry);
 
 		emailService.sendAnInquiryEmail(inquiry, "You have an inquiry about a property!", "Check your account for more information.");

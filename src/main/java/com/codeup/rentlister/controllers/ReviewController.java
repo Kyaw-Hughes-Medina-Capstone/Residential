@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class ReviewController {
 
-
 	private EmailService emailService;
-
 	private final PropertyRepository propertyDao;
 	private final ReviewRepository reviewDao;
 	private final UserRepository userDao;

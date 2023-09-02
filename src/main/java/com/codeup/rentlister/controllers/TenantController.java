@@ -27,20 +27,24 @@ public class TenantController {
         model.addAttribute("move_in", new MoveInForm());
         return "tenant/move-in";
     }
+
     @PostMapping("/tenant/move-in")
     public String createMoveIn(
             @ModelAttribute MoveInForm moveInForm) {
         moveInDao.save(moveInForm);
         return "tenant/index";
     }
+
     @GetMapping("/tenant/faq")
     public String question(){
         return "tenant/faq";
     }
+
     @GetMapping("/tenant/forms")
     public String forms(){
         return "tenant/forms";
     }
+
     @GetMapping("/tenant/payment")
     public String payment(){
         return "tenant/payment";

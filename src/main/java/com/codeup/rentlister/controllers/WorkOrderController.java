@@ -1,7 +1,7 @@
 package com.codeup.rentlister.controllers;
 import com.codeup.rentlister.models.Property;
 import com.codeup.rentlister.models.User;
-//import com.codeup.rentlister.models.UserWithRoles;
+import com.codeup.rentlister.models.UserWithRoles;
 import com.codeup.rentlister.models.WorkOrder;
 import com.codeup.rentlister.repositories.PropertyRepository;
 import com.codeup.rentlister.repositories.UserRepository;
@@ -27,12 +27,13 @@ import java.util.Date;
 public class WorkOrderController {
 
 	private EmailService emailService;
-
 	private final WorkOrderRepository workOrderDao;
-
 	private final PropertyRepository propertyDao;
-
 	private final UserRepository userDao;
+
+	private User getCurrentUser() {
+		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
 
 	public WorkOrderController(WorkOrderRepository workOrderDao, PropertyRepository propertyDao, UserRepository userDao, EmailService emailService){
 		this.workOrderDao = workOrderDao;
@@ -49,20 +50,18 @@ public class WorkOrderController {
 
 	@PostMapping("/property/workorder")
 	public String createWorkOrder(
-			@RequestParam(name = "description") String description) {
+			@RequestParam(name = "description") String description,
+			@RequestParam(name = "date") String date) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		int userId = user.getId();
-		User tenant = userDao.findUserById(userId); //tenant by current user -> tenant_id
+		User user = getCurrentUser();
 
-		//USER NEEDS TO BE LOGGED IN TO SUBMIT WORK ORDER
-		Property property = propertyDao.findPropertyByTenantId(userId);
-
-		User manager = property.getManager(); //get manager by user_id -> property -> manager_id
-
-		String date = LocalDate.now().toString();
+		User tenant = userDao.findUserById(user.getId());
+		Property property = propertyDao.findPropertyByTenantId(user.getId());
+		User manager = property.getManager();
 
 		WorkOrder workOrder = new WorkOrder(tenant, manager, property, description, date);
+
+		System.out.println("workOrder = " + workOrder.toString());
 
 		workOrderDao.save(workOrder);
 

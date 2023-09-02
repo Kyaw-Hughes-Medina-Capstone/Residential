@@ -31,7 +31,7 @@
                     <li><a class="dropdown-item" th:href="@{/tenant/lease}">Application</a></li>
                     <li><a class="dropdown-item" th:href="@{/tenant/move-in}">Checklists</a></li>
                     <li><a class="dropdown-item" th:href="@{/tenant/payment}">Make a Payment</a></li>
-                    <li><a class="dropdown-item" th:href="@{property/workorder}">Work Order</a></li>
+                    <li><a class="dropdown-item" th:href="@{/property/workorder}">Work Order</a></li>
                     <li><a class="dropdown-item" th:href="@{/tenant/forms}">Forms</a></li>
                     <li><a class="dropdown-item" th:href="@{/tenant/faq}">FAQ</a></li>
                 </ul>
@@ -49,6 +49,11 @@
             <li class="nav-item" th:action="@{/logout}" th:method="post">
                 <a class="nav-link" href="#">Logout</a>
             </li>
+            <ul>
+                <li sec:authorize="isAnonymous()"><a class="nav-link" th:href="@{/login}">Login</a></li>
+                <li sec:authorize="isAuthenticated()"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+                <li sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="name"></span></li>
+            </ul>
             <li class="nav-item">
                 <a href="#"  class="nav-link">
                     <i class="fa fa-sun-o" id="icon" aria-hidden="true"></i></a>

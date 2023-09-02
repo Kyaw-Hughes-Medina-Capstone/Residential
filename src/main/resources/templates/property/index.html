@@ -48,7 +48,7 @@
         <div class="row properties">
             <div id="property-data" class="card-content col-lg-6" th:each="property : ${property}"
                  data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
-                <!--            <div class="card-content col-lg-6" th:each="property : ${property}">-->
+<!--                            <div class="card-content col-lg-6" th:each="property : ${property}">-->
                 <div class="card">
                     <a th:href="@{/property/{id}(id=${property.id})}"></a>
                     <img th:src="${property.img1}" class="img-top" alt="..." height="200">
@@ -61,7 +61,7 @@
                             <span th:text="${property.beds}"></span> bedrooms,
                             <span th:text="${property.bath}"></span> bathrooms
                         </p>
-                        <a th:href="@{/property/show}" class="btn btn-secondary">see more</a>
+                        <a th:href="@{/property/{id}(id=${property.id})}" class="btn btn-secondary">see more</a>
                     </div>
                 </div>
             </div>

@@ -12,4 +12,5 @@ public interface PropertyRepository extends JpaRepository<Property, Integer> {
 	Property findPropertyByZip(int zip);
 	Property findPropertyByTenant(User tenant);
 	Property findPropertyByTenantId(int userId);
+
 }
