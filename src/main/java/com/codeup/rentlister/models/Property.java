@@ -13,11 +13,11 @@ public class Property {
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "manager_id", referencedColumnName = "id")
+	@JoinColumn(name = "manager", referencedColumnName = "id")
 	private User manager;
 
 	@OneToOne
-	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
+	@JoinColumn(name = "tenant", referencedColumnName = "id")
 	private User tenant;
 
 	@Column(nullable = false)
