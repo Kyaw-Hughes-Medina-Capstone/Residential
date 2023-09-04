@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="property : ${properties}">
+    <tr th:each="property : ${property}">
         <td th:text="${property.address}"></td>
         <td th:text="${property.bath}"></td>
         <td th:text="${property.beds}"></td>
@@ -31,7 +31,6 @@
         <td th:text="${property.pets}"></td>
         <td th:text="${property.rent}"></td>
         <td th:text="${property.type}"></td>
-        <td th:text="${property.year}"></td>
     </tr>
     </tbody>
 </table>

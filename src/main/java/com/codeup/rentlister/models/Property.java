@@ -118,6 +118,18 @@ public class Property {
 	public Property(String type, float rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String city, String state, int zip, String pets, String description) {
 	}
 
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
+
+	public User getTenant() {
+		return tenant;
+	}
+
+	public void setTenant(User tenant) {
+		this.tenant = tenant;
+	}
+
 	public int getId() {
 		return id;
 	}

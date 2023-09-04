@@ -1,9 +1,8 @@
 package com.codeup.rentlister.models;
 
-import com.codeup.rentlister.repositories.InquiriesRepository;
+
 import jakarta.persistence.*;
 
-import java.awt.*;
 
 @Entity
 @Table(name = "Owner")
@@ -26,23 +25,9 @@ public class Owner {
     private int zip;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manager_id")
+    @JoinColumn(name = "is_mgr")
     private User manager;
 
-    @lombok.Setter
-    @lombok.Getter
-    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
-    private List<Image> images;
-
-    @lombok.Setter
-    @lombok.Getter
-    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
-    private List<InquiriesRepository> inquiries;
-
-    @lombok.Setter
-    @lombok.Getter
-    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
-    private List<WorkOrder> workOrders;
 
     public void Property() {}
 

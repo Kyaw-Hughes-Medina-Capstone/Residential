@@ -31,4 +31,5 @@ public class UserController {
         userDao.save(User);
         return "redirect:/property";
     }
+
 }
