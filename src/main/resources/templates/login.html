@@ -2,31 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{partials :: head}"></head>
-  <meta charset="UTF-8" />
-  <title>Log In page</title>
+<meta charset="UTF-8" />
+<title>Welcome back!</title>
 </head>
 <body>
 <nav th:replace="~{partials :: navbar}"></nav>
 
-<h1>Log In</h1>
+<h1>Welcome back!</h1>
 <div th:if="${param.error}">
-  Invalid Username and Password.
+	Invalid Username and Password.
 </div>
 <div th:if="${param.logout}">
-  You have been logged out.
+	You have been logged out.
 </div>
 
 <form th:action="@{/login}" method="post">
-  <label for="username">Username</label>
-  <input id="username" name="username" type="text" />
-  <label for="password">Password</label>
-  <input id="password" name="password" type="password" />
-  <input type="submit" value="Log In" />
+	<div class="row">
+		<div class="col-8">
+			<label for="username" class="text-entry" >Username</label>
+			<input id="username" name="username" type="text" />
+		</div>
+
+		<div class="col-8">
+			<label for="password" class="text-entry" >Password</label>
+			<input id="password" name="password" type="password" />
+		</div>
+	</div>
+
+	<input type="submit" value="Enter" class="signupbutton"/>
+	<a th:href="@{/sign-up}" class="signupbutton">New User? Sign up!</a>
 </form>
 
-<div>
-  <a th:href="@{/sign-up}">New User?</a>
-</div>
+
+
 
 <div th:replace="~{partials :: footer}"/>
 </body>

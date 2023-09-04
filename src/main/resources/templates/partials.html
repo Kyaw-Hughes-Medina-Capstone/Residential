@@ -47,11 +47,14 @@
                     <li><a class="dropdown-item" th:href="@{/property/create}">Create New Rental</a></li>
                     <li><a class="dropdown-item" th:href="@{/tenant/lease}">Agreement</a></li>
                 </ul>
+                <!-- Apply a custom class "nav-link" to both the "Login" link and "Logout" button -->
             <li class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}">
                 <a class="nav-link" th:href="@{/login}">Login</a>
             </li>
             <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
-                <a class="nav-link" th:href="@{/logout}">Logout</a>
+                <form th:action="@{/logout}" th:method="post">
+                    <input type="submit" value="Logout" class="nav-button"/> <!-- Apply a custom class "nav-button" -->
+                </form>
             </li>
 
 

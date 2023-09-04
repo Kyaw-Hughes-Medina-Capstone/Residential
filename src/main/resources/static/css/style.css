@@ -21,6 +21,7 @@
 
 body, html{
     background-color: var(--background--color);
+    margin-bottom: 100px;
 }
 
 .navbar{
@@ -105,6 +106,7 @@ p{
 .row{
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -202,10 +204,11 @@ footer {
     background-color: var(--secondary-color);
     position: fixed;
     bottom: 0;
-    left: 0;
+    height: 100px;
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .footer-center .footer-right{
@@ -388,10 +391,38 @@ hr {
     padding: 20px 10px;
 }
 
-#signupbutton{
+.signupbutton{
     width: 20%;
     margin: 5% 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.nav-button {
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    font-size: inherit;
+    font-weight: inherit;
+    transition: color 0.3s;
+}
+
+.nav-button:hover {
+    color: black;
+    border: none;
+}
+
+.page-title{
+    width: 30%;
+    margin: 3% 35% ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-entry{
+    margin: 15px 0;
 }
