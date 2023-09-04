@@ -1,5 +1,6 @@
 package com.codeup.rentlister.controllers;
 import com.codeup.rentlister.models.*;
+import com.codeup.rentlister.models.Property;
 import com.codeup.rentlister.repositories.*;
 import com.codeup.rentlister.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +31,7 @@ public class InquiriesController {
 
 	@GetMapping("/property/{id}/inquiry")
 	public String showInquiryCreateForm(@PathVariable int id, Model model) {
-		Property property = propertyDao.findPropertyById(id);
+		com.codeup.rentlister.models.Property property = propertyDao.findPropertyById(id);
 		model.addAttribute("inquiries", new Inquiries());
 		return "property/inquiry";
 	}
