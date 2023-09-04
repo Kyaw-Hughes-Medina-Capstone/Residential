@@ -1,9 +1,9 @@
 package com.codeup.rentlister.controllers;
 import com.codeup.rentlister.models.Property;
+import com.codeup.rentlister.models.User;
 import com.codeup.rentlister.repositories.PropertyRepository;
 import com.codeup.rentlister.repositories.UserRepository;
 import com.codeup.rentlister.services.EmailService;
-import org.apache.catalina.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import com.codeup.rentlister.services.PropertyService;
@@ -66,6 +66,8 @@ public class PropertyController {
 			@ModelAttribute Property property) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+		property.setManager(user);
+
 		property.setLatitude(BigDecimal.valueOf(30.267250));
 		property.setLongitude(BigDecimal.valueOf(-97.743150));
 
@@ -74,6 +76,7 @@ public class PropertyController {
 		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
 		return "redirect:/property";
 	}
+
 	@GetMapping("/filtered-properties")
 	public String showFilteredPropertiesPage(Model model) {
 		model.addAttribute("mapBoxKey", mapBoxKey);

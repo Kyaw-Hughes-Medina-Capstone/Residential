@@ -30,7 +30,7 @@
     </th:block>
 </div>
 
-<div id="map" class="map-listing"></div>
+
 
 Monthly cost:
 <p th:text="${property.rent}"></p>
@@ -56,9 +56,9 @@ Pets:
     <p>Review Description: <span th:text="${review.description}"></span></p>
 </div>
 
+<div id="map" class="map-listing"></div>
 
-
-<p>Posted by: <span th:text="${property.manager.name}"></span></p>
+<p>Posted by: <span th:text="${property.manager.firstname}"></span></p>
 
 <script th:inline="javascript">
     const latitude = /*[[${property.latitude}]]*/ null;
