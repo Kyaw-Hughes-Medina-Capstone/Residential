@@ -198,11 +198,16 @@ th, td {
 }
 
 /*footer*/
-footer{
+footer {
     background-color: var(--secondary-color);
-    display:flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
     justify-content: space-around;
 }
+
 .footer-center .footer-right{
     width: 30%;
 }
@@ -381,4 +386,12 @@ hr {
 }
 .about, h5{
     padding: 20px 10px;
+}
+
+#signupbutton{
+    width: 20%;
+    margin: 5% 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

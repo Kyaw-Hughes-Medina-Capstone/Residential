@@ -36,18 +36,6 @@ public class Property {
 	private int bath;
 
 	@Column(nullable = false)
-	private String img1;
-
-	@Column(nullable = false)
-	private String img2;
-
-	@Column(nullable = false)
-	private String img3;
-
-	@Column(nullable = false)
-	private String img4;
-
-	@Column(nullable = false)
 	private String address;
 
 	@Column(nullable = false)
@@ -59,11 +47,20 @@ public class Property {
 	@Column(nullable = false)
 	private int zip;
 
+	@Column
+	private boolean pets;
+
+	@Column(nullable = false)
+	private String description;
+
 	@Column(nullable = false, precision = 8, scale = 6)
 	private BigDecimal latitude;
 
 	@Column(nullable = false, precision = 8, scale = 6)
 	private BigDecimal longitude;
+
+	public Property() {
+	}
 
 	@Override
 	public String toString() {
@@ -74,10 +71,6 @@ public class Property {
 				", area=" + area +
 				", beds=" + beds +
 				", bath=" + bath +
-				", img1='" + img1 + '\'' +
-				", img2='" + img2 + '\'' +
-				", img3='" + img3 + '\'' +
-				", img4='" + img4 + '\'' +
 				", address='" + address + '\'' +
 				", city='" + city + '\'' +
 				", state='" + state + '\'' +
@@ -87,40 +80,22 @@ public class Property {
 				'}';
 	}
 
-	@Column
-	private boolean pets;
-
-	@Column(nullable = false, columnDefinition = "MEDIUMTEXT")
-	private String description;
-
-
-	public Property(int id, String type, int rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, boolean pets, String description) {
-		this.id = id;
+	public Property(User manager, User tenant, String type, int rent, int area, int beds, int bath, String address, String city, String state, int zip, boolean pets, String description, BigDecimal latitude, BigDecimal longitude) {
+		this.manager = manager;
+		this.tenant = tenant;
 		this.type = type;
 		this.rent = rent;
 		this.area = area;
 		this.beds = beds;
 		this.bath = bath;
-		this.img1 = img1;
-		this.img2 = img2;
-		this.img3 = img3;
-		this.img4 = img4;
 		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
 		this.pets = pets;
 		this.description = description;
-	}
-
-	public Property() {
-
-	}
-
-	public Property(String type, float rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, String pets, String description) {
-	}
-
-	public Property(String type, float rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String city, String state, int zip, String pets, String description) {
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	public int getId() {
@@ -169,38 +144,6 @@ public class Property {
 
 	public void setBath(int bath) {
 		this.bath = bath;
-	}
-
-	public String getImg1() {
-		return img1;
-	}
-
-	public void setImg1(String img1) {
-		this.img1 = img1;
-	}
-
-	public String getImg2() {
-		return img2;
-	}
-
-	public void setImg2(String img2) {
-		this.img2 = img2;
-	}
-
-	public String getImg3() {
-		return img3;
-	}
-
-	public void setImg3(String img3) {
-		this.img3 = img3;
-	}
-
-	public String getImg4() {
-		return img4;
-	}
-
-	public void setImg4(String img4) {
-		this.img4 = img4;
 	}
 
 	public String getAddress() {

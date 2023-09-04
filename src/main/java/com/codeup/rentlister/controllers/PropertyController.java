@@ -13,6 +13,7 @@ import java.lang.String;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -64,6 +65,10 @@ public class PropertyController {
 	public String createProperty(
 			@ModelAttribute Property property) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		property.setLatitude(BigDecimal.valueOf(30.267250));
+		property.setLongitude(BigDecimal.valueOf(-97.743150));
+
 		propertyDao.save(property);
 
 		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");

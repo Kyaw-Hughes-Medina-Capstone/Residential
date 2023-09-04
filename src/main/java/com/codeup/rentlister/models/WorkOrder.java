@@ -13,15 +13,15 @@ public class WorkOrder {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "tenant", referencedColumnName = "id")
+    @JoinColumn(name = "tenant", referencedColumnName = "id", nullable = false)
     private User tenant;
 
     @ManyToOne
-    @JoinColumn(name = "manager", referencedColumnName = "id")
+    @JoinColumn(name = "manager", referencedColumnName = "id", nullable = false)
     private User manager;
 
     @ManyToOne
-    @JoinColumn(name = "property", referencedColumnName = "id")
+    @JoinColumn(name = "property", referencedColumnName = "id", nullable = false)
     private Property property;
 
     @Column(nullable = false)
@@ -31,15 +31,15 @@ public class WorkOrder {
     @Column(nullable = false)
     private String date;
 
+    public WorkOrder() {
+    }
+
     public WorkOrder(User tenant, User manager, Property property, String description, String date) {
         this.property = property;
         this.tenant = tenant;
         this.manager = manager;
         this.description = description;
         this.date = date;
-    }
-
-    public WorkOrder() {
     }
 
     @Override

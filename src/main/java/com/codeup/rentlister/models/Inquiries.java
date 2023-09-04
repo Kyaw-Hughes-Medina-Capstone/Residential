@@ -33,6 +33,9 @@ public class Inquiries {
     @Column
     private String pets;
 
+    public Inquiries() {
+    }
+
     public Inquiries(User tenant, User manager, Property property, String startDate, String endDate, int people, String pets) {
         this.tenant = tenant;
         this.manager = manager;
@@ -42,9 +45,6 @@ public class Inquiries {
         this.people = people;
         this.pets = pets;
 
-    }
-
-    public Inquiries() {
     }
 
     @Override
