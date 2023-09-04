@@ -22,7 +22,7 @@ public class OwnerController {
     private PropertyRepository ownerRepository;
     private LogManager propertyDao;
 
-    @GetMapping("/owner-portfolio")
+    @GetMapping("/owner/portfolio")
     public String ownerPortfolio(Model model) {
         Iterable<Property> properties = ownerRepository.findAll();
         model.addAttribute("ownerProperties", properties);

@@ -2,6 +2,7 @@ package com.codeup.rentlister.models;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 
 
 @Entity
@@ -85,6 +86,11 @@ public class Property {
 
 	@Column(nullable = false, columnDefinition = "MEDIUMTEXT")
 	private String description;
+
+	@Column(precision = 8, scale = 6)
+	private BigDecimal latitude;
+	@Column(precision = 8, scale = 6)
+	private BigDecimal longitude;
 
 
 	public Property(int id, String type, int rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, boolean pets, String description) {
@@ -260,5 +266,21 @@ public class Property {
 
 	public User getManager() {
 		return manager;
+	}
+
+	public BigDecimal getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
 	}
 }

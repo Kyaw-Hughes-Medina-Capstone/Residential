@@ -104,11 +104,11 @@ public class PropertyController {
 
 
 
-//	@GetMapping("/property/{id}")
-//	public String propertyView(@PathVariable int id, Model model) {
-//		Property property = propertyDao.findPropertyById(id);
-//		model.addAttribute("property", property);
-//		model.addAttribute("mapBoxKey", mapBoxKey);
-//		return "property/show";
-//	}
+	@GetMapping("/property/{id}")
+	public String propertyView(@PathVariable int id, Model model) {
+		Property property = propertyDao.findPropertyById(id);
+		model.addAttribute("property", property);
+		model.addAttribute("mapBoxKey", mapBoxKey);
+		return "property/show";
+	}
 }
