@@ -38,12 +38,12 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((requests) -> requests
                         /* Pages that require authentication
                          * only authenticated users can create and edit ads */
-                        .requestMatchers("/property/create", "/property/*/edit", "property/workorder", "property/*/inquiry", "property/*/review").authenticated()
+                        .requestMatchers("/property/create", "/property/*/edit", "property/workorder", "property/*/inquiry", "property/*/review", "/owner/portfolio").authenticated()
                         /* Pages that do not require authentication
 
 
                          * anyone can visit the home page, register, login, and view ads */
-                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/owner/portfolio").permitAll()
+                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login").permitAll()
 
 //                          anyone can visit the home page, register, login, and view
                         .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/landing.mov", "/chip.png").permitAll()
