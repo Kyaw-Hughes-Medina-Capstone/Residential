@@ -5,9 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PropertyRepository extends JpaRepository<Property, Integer> {
+public interface PropertyRepository extends JpaRepository<Property, Long> {
 
-	Property findPropertyById(int id);
+	Property findPropertyById(long id);
 	Property findPropertyByAddress(String address);
 	Property findPropertyByZip(int zip);
 	Property findPropertyByTenant(User tenant);

@@ -9,6 +9,8 @@
 <nav th:replace="~{partials :: navbar}"/>
 
 
+<div class="create-listings" >
+    <h1>List the Property</h1>
 <<div class="create-listings" >
     <h1 class="page-title">List the Property</h1>
     <form class="row g-3" th:action="@{/property/create}" method="post" th:object="${property}">
@@ -42,6 +44,29 @@
             <label for="bathroom" class="form-label">Number of Bathrooms</label>
             <input type="text" class="form-control " id="bathroom" name="bath" th:field="*{bath}">
         </div>
+
+        <!--    Photo 1-->
+        <div class=" d-grid col-md-3">
+            <label for="img1" class="form-label">Photo 1</label>
+            <button id="pickPhoto1" class="btn btn-secondary ">Upload Photo</button>
+            <input type="hidden" id="img1" name="img1" th:field="*{img1}">
+        </div>
+        <div class=" d-grid col-md-3">
+            <label for="img2" class="form-label">Photo 2</label>
+            <button id="pickPhoto2" class="btn btn-secondary">Upload Photo 2</button>
+            <input type="hidden" id="img2" name="img2" th:field="*{img2}">
+        </div>
+        <div class=" d-grid col-md-3">
+            <label for="img3" class="form-label">Photo 3</label>
+            <button id="pickPhoto3" class="btn btn-secondary ">Upload Photo 3</button>
+            <input type="hidden" id="img3" name="img3" th:field="*{img3}">
+        </div>
+        <div class=" d-grid col-md-3">
+            <label for="img4" class="form-label">Photo 4</label>
+            <button id="pickPhoto4" class="btn btn-secondary">Upload Photo 4</button>
+            <input type="hidden" id="img4" name="img4" th:field="*{img4}">
+        </div>
+
         <!--    Street address-->
         <div class="col-md-6">
             <label for="address" class="form-label">Address</label>
@@ -94,6 +119,34 @@
 </div>
 
 
+<<<<<<< HEAD
+<div th:replace="partials :: footer"/>
+<script>
+    const client = filestack.init("fileStackKey");
+
+    // Add event listeners for each "Upload Photo" button
+    for (let i = 1; i <= 4; i++) {
+        const pickPhotoButton = document.getElementById(`pickPhoto${i}`);
+        const imgInput = document.getElementById(`img${i}`);
+
+        pickPhotoButton.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const options = {
+                onFileUploadFinished: (file) => {
+                    console.log(file.url);
+
+                    // Set the value of the corresponding hidden input field with the modified URL
+                    imgInput.value = file.url;
+                }
+            }
+
+            client.picker(options).open();
+        });
+    }
+
+</script>
 <div th:replace="~{partials :: footer}"/>
+</div>
 </body>
 </html>

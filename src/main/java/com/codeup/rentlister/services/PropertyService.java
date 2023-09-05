@@ -7,17 +7,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-@Service("propertyService")
+@Service
 public class PropertyService {
+    private final PropertyRepository propertyRepository;
 
-    private final PropertyRepository propertyDao;
-
-    public PropertyService(PropertyRepository propertyDao) {
-        this.propertyDao = propertyDao;
+    public PropertyService(PropertyRepository propertyRepository) {
+        this.propertyRepository = propertyRepository;
     }
-
-    public List<Property> filterProperties(String type, String city,Integer zip, Integer minBedrooms, Integer minBathrooms, Integer maxPrice, Integer minPrice) {
-        List<Property> allProperties = propertyDao.findAll();
+    public List<Property> filterProperties(String type, String city, Integer zip, Integer minBedrooms, Integer minBathrooms, Integer maxPrice, Integer minPrice) {
+        List<Property> allProperties = propertyRepository.findAll();
 
         List<Property> filteredProperties = allProperties.stream()
                 .filter(property ->
@@ -35,7 +33,4 @@ public class PropertyService {
 
         return filteredProperties;
     }
-
-
-
 }
