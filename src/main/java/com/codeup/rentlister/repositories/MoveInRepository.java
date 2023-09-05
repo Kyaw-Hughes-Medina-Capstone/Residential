@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface MoveInRepository extends JpaRepository <MoveInForm, Long> {
 
     MoveInForm findMoveInFormById(long id);
+
 }

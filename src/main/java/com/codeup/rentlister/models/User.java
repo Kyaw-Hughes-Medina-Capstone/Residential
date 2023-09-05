@@ -10,20 +10,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
-    private boolean is_mgr;
-
-    @Column(nullable = false)
-    private boolean is_ctr;
-
     @Column(nullable = false, unique = true)
     private String username;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String name;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -31,8 +19,17 @@ public class User {
     @Column(nullable = false, unique = true)
     private String number;
 
-    @Column
-    private int zip;
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String firstname;
+
+    @Column(nullable = false)
+    private String lastname;
+
+    @Column(nullable = false)
+    private boolean is_mgr;
 
     @Column
     private int people;
@@ -40,28 +37,25 @@ public class User {
     @Column
     private int pets;
 
-    @Column
-    private int salary;
+    public User() {
+    }
 
     public User(User copy) {
         id = copy.id;
         email = copy.email;
         username = copy.username;
         password = copy.password;
-        name = copy.name;
+        firstname = copy.firstname;
         number = copy.number;
     }
 
-    public User(String email, String username, String password, String name, String number) {
+    public User(String email, String username, String password, String firstname, String lastname, String number) {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.name = name;
+        this.firstname = firstname;
         this.number = number;
 
-    }
-
-    public User() {
     }
 
     public int getId() {
@@ -72,20 +66,28 @@ public class User {
         this.id = id;
     }
 
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
     public boolean isIs_mgr() {
         return is_mgr;
     }
 
     public void setIs_mgr(boolean is_mgr) {
         this.is_mgr = is_mgr;
-    }
-
-    public boolean isIs_ctr() {
-        return is_ctr;
-    }
-
-    public void setIs_ctr(boolean is_ctr) {
-        this.is_ctr = is_ctr;
     }
 
     public String getUsername() {
@@ -104,14 +106,6 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -126,14 +120,6 @@ public class User {
 
     public void setNumber(String number) {
         this.number = number;
-    }
-
-    public int getZip() {
-        return zip;
-    }
-
-    public void setZip(int zip) {
-        this.zip = zip;
     }
 
     public int getPeople() {
@@ -152,11 +138,4 @@ public class User {
         this.pets = pets;
     }
 
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
 }

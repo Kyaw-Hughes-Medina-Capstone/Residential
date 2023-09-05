@@ -21,7 +21,10 @@
     <img class="navbar-brand logo" th:src="@{/img/KXZ-logo.png}" height="100" width="100">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                <a class="nav-link" th:text="'Hello,  ' + ${#authentication.principal.firstname}" th:href="@{/home}"></a>
             <li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
             <li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
             <li class="nav-item"><a class="nav-link" th:href="@{/property}">Properties</a></li>
@@ -31,7 +34,7 @@
                     <li><a class="dropdown-item" th:href="@{/tenant/lease}">Application</a></li>
                     <li><a class="dropdown-item" th:href="@{/tenant/move-in}">Checklists</a></li>
                     <li><a class="dropdown-item" th:href="@{/tenant/payment}">Make a Payment</a></li>
-                    <li><a class="dropdown-item" th:href="@{property/workorder}">Work Order</a></li>
+                    <li><a class="dropdown-item" th:href="@{/property/workorder}">Work Order</a></li>
                     <li><a class="dropdown-item" th:href="@{/tenant/forms}">Forms</a></li>
                     <li><a class="dropdown-item" th:href="@{/tenant/faq}">FAQ</a></li>
                 </ul>
@@ -39,15 +42,28 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">For Owners</a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+
                     <li><a class="dropdown-item" href="#">Payment</a></li>
                     <li><a class="dropdown-item" th:href="@{/owner/portfolio}">Owner Portfolio</a></li>
                     <li><a class="dropdown-item" th:href="@{/property/create}">Create New Rental</a></li>
+
+                    <li><a class="dropdown-item" th:href="@{/tenant/payment}">Payment</a></li>
+                    <li><a class="dropdown-item" href="#">Portfolio</a></li>
+                    <li><a class="dropdown-item" th:href="@{/property/create}">Create New Rental</a></li>
+                    <li><a class="dropdown-item" th:href="@{/tenant/lease}">Agreement</a></li>
+
                 </ul>
+                <!-- Apply a custom class "nav-link" to both the "Login" link and "Logout" button -->
+            <li class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}">
+                <a class="nav-link" th:href="@{/login}">Login</a>
             </li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
-            <li class="nav-item" th:action="@{/logout}" th:method="post">
-                <a class="nav-link" href="#">Logout</a>
+            <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                <form th:action="@{/logout}" th:method="post">
+                    <input type="submit" value="Logout" class="nav-button"/> <!-- Apply a custom class "nav-button" -->
+                </form>
             </li>
+
+
             <li class="nav-item">
                 <a href="#"  class="nav-link">
                     <i class="fa fa-sun-o" id="icon" aria-hidden="true"></i></a>

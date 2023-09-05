@@ -14,5 +14,4 @@ public interface PropertyRepository extends JpaRepository<Property, Integer> {
 	Property findPropertyByManager(User manager);
 	Property findPropertyByTenantId(int userId);
 
-
 }

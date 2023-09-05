@@ -12,37 +12,45 @@ public class WorkOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "property_id", referencedColumnName = "id")
-    private Property property_id;
+    @ManyToOne
+    @JoinColumn(name = "tenant", referencedColumnName = "id", nullable = false)
+    private User tenant;
 
-    @OneToOne
-    @JoinColumn(name = "tenant_id", referencedColumnName = "id")
-    private User tenant_id;
+    @ManyToOne
+    @JoinColumn(name = "manager", referencedColumnName = "id", nullable = false)
+    private User manager;
 
-    @Column(nullable = false)
-    private int manager_id;
+    @ManyToOne
+    @JoinColumn(name = "property", referencedColumnName = "id", nullable = false)
+    private Property property;
 
     @Column(nullable = false)
     private String description;
 
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
-    private Date date;
-
-    public WorkOrder(int id, Property property_id, User tenant_id, int manager_id, String description, Date date) {
-        this.id = id;
-        this.property_id = property_id;
-        this.tenant_id = tenant_id;
-        this.manager_id = manager_id;
-        this.description = description;
-        this.date = date;
-    }
+    private String date;
 
     public WorkOrder() {
     }
 
     public WorkOrder(User tenant, User manager, Property property, String description, String date) {
+        this.property = property;
+        this.tenant = tenant;
+        this.manager = manager;
+        this.description = description;
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "WorkOrder{" +
+                "tenant=" + tenant + '\'' +
+                ", manager=" + manager +
+                ", property=" + property +
+                ", date=" + date +
+                ", description='" + description + '\'' +
+                '}';
     }
 
     public int getId() {
@@ -53,28 +61,28 @@ public class WorkOrder {
         this.id = id;
     }
 
-    public Property getProperty_id() {
-        return property_id;
+    public Property getProperty() {
+        return property;
     }
 
-    public void setProperty_id(Property property_id) {
-        this.property_id = property_id;
+    public void setProperty(Property property) {
+        this.property= property;
     }
 
-    public User getTenant_id() {
-        return tenant_id;
+    public User getTenant() {
+        return tenant;
     }
 
-    public void setTenant_id(User tenant_id) {
-        this.tenant_id = tenant_id;
+    public void setTenant(User tenant) {
+        this.tenant = tenant;
     }
 
-    public int getManager_id() {
-        return manager_id;
+    public User getManager() {
+        return manager;
     }
 
-    public void setManager_id(int manager_id) {
-        this.manager_id = manager_id;
+    public void setManager(User manager) {
+        this.manager = manager;
     }
 
     public String getDescription() {
@@ -85,11 +93,11 @@ public class WorkOrder {
         this.description = description;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

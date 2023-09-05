@@ -48,10 +48,9 @@
         <div class="row properties">
             <div id="property-data" class="card-content col-lg-6" th:each="property : ${property}"
                  data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
-                <!--            <div class="card-content col-lg-6" th:each="property : ${property}">-->
+<!--                            <div class="card-content col-lg-6" th:each="property : ${property}">-->
                 <div class="card">
                     <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                    <img th:src="${property.img1}" class="img-top" alt="..." height="200">
                     <div class="card-body">
                         <h4 class="card-address"
                             th:text="${property.address + ', ' + property.city + ', '+ property.state + ', ' + property.zip}">

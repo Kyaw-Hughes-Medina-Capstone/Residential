@@ -22,7 +22,7 @@ public class EmailService {
 	public void sendAPropertyEmail(Property property, String subject, String body){
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setFrom(from);
-//		msg.setTo(property.getUser().getEmail());
+		msg.setTo(property.getManager().getEmail());
 		msg.setSubject(subject);
 		msg.setText(body);
 
@@ -33,7 +33,6 @@ public class EmailService {
 			System.err.println(ex.getMessage());
 		}
 	}
-
 	public void sendAnInquiryEmail(Inquiries inquiry, String s, String s1) {
 	}
 
