@@ -3,7 +3,6 @@ import com.codeup.rentlister.models.Property;
 import com.codeup.rentlister.repositories.PropertyRepository;
 import com.codeup.rentlister.repositories.UserRepository;
 import com.codeup.rentlister.services.EmailService;
-import org.apache.catalina.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import com.codeup.rentlister.services.PropertyService;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.lang.String;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import com.codeup.rentlister.models.User;
 
 import java.util.List;
 
@@ -38,12 +38,7 @@ public class PropertyController {
 	@GetMapping("/home")
 	public String landing(Model model){
 		model.addAttribute("property", propertyDao.findAll());
-		return "home";
-	}
-
-	@GetMapping("/about")
-	public String about(){
-		return "about";
+		return "/home";
 	}
 
 
@@ -65,6 +60,7 @@ public class PropertyController {
 	public String createProperty(
 			@ModelAttribute Property property) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		property.setManager(user);
 		System.out.println(property);
 		propertyDao.save(property);
 
@@ -74,7 +70,7 @@ public class PropertyController {
 	@GetMapping("/filtered-properties")
 	public String showFilteredPropertiesPage(Model model) {
 		model.addAttribute("mapBoxKey", mapBoxKey);
-		return "filtered-properties";
+		return "/filtered-properties";
 	}
 
 	@PostMapping("/filtered-properties")
@@ -98,7 +94,7 @@ public class PropertyController {
 		List<Property> filteredProperties = propertyService.filterProperties(type, city, zip, minBedrooms, minBathrooms, maxPrice, minPrice);
 		model.addAttribute("filteredProperty", filteredProperties);
 		model.addAttribute("mapBoxKey", mapBoxKey);
-		return "property/filter";
+		return "/property/filter";
 	}
 
 	@GetMapping("/contact")
@@ -108,11 +104,11 @@ public class PropertyController {
 
 
 
-//	@GetMapping("/property/{id}")
-//	public String propertyView(@PathVariable int id, Model model) {
-//		Property property = propertyDao.findPropertyById(id);
-//		model.addAttribute("property", property);
-//		model.addAttribute("mapBoxKey", mapBoxKey);
-//		return "property/show";
-//	}
+	@GetMapping("/property/{id}")
+	public String propertyView(@PathVariable int id, Model model) {
+		Property property = propertyDao.findPropertyById(id);
+		model.addAttribute("property", property);
+		model.addAttribute("mapBoxKey", mapBoxKey);
+		return "property/show";
+	}
 }

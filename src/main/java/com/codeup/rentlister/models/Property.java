@@ -249,4 +249,8 @@ public class Property {
 	public User getManager() {
 		return manager;
 	}
+
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
 }
