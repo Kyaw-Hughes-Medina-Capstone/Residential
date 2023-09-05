@@ -2,7 +2,7 @@
     --background--color: #334252;
     --nav--color: #A98A74;
     --primary-color: #ffffff;
-    --secondary-color: #3d3f41;
+    --secondary-color: #76717D;
 }
 .light-theme{
     --background--color: #f8ecec;
@@ -208,7 +208,12 @@ footer {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
     align-items: center;
+
 }
 
 .footer-center .footer-right{
