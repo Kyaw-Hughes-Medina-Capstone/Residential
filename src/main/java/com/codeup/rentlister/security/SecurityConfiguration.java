@@ -50,7 +50,7 @@ public class SecurityConfiguration {
 
 
 //                          anyone can visit the home page, register, login, and view
-                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/tenant/*", "/contact").permitAll()
+                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/tenant/*", "/contact","/filtered-properties").permitAll()
 
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**", "/pdf/**", "/landing.mov", "/residentialLease.pdf").permitAll()

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface WorkOrderRepository extends JpaRepository<WorkOrder, Integer> {
 	WorkOrder findWorkOrderById(int id);
-	List<WorkOrder> findWorkOrderByPropertyId(int id);
+	List<WorkOrder> findWorkOrderByPropertyId(long id);
 }

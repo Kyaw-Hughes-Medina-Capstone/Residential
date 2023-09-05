@@ -2,6 +2,8 @@ package com.codeup.rentlister.controllers;
 import com.codeup.rentlister.models.*;
 import com.codeup.rentlister.repositories.*;
 import com.codeup.rentlister.services.EmailService;
+import com.codeup.rentlister.services.PropertyService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import com.codeup.rentlister.services.PropertyService;
@@ -28,6 +30,8 @@ public class PropertyController {
 
 	@Value("${mapBoxKey}")
 	private String mapBoxKey;
+	@Value("${fileStackKey}")
+	private String fileStackKey;
 
 	public PropertyController(EmailService emailService, PropertyRepository propertyDao, UserRepository userDao, PropertyService propertyService, InquiriesRepository inquiryDao, WorkOrderRepository workOrderDao, ReviewRepository reviewDao) {
 		this.emailService = emailService;
@@ -39,6 +43,7 @@ public class PropertyController {
 		this.reviewDao = reviewDao;
 	}
 
+
 	//Home Page
 	@GetMapping("/home")
 	public String landing(Model model){
@@ -48,37 +53,77 @@ public class PropertyController {
 
 
 	@GetMapping("/property")
-	public String index(Model model){
+	public String index(Model model) {
 		model.addAttribute("property", propertyDao.findAll());
 		model.addAttribute("mapBoxKey", mapBoxKey);
+		model.addAttribute("fileStackKey", fileStackKey);
+
 		return "property/index";
 	}
 
 	@GetMapping("/property/create")
-	public String showPropertyCreateForm(Model model) {
+	public String createProperty(Model model) {
 		model.addAttribute("property", new Property());
+		model.addAttribute("fileStackKey", fileStackKey);
 		return "property/create";
 	}
-
 	@PostMapping("/property/create")
-	public String createProperty(
-			@ModelAttribute Property property) {
+	public String createProperty(@ModelAttribute Property property) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+		int userId = user.getId();
+		User manager = userDao.findUserById(userId);
 		property.setManager(user);
 		System.out.println(property);
 		propertyDao.save(property);
-
 		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
 		return "redirect:/property";
 	}
+	@GetMapping("/property/{id}/detail")
+	public String propertyDetail(@PathVariable long id, Model model) {
+		model.addAttribute("property", propertyDao.findById(id).get());
+		model.addAttribute("mapBoxKey", mapBoxKey);
+		return "property/detail";
+	}
+	@GetMapping("/property/{id}/edit")
+	public String propertyEdit(@PathVariable long id, Model model) {
+		Property propertyToEdit = propertyDao.findById(id).get();
+		model.addAttribute("property", propertyToEdit);
+		return "property/edit";
+	}
+	@PostMapping("/property/{id}/edit")
+	public String propertyEditPost(@PathVariable long id, @ModelAttribute Property property){
+		Property newProperty = propertyDao.findPropertyById(id);
+
+		property.setType(newProperty.getType());
+		property.setRent(newProperty.getRent());
+		property.setArea(newProperty.getArea());
+		property.setType(newProperty.getType());
+		property.setBeds(newProperty.getBeds());
+		property.setBath(newProperty.getBath());
+		property.setImg1(newProperty.getImg1());
+		property.setImg2(newProperty.getImg2());
+		property.setImg3(newProperty.getImg3());
+		property.setImg4(newProperty.getImg4());
+		property.setAddress(newProperty.getAddress());
+		property.setCity(newProperty.getCity());
+		property.setState(newProperty.getState());
+		property.setZip(newProperty.getZip());
+		property.setPets(newProperty.isPets());
+		property.setDescription(newProperty.getDescription());
+		property.setUpdatedOn(newProperty.getUpdatedOn());
+		property.setCreatedOn(newProperty.getCreatedOn());
+		propertyDao.save(property);
+
+		return "redirect:/property/" + id;
+	}
+
+
 
 	@GetMapping("/filtered-properties")
-	public String showFilteredPropertiesPage(Model model) {
+	public String filterProperty(Model model) {
 		model.addAttribute("mapBoxKey", mapBoxKey);
 		return "/filtered-properties";
 	}
-
 	@PostMapping("/filtered-properties")
 	public String filterProperties(
 			@RequestParam(required = false) String type,
@@ -89,60 +134,24 @@ public class PropertyController {
 			@RequestParam(required = false) Integer maxPrice,
 			@RequestParam(required = false) Integer minPrice,
 			Model model
-
 	) {
 		if(type != null && type.isEmpty()){
 			type = null;
 		}if(city != null && city.isEmpty()){
 			city =null;
 		}
-
 		List<Property> filteredProperties = propertyService.filterProperties(type, city, zip, minBedrooms, minBathrooms, maxPrice, minPrice);
 		model.addAttribute("filteredProperty", filteredProperties);
 		model.addAttribute("mapBoxKey", mapBoxKey);
 		return "/property/filter";
 	}
-
 	@GetMapping("/contact")
 	public String contact(){
 		return"/contact";
 	}
 
-	@GetMapping("/property/{id}/edit")
-	public String propertyEdit(@PathVariable int id, Model model) {
-		Property property = propertyDao.findPropertyById(id);
-		model.addAttribute("property", property);
-		return "property/edit";
-	}
-
-	@PostMapping("/property/{id}/edit")
-	public String updateProperty(
-			@PathVariable int id,
-			@ModelAttribute Property newProperty){
-		Property property = propertyDao.findPropertyById(id);
-
-		property.setType(newProperty.getType());
-		property.setRent(newProperty.getRent());
-		property.setArea(newProperty.getArea());
-		property.setType(newProperty.getType());
-		property.setBeds(newProperty.getBeds());
-		property.setBath(newProperty.getBath());
-		property.setAddress(newProperty.getAddress());
-		property.setCity(newProperty.getCity());
-		property.setState(newProperty.getState());
-		property.setZip(newProperty.getZip());
-		property.setPets(newProperty.isPets());
-		property.setDescription(newProperty.getDescription());
-		property.setLatitude(newProperty.getLatitude());
-		property.setLongitude(newProperty.getLongitude());
-
-		propertyDao.save(property);
-
-		return "redirect:/property/" + id;
-	}
-
 	@GetMapping("/property/{id}")
-	public String propertyView(@PathVariable int id, Model model) {
+	public String propertyView(@PathVariable long id, Model model) {
 		Property property = propertyDao.findPropertyById(id);
 
 		List<Inquiries> inquiries = inquiryDao.findInquiriesByPropertyId(id);
