@@ -1,5 +1,6 @@
 package com.codeup.rentlister.controllers;
 import com.codeup.rentlister.models.*;
+import com.codeup.rentlister.models.Property;
 import com.codeup.rentlister.repositories.*;
 import com.codeup.rentlister.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,12 +14,13 @@ import org.springframework.web.bind.annotation.*;
 public class InquiriesController {
 
 	private final InquiriesRepository inquiriesDao;
-
 	private final PropertyRepository propertyDao;
-
 	private final UserRepository userDao;
-
 	private EmailService emailService;
+
+	private User getCurrentUser() {
+		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
 
 	public InquiriesController(InquiriesRepository inquiriesDao, PropertyRepository propertyDao, UserRepository userDao, EmailService emailService){
 		this.inquiriesDao = inquiriesDao;
@@ -27,14 +29,9 @@ public class InquiriesController {
 		this.emailService = emailService;
 	}
 
-	@GetMapping("/home")
-	public String showHome(){
-		return "/home";
-	}
-
 	@GetMapping("/property/{id}/inquiry")
 	public String showInquiryCreateForm(@PathVariable int id, Model model) {
-		Property property = propertyDao.findPropertyById(id);
+		com.codeup.rentlister.models.Property property = propertyDao.findPropertyById(id);
 		model.addAttribute("inquiries", new Inquiries());
 		return "property/inquiry";
 	}
@@ -53,16 +50,12 @@ public class InquiriesController {
 		Property property = propertyDao.findPropertyById(id);
 		User manager = property.getManager();
 
-		Inquiries inquiry = new Inquiries(start_date, end_date, people, pets, property, tenant, manager);
+		Inquiries inquiry = new Inquiries(tenant, manager, property, start_date, end_date, people, pets);
 		inquiriesDao.save(inquiry);
 
 		emailService.sendAnInquiryEmail(inquiry, "You have an inquiry about a property!", "Check your account for more information.");
 
 		return "redirect:/property/" + id;
-	}
-
-	private User getCurrentUser() {
-		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 
 }

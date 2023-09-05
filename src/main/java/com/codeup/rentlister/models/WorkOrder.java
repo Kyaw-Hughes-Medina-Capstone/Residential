@@ -7,77 +7,97 @@ import java.util.List;
 
 @Entity
 @Table(name = "workorders")
-public class WorkOrder{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+public class WorkOrder {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@ManyToOne
-	@JoinColumn(name = "tenant_id", referencedColumnName = "id", nullable = false)
-	private User tenant;
+    @ManyToOne
+    @JoinColumn(name = "tenant", referencedColumnName = "id", nullable = false)
+    private User tenant;
 
-	@ManyToOne
-	@JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = false)
-	private User manager;
+    @ManyToOne
+    @JoinColumn(name = "manager", referencedColumnName = "id", nullable = false)
+    private User manager;
 
-	@ManyToOne
-	@JoinColumn(name = "property_id", referencedColumnName = "id", nullable = false)
-	private Property property;
+    @ManyToOne
+    @JoinColumn(name = "property", referencedColumnName = "id", nullable = false)
+    private Property property;
 
-	@Column
-	private String description;
+    @Column(nullable = false)
+    private String description;
 
-	@Column(length = 255)
-	private String date;
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private String date;
 
-	public WorkOrder(User tenant, User manager, Property property, String description, String date){
-		this.tenant = tenant;
-		this.manager = manager;
-		this.property = property;
-		this.date = date;
-		this.description = description;
-	}
+    public WorkOrder() {
+    }
 
-	public WorkOrder() {
-	}
+    public WorkOrder(User tenant, User manager, Property property, String description, String date) {
+        this.property = property;
+        this.tenant = tenant;
+        this.manager = manager;
+        this.description = description;
+        this.date = date;
+    }
 
-	public User getTenant() {
-		return tenant;
-	}
+    @Override
+    public String toString() {
+        return "WorkOrder{" +
+                "tenant=" + tenant + '\'' +
+                ", manager=" + manager +
+                ", property=" + property +
+                ", date=" + date +
+                ", description='" + description + '\'' +
+                '}';
+    }
 
-	public void setTenant(User tenant) {
-		this.tenant = tenant;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public User getManager() {
-		return manager;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setManager(User manager) {
-		this.manager = manager;
-	}
+    public Property getProperty() {
+        return property;
+    }
 
-	public Property getProperty() {
-		return property;
-	}
+    public void setProperty(Property property) {
+        this.property= property;
+    }
 
-	public void setProperty(Property property) {
-		this.property = property;
-	}
+    public User getTenant() {
+        return tenant;
+    }
 
-	public String getDate() {
-		return date;
-	}
+    public void setTenant(User tenant) {
+        this.tenant = tenant;
+    }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+    public User getManager() {
+        return manager;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setManager(User manager) {
+        this.manager = manager;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

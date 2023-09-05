@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{partials :: head}"/>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+<title>Lease Agreement</title>
+</head>
+<body class="lease">
+<nav th:replace="~{partials :: navbar}"/>
+
+<section id="contact">
+    <h1 class="section-header">Contact</h1>
+
+    <div class="contact-wrapper">
+
+        <form id="contact-form" class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="text" class="form-control-contact" id="name" placeholder="NAME" name="name" value="" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="email" class="form-control-contact" id="email" placeholder="EMAIL" name="email" value="" required>
+                </div>
+            </div>
+
+            <textarea class="form-control-contact" rows="10" placeholder="MESSAGE" name="message" required></textarea>
+
+            <button class="btn btn-secondary send-button" id="submit" type="submit" value="SEND">SEND</button>
+
+        </form>
+
+        <!-- Left contact page -->
+
+        <div class="direct-contact-container">
+
+            <ul class="contact-list">
+                <li class="list-item"><i class="fa fa-map-marker fa-2x"><span class="contact-text place">Austin, Texas</span></i></li>
+
+                <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:1-347-325-3233" title="Give me a call">(347)-325-3233</a></span></i></li>
+
+                <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#" title="Send me an email">kxz.residentials@gmail.com</a></span></i></li>
+
+            </ul>
+
+            <hr>
+            <ul class="social-media-list">
+                <li><a href="#" target="_blank" class="contact-icon">
+                    <i class="fa fa-github" aria-hidden="true"></i></a>
+                </li>
+                <li><a href="#" target="_blank" class="contact-icon">
+                    <i class="fa fa-codepen" aria-hidden="true"></i></a>
+                </li>
+                <li><a href="#" target="_blank" class="contact-icon">
+                    <i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li><a href="#" target="_blank" class="contact-icon">
+                    <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div th:replace="~{partials :: footer}"/>
+</body>
+</html>
+
+
+

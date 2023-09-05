@@ -6,11 +6,13 @@
     <title>Create a Property listing</title>
 </head>
 <body>
-<nav th:replace="partials :: navbar"/>
+<nav th:replace="~{partials :: navbar}"/>
 
 
 <div class="create-listings" >
     <h1>List the Property</h1>
+<<div class="create-listings" >
+    <h1 class="page-title">List the Property</h1>
     <form class="row g-3" th:action="@{/property/create}" method="post" th:object="${property}">
         <!--        Property Type-->
         <div class="col-md-3">
@@ -117,6 +119,7 @@
 </div>
 
 
+<<<<<<< HEAD
 <div th:replace="partials :: footer"/>
 <script>
     const client = filestack.init("fileStackKey");
@@ -143,5 +146,7 @@
     }
 
 </script>
+<div th:replace="~{partials :: footer}"/>
+</div>
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table(name = "property")
 public class Property {
@@ -28,6 +29,7 @@ public class Property {
 
 	@Column
 	private int bath;
+
 
 	@Column(name = "img1", nullable = false)
 	private String img1;
@@ -64,10 +66,55 @@ public class Property {
 	@ManyToOne
 	@JoinColumn(name = "manager", referencedColumnName = "id")
 	private User manager;
+	@OneToOne
+	@JoinColumn(name = "tenant", referencedColumnName = "id")
+	private User tenant;
 
-	public Property() {
+	public Property(String type, int rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, boolean pets, String description, LocalDateTime createdOn, LocalDateTime updatedOn) {
+		this.type = type;
+		this.rent = rent;
+		this.area = area;
+		this.beds = beds;
+		this.bath = bath;
+		this.img1 = img1;
+		this.img2 = img2;
+		this.img3 = img3;
+		this.img4 = img4;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.pets = pets;
+		this.description = description;
+		this.createdOn = createdOn;
+		this.updatedOn = updatedOn;
+	}
+
+	public Property(long id, String type, int rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, boolean pets, String description, LocalDateTime createdOn, LocalDateTime updatedOn) {
+		this.id = id;
+		this.type = type;
+		this.rent = rent;
+		this.area = area;
+		this.beds = beds;
+		this.bath = bath;
+		this.img1 = img1;
+		this.img2 = img2;
+		this.img3 = img3;
+		this.img4 = img4;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.pets = pets;
+		this.description = description;
+		this.createdOn = createdOn;
+		this.updatedOn = updatedOn;
+	}
+	public Property(){
 
 	}
+
+
 
 	@Override
 	public String toString() {
@@ -90,6 +137,8 @@ public class Property {
 				", description='" + description + '\'' +
 				", createdOn=" + createdOn +
 				", updatedOn=" + updatedOn +
+				", manager=" + manager +
+				", tenant=" + tenant +
 				'}';
 	}
 
@@ -237,29 +286,19 @@ public class Property {
 		this.updatedOn = updatedOn;
 	}
 
-	public Property(long id, String type, int rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, boolean pets, String description, LocalDateTime createdOn, LocalDateTime updatedOn) {
-		this.id = id;
-		this.type = type;
-		this.rent = rent;
-		this.area = area;
-		this.beds = beds;
-		this.bath = bath;
-		this.img1 = img1;
-		this.img2 = img2;
-		this.img3 = img3;
-		this.img4 = img4;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.pets = pets;
-		this.description = description;
-		this.createdOn = createdOn;
-		this.updatedOn = updatedOn;
+	public User getManager() {
+		return manager;
 	}
 
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
 
-	public User getManager() {
-		return getManager();
+	public User getTenant() {
+		return tenant;
+	}
+
+	public void setTenant(User tenant) {
+		this.tenant = tenant;
 	}
 }

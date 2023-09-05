@@ -6,157 +6,136 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Column(nullable = false)
-	private boolean is_mgr;
+    @Column(nullable = false, unique = true)
+    private String username;
 
-	@Column(nullable = false)
-	private boolean is_ctr;
+    @Column(nullable = false, unique = true)
+    private String email;
 
-	@Column(nullable = false, unique = true)
-	private String username;
+    @Column(nullable = false, unique = true)
+    private String number;
 
-	@Column(nullable = false)
-	private String password;
+    @Column(nullable = false)
+    private String password;
 
-	@Column(nullable = false)
-	private String name;
+    @Column(nullable = false)
+    private String firstname;
 
-	@Column(nullable = false, unique = true)
-	private String email;
+    @Column(nullable = false)
+    private String lastname;
 
-	@Column(nullable = false, unique = true)
-	private String number;
+    @Column(nullable = false)
+    private boolean is_mgr;
 
-	@Column
-	private int zip;
+    @Column
+    private int people;
 
-	@Column
-	private int people;
+    @Column
+    private int pets;
 
-	@Column
-	private int pets;
+    public User() {
+    }
 
-	@Column
-	private int salary;
+    public User(User copy) {
+        id = copy.id;
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+        firstname = copy.firstname;
+        number = copy.number;
+    }
 
-	public User(User copy) {
-		id = copy.id;
-		email = copy.email;
-		username = copy.username;
-		password = copy.password;
-		name = copy.name;
-		number = copy.number;
-	}
+    public User(String email, String username, String password, String firstname, String lastname, String number) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.number = number;
 
-	public User(String email, String username, String password, String name, String number) {
-		this.email = email;
-		this.username = username;
-		this.password = password;
-		this.name = name;
-		this.number = number;
+    }
 
-	}
+    public int getId() {
+        return id;
+    }
 
-	public User() {
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public String getFirstname() {
+        return firstname;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-	public boolean isIs_mgr() {
-		return is_mgr;
-	}
+    public String getLastname() {
+        return lastname;
+    }
 
-	public void setIs_mgr(boolean is_mgr) {
-		this.is_mgr = is_mgr;
-	}
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
-	public boolean isIs_ctr() {
-		return is_ctr;
-	}
+    public boolean isIs_mgr() {
+        return is_mgr;
+    }
 
-	public void setIs_ctr(boolean is_ctr) {
-		this.is_ctr = is_ctr;
-	}
+    public void setIs_mgr(boolean is_mgr) {
+        this.is_mgr = is_mgr;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getNumber() {
+        return number;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
-	public String getNumber() {
-		return number;
-	}
+    public int getPeople() {
+        return people;
+    }
 
-	public void setNumber(String number) {
-		this.number = number;
-	}
+    public void setPeople(int people) {
+        this.people = people;
+    }
 
-	public int getZip() {
-		return zip;
-	}
+    public int getPets() {
+        return pets;
+    }
 
-	public void setZip(int zip) {
-		this.zip = zip;
-	}
+    public void setPets(int pets) {
+        this.pets = pets;
+    }
 
-	public int getPeople() {
-		return people;
-	}
-
-	public void setPeople(int people) {
-		this.people = people;
-	}
-
-	public int getPets() {
-		return pets;
-	}
-
-	public void setPets(int pets) {
-		this.pets = pets;
-	}
-
-	public int getSalary() {
-		return salary;
-	}
-
-	public void setSalary(int salary) {
-		this.salary = salary;
-	}
 }

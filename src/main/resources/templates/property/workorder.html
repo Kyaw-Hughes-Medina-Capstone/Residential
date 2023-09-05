@@ -7,15 +7,22 @@
 <nav th:replace="~{partials :: navbar}"/>
 
 <fieldset>
-  <legend>Submit a work order</legend>
-  <form th:action="@{/property/workorder}" th:method="post">
-    Date:
-    <input type="date" name="date"/><br/>
-    Description:
-    <input type="text" name="description"/><br/>
+	<legend class="page-title">Submit a work order</legend>
+	<form th:action="@{/property/workorder}" th:method="post">
 
-    <input type="submit" value="Submit"/>
-  </form>
+		<div class="row d-flex">
+			<div class="col-8">
+				Date:
+				<input type="date" name="date"/><br/>
+			</div>
+			<div class="col-8">
+				Description:
+				<textarea class="form-control" rows="7" id="description" name="description" ></textarea>
+			</div>
+		</div>
+
+		<input type="submit" value="Submit" class="signupbutton"/>
+	</form>
 
 </fieldset>
 
