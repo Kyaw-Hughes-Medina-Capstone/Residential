@@ -33,7 +33,6 @@ public class EmailService {
 			System.err.println(ex.getMessage());
 		}
 	}
-
 	public void sendAnInquiryEmail(Inquiries inquiry, String s, String s1) {
 	}
 
