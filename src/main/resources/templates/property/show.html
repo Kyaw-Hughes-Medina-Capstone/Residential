@@ -101,7 +101,7 @@
         </div>
 
         <div th:if="${#authorization.expression('isAuthenticated()')}">
-            <a th:unless="${#authentication.principal.id == property.manager.id or #authentication.principal.id == property.tenant.id}" th:href="@{/property/{id}/inquiry(id=${property.id})}" class="btn btn-secondary" th:class="inquire" >Inquire</a>
+            <a th:unless="${#authentication.principal.id == property.manager.id}" th:href="@{/property/{id}/inquiry(id=${property.id})}" class="btn btn-secondary" th:class="inquire" >Inquire</a>
         </div>
     </div>
 
