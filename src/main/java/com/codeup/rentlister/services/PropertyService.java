@@ -15,7 +15,7 @@ public class PropertyService {
 		this.propertyDao = propertyDao;
 	}
 
-	public List<Property> filterProperties(String type, String city, Integer minBedrooms, Integer minBathrooms, Integer maxPrice, Integer minPrice) {
+	public List<Property> filterProperties(String type, String city, Integer minBedrooms, Integer minBathrooms, Integer maxPrice, Integer minPrice, Integer price) {
 		List<Property> allProperties = propertyDao.findAll();
 
 		List<Property> filteredProperties = allProperties.stream()

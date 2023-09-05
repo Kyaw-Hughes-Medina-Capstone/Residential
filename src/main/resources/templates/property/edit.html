@@ -3,40 +3,146 @@
 <head>
     <head th:replace="~{partials :: head}"/>
     <meta charset="UTF-8">
-    <title>Edit a Property Listing</title>
+    <title>Edit Property listing</title>
 </head>
 <body>
-<nav th:replace="~{partials :: navbar}"/>
-<fieldset>
+<nav th:replace="partials :: navbar"/>
 
-    <form th:action="@{/property/{id}/edit(id=${property.id})}" th:method="post" th:object="${property}">
-        Type:
-        <input type="text" th:field="*{type}"/><br/>
-        Rent:
-        <input type="number" th:field="*{rent}"/><br/>
-        Zip:
-        <input type="number" th:field="*{zip}"/><br/>
-        Address:
-        <input type="text" th:field="*{address}"/><br/>
-        City:
-        <input type="text" th:field="*{city}"/><br/>
-        State:
-        <input type="text" th:field="*{state}"/><br/>
-        Beds:
-        <input type="number" th:field="*{beds}"/><br/>
-        Bath:
-        <input type="number" th:field="*{bath}"/><br/>
-        Pets:
-        <input type="text" th:field="*{pets}"/><br/>
-        Latitude:
-        <input type="text" th:field="*{latitude}"/><br/>
-        Longitude:
-        <input type="text" th:field="*{longitude}"/><br/>
 
-        <button type="submit">Save Changes</button>
+<div class="create-listings" >
+    <h1>List the Property</h1>
+    <form class="row g-3" th:action="@{/property}" th:object="${property}">
+
+        <!--        Property Type-->
+        <div class="col-md-3 propertyType">
+            <label for="propertyType" class="form-label propertyType" th:field="*{type}">Property Type</label>
+            <select class="form-select propertyType" id="propertyType" name="type">
+                <!--        <option selected disabled value="">Choose...</option>-->
+                <option>Single Family</option>
+                <option>Condo</option>
+                <option>Apartment</option>
+            </select>
+        </div>
+        <!--        Monthly Rent-->
+        <div class="col-md-2 rent">
+            <label for="rent" class="form-label">Monthly Rent</label>
+            <input type="text" class="form-control " id="rent" name="rent" th:field="*{rent}">
+        </div>
+        <!--        Sq Feet-->
+        <div class="col-md-2 area">
+            <label for="area" class="form-label">Square feet</label>
+            <input type="text" class="form-control " id="area" name="area" th:field="*{area}">
+        </div>
+        <!--    Bedroom-->
+        <div class="col-md-2 bedroom">
+            <label for="bedroom" class="form-label">Number of Bedrooms</label>
+            <input type="text" class="form-control " id="bedroom" name="beds" th:field="*{beds}">
+        </div>
+        <!--    Bathroom-->
+        <div class="col-md-2 bathroom">
+            <label for="bathroom" class="form-label">Number of Bathrooms</label>
+            <input type="text" class="form-control " id="bathroom" name="bath" th:field="*{bath}">
+        </div>
+
+        <!--    Photo 1-->
+        <div class=" d-grid col-md-3 img1">
+            <label for="img1" class="form-label">Photo 1</label>
+            <button id="pickPhoto1" class="btn btn-secondary ">Upload Photo</button>
+            <input type="hidden" id="img1" name="img1" th:field="*{img1}">
+        </div>
+        <div class=" d-grid col-md-3 img2">
+            <label for="img2" class="form-label">Photo 2</label>
+            <button id="pickPhoto2" class="btn btn-secondary">Upload Photo 2</button>
+            <input type="hidden" id="img2" name="img2" th:field="*{img2}">
+        </div>
+        <div class=" d-grid col-md-3 img3">
+            <label for="img3" class="form-label">Photo 3</label>
+            <button id="pickPhoto3" class="btn btn-secondary ">Upload Photo 3</button>
+            <input type="hidden" id="img3" name="img3" th:field="*{img3}">
+        </div>
+        <div class=" d-grid col-md-3 img4">
+            <label for="img4" class="form-label">Photo 4</label>
+            <button id="pickPhoto4" class="btn btn-secondary">Upload Photo 4</button>
+            <input type="hidden" id="img4" name="img4" th:field="*{img4}">
+        </div>
+
+        <!--    Street address-->
+        <div class="col-md-6 address">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" name="address" th:field="*{address}">
+        </div>
+        <!--    city-->
+        <div class="col-md-3 city">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" name="city"  th:field="*{city}">
+        </div>
+        <!--    state-->
+        <div class="col-md-3 state">
+            <label for="state" class="form-label state" th:field="*{state}">State</label>
+            <select class="form-select state" id="state" name="state" >
+                <!--        <option selected disabled value="">Choose...</option>-->
+                <option>New York</option>
+                <option>California</option>
+                <option>Texas</option>
+                <option>Washington</option>
+                <option>New Jersey</option>
+            </select>
+        </div>
+        <!--    Zipcode-->
+        <div class="col-md-3 zipcode">
+            <label for="zipcode" class="form-label">Zip</label>
+            <input type="text" class="form-control" id="zipcode" name="zip" th:field="*{zip}" maxlength="5" pattern="[0-9]{5}" title="Please enter a 5-digit ZIP code" required>
+            <div class="invalid-feedback">
+                Please provide a valid 5-digit ZIP code.
+            </div>
+        </div>
+        <!--    pets-->
+        <div class="col-md-3 pets">
+            <label for="pets" class="form-label pets" th:field="*{pets}">Pets</label>
+            <select class="form-select pets" id="pets" name="pets" >
+                <!--        <option selected disabled value="">Choose...</option>-->
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </div>
+        <!--    Description-->
+        <div class="col-md-12 description">
+            <label for="description">Description</label>
+            <textarea class="form-control" rows="7" id="description" name="description"  th:field="*{description}"></textarea>
+        </div>
+        <!--    submit-->
+        <div class="d-grid col-2 mx-auto submit">
+            <button class="btn btn-secondary" name="submit" type="submit">Edit form</button>
+        </div>
     </form>
-</fieldset>
+</div>
 
-<div th:replace="~{partials :: footer}"/>
+
+<div th:replace="partials :: footer"/>
+<script>
+    const client = filestack.init("Afw1icFjsRnymOg1l1uTQz");
+
+    // Add event listeners for each "Upload Photo" button
+    for (let i = 1; i <= 4; i++) {
+        const pickPhotoButton = document.getElementById(`pickPhoto${i}`);
+        const imgInput = document.getElementById(`img${i}`);
+
+        pickPhotoButton.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const options = {
+                onFileUploadFinished: (file) => {
+                    console.log(file.url);
+
+                    // Set the value of the corresponding hidden input field with the modified URL
+                    imgInput.value = file.url;
+                }
+            }
+
+            client.picker(options).open();
+        });
+    }
+
+</script>
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.codeup.rentlister.models.*;
 import com.codeup.rentlister.repositories.*;
 import com.codeup.rentlister.services.EmailService;
 import com.codeup.rentlister.services.PropertyService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,71 +32,90 @@ public class PropertyController {
 		this.reviewDao = reviewDao;
 		this.inquiryDao = inquiryDao;
 	}
+	@Value("${mapBoxKey}")
+	private String mapBoxKey;
+	@Value("${fileStackKey}")
+	private String fileStackKey;
+
 
 	@GetMapping("/property")
-	public String index(Model model){
+	public String index(Model model) {
 		model.addAttribute("property", propertyDao.findAll());
+		model.addAttribute("mapBoxKey", mapBoxKey);
+		model.addAttribute("fileStackKey", fileStackKey);
 		return "property/index";
 	}
 
 	@GetMapping("/property/create")
-	public String showPropertyCreateForm(Model model) {
+	public String createProperty(Model model) {
 		model.addAttribute("property", new Property());
+		model.addAttribute("fileStackKey", fileStackKey);
 		return "property/create";
 	}
-
 	@PostMapping("/property/create")
-	public String createProperty(
-			@RequestParam(name = "type") String type,
-			@RequestParam(name = "rent") int rent,
-			@RequestParam(name = "area") int area,
-			@RequestParam(name = "beds") int beds,
-			@RequestParam(name = "bath") int bath,
-			@RequestParam(name = "address") String address,
-			@RequestParam(name = "city") String city,
-			@RequestParam(name = "state") String state,
-			@RequestParam(name = "zip") int zip,
-			@RequestParam(name = "pets") String pets,
-			@RequestParam(name = "description") String description){
-
+	public String createProperty(@ModelAttribute Property property) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		int userId = user.getId();
 		User manager = userDao.findUserById(userId);
-
-		Property property = new Property(manager, type, rent, area, beds, bath, address, city, state, zip, pets, description);
-
+		System.out.println(property);
 		propertyDao.save(property);
-
 		return "redirect:/property";
 	}
+	@GetMapping("/property/{id}")
+	public String propertyDetail(@PathVariable long id, Model model) {
+		model.addAttribute("property", propertyDao.findById((int) id).get());
+		model.addAttribute("mapBoxKey", mapBoxKey);
+		return "property/detail";
+	}
+	@GetMapping("/property/{id}/edit")
+	public String propertyEdit(@PathVariable long id, Model model) {
+		Property propertyToEdit = propertyDao.findById((int) id).get();
+		model.addAttribute("property", propertyToEdit);
+		return "property/edit";
+	}
+	@PostMapping("/property/{id}/edit")
+	public String propertyEditPost(@PathVariable long id, @ModelAttribute Property newProperty){
+		Property propertyToEdit = propertyDao.findPropertyById(id);
+		propertyDao.save(propertyToEdit );
+		return "redirect:/property";
+	}
+
+
+	@GetMapping("/filtered-properties")
+	public String filterProperty(Model model) {
+		model.addAttribute("mapBoxKey", mapBoxKey);
+		return "/filtered-properties";
+	}
+	@PostMapping("/filtered-properties")
+	public String filterProperties(
+			@RequestParam(required = false) String type,
+			@RequestParam(required = false) String city,
+			@RequestParam(required = false) Integer zip,
+			@RequestParam(required = false) Integer minBedrooms,
+			@RequestParam(required = false) Integer minBathrooms,
+			@RequestParam(required = false) Integer maxPrice,
+			@RequestParam(required = false) Integer minPrice,
+			Model model
+
+	) {
+		if(type != null && type.isEmpty()){
+			type = null;
+		}if(city != null && city.isEmpty()){
+			city =null;
+		}
+
+		List<Property> filteredProperties = propertyService.filterProperties(type, city, zip, minBedrooms, minBathrooms, maxPrice, minPrice);
+		model.addAttribute("filteredProperty", filteredProperties);
+		model.addAttribute("mapBoxKey", mapBoxKey);
+		return "/property/filter";
+	}
+
 
 	@GetMapping("/filtered-properties")
 	public String showFilteredPropertiesPage(Model model) {
 		return "/filtered-properties";
 	}
 
-	@PostMapping("/filtered-properties")
-	public String filterProperties(
-			@RequestParam(required = false, name = "type") String type,
-			@RequestParam(required = false, name = "city") String city,
-			@RequestParam(required = false, name = "minBedrooms") Integer minBedrooms,
-			@RequestParam(required = false, name = "minBathrooms") Integer minBathrooms,
-			@RequestParam(required = false, name = "maxPrice") Integer maxPrice,
-			@RequestParam(required = false, name = "minPrice") Integer minPrice,
-			Model model
-	) {
-		if (type != null && type.isEmpty()) {
-			type = null;
-		}
-		if (city != null && city.isEmpty()) {
-			city = null;
-		}
-
-		List<Property> filteredProperties = propertyService.filterProperties(type, city, minBedrooms, minBathrooms, maxPrice, minPrice);
-		model.addAttribute("filteredProperty", filteredProperties);
-
-		return "/property/filter";
-	}
 
 	@GetMapping("/property/{id}")
 	public String propertyView(@PathVariable int id, Model model) {
@@ -108,28 +128,4 @@ public class PropertyController {
 		return "property/show";
 	}
 
-	@GetMapping("/property/{id}/edit")
-	public String editProperty(@PathVariable int id, Model model) {
-		Property property = propertyDao.findPropertyById(id);
-		model.addAttribute("property", property);
-		return "property/edit";
-	}
-
-	@PostMapping("/property/{id}/edit")
-	public String editProperty(@PathVariable int id, @ModelAttribute Property property) {
-		Property propertyToUpdate = propertyDao.findPropertyById(id);
-		propertyToUpdate.setRent(property.getRent());
-		propertyToUpdate.setType(property.getType());
-		propertyToUpdate.setBeds(property.getBeds());
-		propertyToUpdate.setBath(property.getBath());
-		propertyToUpdate.setPets(property.getPets());
-		propertyToUpdate.setAddress(property.getAddress());
-		propertyToUpdate.setCity(property.getCity());
-		propertyToUpdate.setState(property.getState());
-		propertyToUpdate.setZip(propertyToUpdate.getZip());
-		propertyToUpdate.setLatitude(property.getLatitude());
-		propertyToUpdate.setLongitude(property.getLongitude());
-		propertyDao.save(propertyToUpdate);
-		return "redirect:/property/" + id;
-	}
 }

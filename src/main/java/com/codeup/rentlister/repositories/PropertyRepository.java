@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PropertyRepository extends JpaRepository<Property, Integer> {
 
-	Property findPropertyById(int id);
+	Property findPropertyById(long id);
 	Property findPropertyByAddress(String address);
 	Property findPropertyByZip(int zip);
 	Property findPropertyByTenant(User tenant);
