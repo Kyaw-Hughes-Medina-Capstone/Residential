@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials :: head"/>
+<head th:replace="~{partials :: head}"/>
 <meta charset="UTF-8">
 <title>Forms</title>
 </head>
 <body class="lease">
-<nav th:replace="partials :: navbar"/>
+<nav th:replace="~{partials :: navbar}"/>
 <h1> Make a Payment</h1>
 
         <div>
@@ -75,7 +75,7 @@
         </div>
 
 
-<div th:replace="partials :: footer"/>
+<div th:replace="~{partials :: footer}"/>
 </body>
 </html>
 

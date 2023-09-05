@@ -38,7 +38,12 @@ public class PropertyController {
 	@GetMapping("/home")
 	public String landing(Model model){
 		model.addAttribute("property", propertyDao.findAll());
-		return "/home";
+		return "home";
+	}
+
+	@GetMapping("/about")
+	public String about(){
+		return "about";
 	}
 
 
@@ -69,7 +74,7 @@ public class PropertyController {
 	@GetMapping("/filtered-properties")
 	public String showFilteredPropertiesPage(Model model) {
 		model.addAttribute("mapBoxKey", mapBoxKey);
-		return "/filtered-properties";
+		return "filtered-properties";
 	}
 
 	@PostMapping("/filtered-properties")
@@ -93,7 +98,7 @@ public class PropertyController {
 		List<Property> filteredProperties = propertyService.filterProperties(type, city, zip, minBedrooms, minBathrooms, maxPrice, minPrice);
 		model.addAttribute("filteredProperty", filteredProperties);
 		model.addAttribute("mapBoxKey", mapBoxKey);
-		return "/property/filter";
+		return "property/filter";
 	}
 
 	@GetMapping("/contact")
