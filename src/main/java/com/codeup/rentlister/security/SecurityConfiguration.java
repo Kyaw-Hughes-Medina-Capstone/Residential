@@ -38,15 +38,20 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((requests) -> requests
                         /* Pages that require authentication
                          * only authenticated users can create and edit ads */
-                        .requestMatchers("/property/create", "/property/*/edit").authenticated()
+                        .requestMatchers("/property/create", "/property/*/edit", "property/workorder").authenticated()
                         /* Pages that do not require authentication
+
                          * anyone can visit the home page, register, login, and view ads */
                         .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/owner/portfolio").permitAll()
+
+//                          anyone can visit the home page, register, login, and view
+                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/landing.mov", "/chip.png").permitAll()
+
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 )
                 /* Login configuration */
-                .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/property"))
+                .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/home"))
                 /* Logout configuration */
                 .logout((logout) -> logout.logoutSuccessUrl("/login"))
                 .httpBasic(withDefaults());

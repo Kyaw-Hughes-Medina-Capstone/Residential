@@ -19,29 +19,29 @@ public class TenantController {
 
     @GetMapping("/tenant/lease")
     public String leaseForm(){
-        return "/tenant/lease";
+        return "tenant/lease";
     }
     @GetMapping("/tenant/move-in")
     public String moveInForm(Model model){
         model.addAttribute("move_in", new MoveInForm());
-        return "/tenant/move-in";
+        return "tenant/move-in";
     }
     @PostMapping("/tenant/move-in")
     public String createMoveIn(
             @ModelAttribute MoveInForm moveInForm) {
         moveInDao.save(moveInForm);
-        return "/tenant/index";
+        return "tenant/index";
     }
     @GetMapping("/tenant/faq")
     public String question(){
-        return "/tenant/faq";
+        return "tenant/faq";
     }
     @GetMapping("/tenant/forms")
     public String forms(){
-        return "/tenant/forms";
+        return "tenant/forms";
     }
     @GetMapping("/tenant/payment")
     public String payment(){
-        return "/tenant/payment";
+        return "tenant/payment";
     }
 }
