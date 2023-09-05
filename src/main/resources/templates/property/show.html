@@ -12,10 +12,9 @@
 
 <div th:if="${#authorization.expression('isAuthenticated()')}">
 
-    <div th:if="${property.tenant.id == #authentication.principal.id}" class="review">
+    <div class="review">
         <a th:href="@{/property/{id}/review(id=${property.id})}">Submit a review for this property listing</a>
     </div>
-
 
     <div th:if="${property.manager.id == #authentication.principal.id}">
         <div class="row" id="admin-panel"><!--    admin panel-->
