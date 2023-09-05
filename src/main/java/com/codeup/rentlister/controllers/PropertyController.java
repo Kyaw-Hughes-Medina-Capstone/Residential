@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.lang.String;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import com.codeup.rentlister.models.User;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -42,12 +43,7 @@ public class PropertyController {
 	@GetMapping("/home")
 	public String landing(Model model){
 		model.addAttribute("property", propertyDao.findAll());
-		return "home";
-	}
-
-	@GetMapping("/about")
-	public String about(){
-		return "about";
+		return "/home";
 	}
 
 
@@ -70,10 +66,7 @@ public class PropertyController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		property.setManager(user);
-
-		property.setLatitude(BigDecimal.valueOf(30.267250));
-		property.setLongitude(BigDecimal.valueOf(-97.743150));
-
+		System.out.println(property);
 		propertyDao.save(property);
 
 		emailService.sendAPropertyEmail(property, "Here's your property", "Property body");
@@ -83,7 +76,7 @@ public class PropertyController {
 	@GetMapping("/filtered-properties")
 	public String showFilteredPropertiesPage(Model model) {
 		model.addAttribute("mapBoxKey", mapBoxKey);
-		return "filtered-properties";
+		return "/filtered-properties";
 	}
 
 	@PostMapping("/filtered-properties")
@@ -107,7 +100,7 @@ public class PropertyController {
 		List<Property> filteredProperties = propertyService.filterProperties(type, city, zip, minBedrooms, minBathrooms, maxPrice, minPrice);
 		model.addAttribute("filteredProperty", filteredProperties);
 		model.addAttribute("mapBoxKey", mapBoxKey);
-		return "property/filter";
+		return "/property/filter";
 	}
 
 	@GetMapping("/contact")
@@ -164,5 +157,4 @@ public class PropertyController {
 
 		return "property/show";
 	}
-
 }

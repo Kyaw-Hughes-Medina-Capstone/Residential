@@ -42,10 +42,16 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">For Owners</a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+
+                    <li><a class="dropdown-item" href="#">Payment</a></li>
+                    <li><a class="dropdown-item" th:href="@{/owner/portfolio}">Owner Portfolio</a></li>
+                    <li><a class="dropdown-item" th:href="@{/property/create}">Create New Rental</a></li>
+
                     <li><a class="dropdown-item" th:href="@{/tenant/payment}">Payment</a></li>
                     <li><a class="dropdown-item" href="#">Portfolio</a></li>
                     <li><a class="dropdown-item" th:href="@{/property/create}">Create New Rental</a></li>
                     <li><a class="dropdown-item" th:href="@{/tenant/lease}">Agreement</a></li>
+
                 </ul>
                 <!-- Apply a custom class "nav-link" to both the "Login" link and "Logout" button -->
             <li class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}">

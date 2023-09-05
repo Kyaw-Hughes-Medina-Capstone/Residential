@@ -80,6 +80,22 @@ public class Property {
 				'}';
 	}
 
+
+	@Column
+	private boolean pets;
+
+	@Column(nullable = false, columnDefinition = "MEDIUMTEXT")
+	private String description;
+
+	@Column(precision = 8, scale = 6)
+	private BigDecimal latitude;
+	@Column(precision = 8, scale = 6)
+	private BigDecimal longitude;
+
+
+	public Property(int id, String type, int rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, boolean pets, String description) {
+		this.id = id;
+
 	public Property(User manager, User tenant, String type, int rent, int area, int beds, int bath, String address, String city, String state, int zip, boolean pets, String description, BigDecimal latitude, BigDecimal longitude) {
 		this.manager = manager;
 		this.tenant = tenant;
@@ -96,6 +112,18 @@ public class Property {
 		this.description = description;
 		this.latitude = latitude;
 		this.longitude = longitude;
+	}
+
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
+
+	public User getTenant() {
+		return tenant;
+	}
+
+	public void setTenant(User tenant) {
+		this.tenant = tenant;
 	}
 
 	public int getId() {

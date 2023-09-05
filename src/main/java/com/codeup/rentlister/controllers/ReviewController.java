@@ -1,6 +1,7 @@
 package com.codeup.rentlister.controllers;
 
 import com.codeup.rentlister.models.*;
+import com.codeup.rentlister.models.Property;
 import com.codeup.rentlister.repositories.*;
 import com.codeup.rentlister.services.EmailService;
 import com.codeup.rentlister.services.PropertyService;
@@ -26,7 +27,7 @@ public class ReviewController {
 
 	@GetMapping("/property/{id}/review")
 	public String showReviewForm(@PathVariable int id, Model model) {
-		Property property = propertyDao.findPropertyById(id);
+		com.codeup.rentlister.models.Property property = propertyDao.findPropertyById(id);
 		model.addAttribute("review", new Review());
 		return "property/review" ;
 	}

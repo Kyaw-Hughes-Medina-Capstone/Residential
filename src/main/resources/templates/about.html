@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="~{partials :: head}"/>
+<head th:replace="partials :: head"/>
 <meta charset="UTF-8">
 <title>About</title>
 </head>
 <body>
-<nav th:replace="~{partials :: navbar}"/>
+<nav th:replace="partials :: navbar"/>
 <div class="about">
 <h2>About Us</h2>
 <h3>Welcome to KXZ Residentials, your trusted partner in property management!</h3>
@@ -36,25 +36,52 @@
 <div class="row">
 <div class="card col" >
     <img th:src="@{img/chip.png}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="footer-icons">
+
+        <ul class="social-media-list">
+            <li><a href="#" target="_blank" class="contact-icon">
+                <i class="fa fa-github" aria-hidden="true"></i></a>
+            </li>
+            <li><a href="#" target="_blank" class="contact-icon">
+                <i class="bi bi-linkedin"></i></a>
+            </li>
+        </ul>
     </div>
 </div>
 <div class="card col" >
     <img th:src="@{img/chip.png}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="footer-icons">
+
+        <ul class="social-media-list">
+            <li><a href="#" target="_blank" class="contact-icon">
+                <i class="fa fa-github" aria-hidden="true"></i></a>
+            </li>
+            <li><a href="#" target="_blank" class="contact-icon">
+                <i class="bi bi-linkedin"></i></a>
+            </li>
+        </ul>
     </div>
 </div>
 <div class="card col">
-    <img th:src="@{/img/chip.png}" class="card-img-top" alt="...">
+    <img th:src="@{img/Zackary_Hughes.png}" class="card-img-top" alt="...">
     <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="footer-icons">
+
+            <ul class="social-media-list">
+                <li><a href="#" target="_blank" class="contact-icon">
+                    <i class="fa fa-github" aria-hidden="true"></i></a>
+                </li>
+                <li><a href="#" target="_blank" class="contact-icon">
+                    <i class="bi bi-linkedin"></i></a>
+                </li>
+            </ul>
+
+        </div>
     </div>
 </div>
 </div>
 </div>
-<div th:replace="~{partials :: footer}"/>
+<div th:replace="partials :: footer"/>
 </body>
 </html>
 
