@@ -426,3 +426,29 @@ hr {
 .text-entry{
     margin: 15px 0;
 }
+
+#admin-panel {
+    background-color: lightslategray;
+    height: 200px; /* Fixed height */
+    overflow-y: auto;
+    margin: 15px;
+    border: #3d3f41 solid 2px;
+    font-size: small;
+}
+
+#admin-panel h3 {
+    color: black;
+}
+
+.review{
+    background-color: yellow;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+#inquire{
+    text-align: center;
+    width: 25%;
+}

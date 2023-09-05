@@ -57,4 +57,12 @@ public class Review {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public User getTenant() {
+		return tenant;
+	}
+
+	public void setTenant(User tenant) {
+		this.tenant = tenant;
+	}
 }

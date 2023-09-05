@@ -9,16 +9,20 @@
 <nav th:replace="~{partials :: navbar}"></nav>
 
 <h1>Welcome back!</h1>
-<div th:if="${param.error}">
-	Invalid Username and Password.
-</div>
-<div th:if="${param.logout}">
-	You have been logged out.
-</div>
+
+
 
 <form th:action="@{/login}" method="post">
 	<div class="row">
 		<div class="col-8">
+			<div th:if="${param.error}">
+				Invalid Username and Password.
+			</div>
+
+			<div th:if="${param.logout}">
+				You have been logged out.
+			</div>
+
 			<label for="username" class="text-entry" >Username</label>
 			<input id="username" name="username" type="text" />
 		</div>
@@ -32,9 +36,6 @@
 	<input type="submit" value="Enter" class="signupbutton"/>
 	<a th:href="@{/sign-up}" class="signupbutton">New User? Sign up!</a>
 </form>
-
-
-
 
 <div th:replace="~{partials :: footer}"/>
 </body>

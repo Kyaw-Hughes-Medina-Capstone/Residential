@@ -53,10 +53,10 @@ public class Property {
 	@Column(nullable = false)
 	private String description;
 
-	@Column(nullable = false, precision = 8, scale = 6)
+	@Column(precision = 8, scale = 6)
 	private BigDecimal latitude;
 
-	@Column(nullable = false, precision = 8, scale = 6)
+	@Column(precision = 8, scale = 6)
 	private BigDecimal longitude;
 
 	public Property() {

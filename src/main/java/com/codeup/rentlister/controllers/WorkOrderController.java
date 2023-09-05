@@ -54,14 +54,12 @@ public class WorkOrderController {
 			@RequestParam(name = "date") String date) {
 
 		User user = getCurrentUser();
-
 		User tenant = userDao.findUserById(user.getId());
+
 		Property property = propertyDao.findPropertyByTenantId(user.getId());
 		User manager = property.getManager();
 
 		WorkOrder workOrder = new WorkOrder(tenant, manager, property, description, date);
-
-		System.out.println("workOrder = " + workOrder.toString());
 
 		workOrderDao.save(workOrder);
 

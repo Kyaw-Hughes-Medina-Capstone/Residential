@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.*;
 public class InquiriesController {
 
 	private final InquiriesRepository inquiriesDao;
-
 	private final PropertyRepository propertyDao;
-
 	private final UserRepository userDao;
-
 	private EmailService emailService;
+
+	private User getCurrentUser() {
+		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
 
 	public InquiriesController(InquiriesRepository inquiriesDao, PropertyRepository propertyDao, UserRepository userDao, EmailService emailService){
 		this.inquiriesDao = inquiriesDao;
@@ -49,17 +50,11 @@ public class InquiriesController {
 		User manager = property.getManager();
 
 		Inquiries inquiry = new Inquiries(tenant, manager, property, start_date, end_date, people, pets);
-
-		System.out.println("inquiry = " + inquiry.toString());
 		inquiriesDao.save(inquiry);
 
 		emailService.sendAnInquiryEmail(inquiry, "You have an inquiry about a property!", "Check your account for more information.");
 
 		return "redirect:/property/" + id;
-	}
-
-	private User getCurrentUser() {
-		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 
 }

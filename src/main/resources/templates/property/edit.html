@@ -3,14 +3,41 @@
 <head>
     <head th:replace="~{partials :: head}"/>
     <meta charset="UTF-8">
-    <title class="page-title">Edit a Property Listing</title>
+    <title class="page-title">Edit Property Listing</title>
 </head>
 <body>
 <nav th:replace="~{partials :: navbar}"/>
-<fieldset>
+
+<h1>Edit Property</h1>
+
+<form method="post" th:action="@{/property/{id}/edit(id=${property.id})}">
+    <fieldset>
+        <legend>Property Details</legend>
+        <label for="propertyType" class="form-label">Property Type</label>
+        <select class="form-select" id="propertyType" name="type" th:field="*{property.type}">
+            <option value="Single Family" th:selected="${property.type == 'Single Family'}">Single Family</option>
+            <option value="Condo" th:selected="${property.type == 'Condo'}">Condo</option>
+            <option value="Apartment" th:selected="${property.type == 'Apartment'}">Apartment</option>
+        </select><br>
+        <label>Rent: <input type="number" th:field="*{property.rent}" /></label><br>
+        <label>Area: <input type="number" th:field="*{property.area}" /></label><br>
+        <label>Beds: <input type="number" th:field="*{property.beds}" /></label><br>
+        <label>Bathrooms: <input type="number" th:field="*{property.bath}" /></label><br>
+        <label>Address: <input type="text" th:field="*{property.address}" /></label><br>
+        <label>City: <input type="text" th:field="*{property.city}" /></label><br>
+        <label>State: <input type="text" th:field="*{property.state}" /></label><br>
+        <label>ZIP: <input type="number" th:field="*{property.zip}" /></label><br>
+        <label>Pets Allowed: <input type="checkbox" th:field="*{property.pets}" /></label><br>
+        <label>Description: <textarea th:field="*{property.description}" rows="4" cols="50"></textarea></label><br>
+        <label>Latitude: <input type="text" th:field="*{property.latitude}" /></label><br>
+        <label>Longitude: <input type="text" th:field="*{property.longitude}" /></label><br>
 
 
-</fieldset>
+
+
+        <input type="submit" value="Save Changes">
+    </fieldset>
+</form>
 
 <div th:replace="~{partials :: footer}"/>
 </body>
