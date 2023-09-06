@@ -11,8 +11,7 @@
 
 <div class="create-listings" >
     <h1>List the Property</h1>
-<<div class="create-listings" >
-    <h1 class="page-title">List the Property</h1>
+<div class="create-listings" >
     <form class="row g-3" th:action="@{/property/create}" method="post" th:object="${property}">
         <!--        Property Type-->
         <div class="col-md-3">
@@ -25,7 +24,7 @@
             </select>
         </div>
         <!--        Monthly Rent-->
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label for="rent" class="form-label">Monthly Rent</label>
             <input type="text" class="form-control " id="rent" name="rent" th:field="*{rent}">
         </div>
@@ -48,27 +47,27 @@
         <!--    Photo 1-->
         <div class=" d-grid col-md-3">
             <label for="img1" class="form-label">Photo 1</label>
-            <button id="pickPhoto1" class="btn btn-secondary ">Upload Photo</button>
+            <button id="pickPhoto1" class="btn btn-light ">Upload Photo</button>
             <input type="hidden" id="img1" name="img1" th:field="*{img1}">
         </div>
         <div class=" d-grid col-md-3">
             <label for="img2" class="form-label">Photo 2</label>
-            <button id="pickPhoto2" class="btn btn-secondary">Upload Photo 2</button>
+            <button id="pickPhoto2" class="btn btn-light">Upload Photo 2</button>
             <input type="hidden" id="img2" name="img2" th:field="*{img2}">
         </div>
         <div class=" d-grid col-md-3">
             <label for="img3" class="form-label">Photo 3</label>
-            <button id="pickPhoto3" class="btn btn-secondary ">Upload Photo 3</button>
+            <button id="pickPhoto3" class="btn btn-light ">Upload Photo 3</button>
             <input type="hidden" id="img3" name="img3" th:field="*{img3}">
         </div>
         <div class=" d-grid col-md-3">
             <label for="img4" class="form-label">Photo 4</label>
-            <button id="pickPhoto4" class="btn btn-secondary">Upload Photo 4</button>
+            <button id="pickPhoto4" class="btn btn-light">Upload Photo 4</button>
             <input type="hidden" id="img4" name="img4" th:field="*{img4}">
         </div>
 
         <!--    Street address-->
-        <div class="col-md-6">
+        <div class="col-md-3">
             <label for="address" class="form-label">Address</label>
             <input type="text" class="form-control" id="address" name="address" th:field="*{address}">
         </div>
@@ -78,7 +77,7 @@
             <input type="text" class="form-control" id="city" name="city"  th:field="*{city}">
         </div>
         <!--    state-->
-        <div class="col-md-3">
+        <div class="col-md-2">
             <label for="state" class="form-label" th:field="*{state}">State</label>
             <select class="form-select" id="state" name="state" >
                 <option selected disabled value="">Choose...</option>
@@ -90,7 +89,7 @@
             </select>
         </div>
         <!--    Zipcode-->
-        <div class="col-md-3">
+        <div class="col-md-2">
             <label for="zipcode" class="form-label">Zip</label>
             <input type="text" class="form-control" id="zipcode" name="zip" th:field="*{zip}" maxlength="5" pattern="[0-9]{5}" title="Please enter a 5-digit ZIP code" required>
             <div class="invalid-feedback">
@@ -98,7 +97,7 @@
             </div>
         </div>
         <!--    pets-->
-        <div class="col-md-3">
+        <div class="col-md-2">
             <label for="pets" class="form-label" th:field="*{pets}">Pets</label>
             <select class="form-select" id="pets" name="pets" >
                 <option selected disabled value="">Choose...</option>
@@ -118,34 +117,32 @@
     </form>
 </div>
 
-
-<<<<<<< HEAD
 <div th:replace="partials :: footer"/>
-<script>
-    const client = filestack.init("fileStackKey");
+    <script>
+        const client = filestack.init("Afw1icFjsRnymOg1l1uTQz");
 
-    // Add event listeners for each "Upload Photo" button
-    for (let i = 1; i <= 4; i++) {
-        const pickPhotoButton = document.getElementById(`pickPhoto${i}`);
-        const imgInput = document.getElementById(`img${i}`);
+        // Add event listeners for each "Upload Photo" button
+        for (let i = 1; i <= 4; i++) {
+            const pickPhotoButton = document.getElementById(`pickPhoto${i}`);
+            const imgInput = document.getElementById(`img${i}`);
 
-        pickPhotoButton.addEventListener('click', function (event) {
-            event.preventDefault();
+            pickPhotoButton.addEventListener('click', function (event) {
+                event.preventDefault();
 
-            const options = {
-                onFileUploadFinished: (file) => {
-                    console.log(file.url);
+                const options = {
+                    onFileUploadFinished: (file) => {
+                        console.log(file.url);
 
-                    // Set the value of the corresponding hidden input field with the modified URL
-                    imgInput.value = file.url;
+                        // Set the value of the corresponding hidden input field with the modified URL
+                        imgInput.value = file.url;
+                    }
                 }
-            }
 
-            client.picker(options).open();
-        });
-    }
+                client.picker(options).open();
+            });
+        }
 
-</script>
+    </script>
 <div th:replace="~{partials :: footer}"/>
 </div>
 </body>
