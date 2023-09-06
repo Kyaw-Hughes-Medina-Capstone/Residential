@@ -118,6 +118,9 @@
 </div>
 
 <div th:replace="partials :: footer"/>
+
+<div th:replace="~{partials :: footer}"/>
+
     <script>
         const client = filestack.init("Afw1icFjsRnymOg1l1uTQz");
 
@@ -143,7 +146,6 @@
         }
 
     </script>
-<div th:replace="~{partials :: footer}"/>
 </div>
 </body>
 </html>
