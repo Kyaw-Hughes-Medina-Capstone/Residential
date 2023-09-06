@@ -1,7 +1,7 @@
 :root{
     --background--color: #334252;
     --nav--color: #A98A74;
-    --primary-color: #ffffff;
+    --primary-color: #f8f3d4;
     --secondary-color: #76717D;
 }
 .light-theme{
@@ -129,9 +129,13 @@ p{
     flex-flow: wrap;
     align-items: center;
     justify-content: center;
-    margin:20px;
     background-color: var(--secondary-color);
     text-align: center;
+    margin: 20px 20px 25px;
+}
+
+.filter-form.col-md-4.btn-secondary{
+    margin-bottom: 15px;
 }
 
 .img-top{
@@ -201,16 +205,13 @@ th, td {
 
 /*footer*/
 footer {
-    background-color: var(--secondary-color);
+    background-color: rgba(0,0,0,0);
     position: fixed;
     bottom: 0;
     height: 100px;
     width: 100%;
     display: flex;
     justify-content: space-around;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 
     align-items: center;
 
