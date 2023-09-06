@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <head th:replace="partials :: head">
+    <head th:replace="~{partials :: head}">
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
         <title>All property listings</title>
     </head>
 </head>
 <body>
-<nav th:replace="partials :: navbar"/>
+<nav th:replace="~{partials :: navbar}"/>
 
 <div>
     <div class="search">
@@ -74,7 +74,7 @@
 <script th:inline="javascript">const mapBoxKey = [[${mapBoxKey}]];
 console.log(mapBoxKey);</script>
 <script type="text/javascript" th:src="@{/js/map.js}"></script>
-<div th:replace="partials :: footer"/>
+<div th:replace="~{partials :: footer}"/>
 
 </body>
 </html>

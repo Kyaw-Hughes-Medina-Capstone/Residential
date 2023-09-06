@@ -57,7 +57,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/tenant/*", "/contact","/filtered-properties", "property/*/detail").permitAll()
 
                         // allow loading of static resources
-                                .requestMatchers("/css/**", "/js/**", "/img/**", "/pdf/**", "/landing.mov", "/pdf/residentialLease.pdf").permitAll()
+                                .requestMatchers("/css/**", "/js/**", "/img/**", "/pdf/**", "/landing.mov", "/residentialLease.pdf").permitAll()
                 )
                 /* Login configuration */
                 .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/home"))

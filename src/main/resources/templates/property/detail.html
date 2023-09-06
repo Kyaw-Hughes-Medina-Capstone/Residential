@@ -1,62 +1,128 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials :: head">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 
-  <title>Detail Property</title>
+	<title>Detail Property</title>
 </head>
 
 <body>
 <nav th:replace="partials :: navbar"/>
+
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+
+	<div class="review">
+		<a th:href="@{/property/{id}/review(id=${property.id})}">Submit a review for this property listing</a>
+	</div>
+
+	<div th:if="${property.manager.id == #authentication.principal.id}">
+		<div class="row" id="admin-panel"><!--    admin panel-->
+
+			<div class="col-12">
+				<h3>MANAGER PANEL</h3>
+				<a th:href="@{/property/{id}/edit(id=${property.id})}">Edit property listing</a>
+			</div>
+
+			<div th:class="col-6">
+				<div>
+					<table class="table table-bordered">
+						<thead>
+						<tr>
+							<th>Start</th>
+							<th>End</th>
+							<th>People</th>
+							<th>Pets</th>
+							<th>Email</th>
+							<th>Number</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="inquiry : ${inquiries}">
+							<td th:text="${inquiry.start_date}"></td>
+							<td th:text="${inquiry.end_date}"></td>
+							<td th:text="${inquiry.people}"></td>
+							<td th:text="${inquiry.pets}"></td>
+							<td th:text="${inquiry.tenant.email}"></td>
+							<td th:text="${inquiry.tenant.number}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- Display Work Orders -->
+			<div th:class="col-6">
+				<div>
+					<table class="table table-bordered">
+						<thead>
+						<tr>
+							<th>Date</th>
+							<th>Description</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="workorder : ${workOrders}">
+							<td th:text="${workorder.date}"></td>
+							<td th:text="${workorder.description}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <h3 class="card-address"
-    th:text="${property.address + ', ' + property.city + ', ' + property.state + ', ' + property.zip}">
+	th:text="${property.address + ', ' + property.city + ', ' + property.state + ', ' + property.zip}">
 </h3>
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true" >
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner" >
-    <div class="carousel-item active">
-      <img th:src="@{${property.img1}}" class=" w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img th:src="@{${property.img2}}" class=" w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img th:src="@{${property.img3}}" class=" w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+	<div class="carousel-indicators">
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	</div>
+	<div class="carousel-inner" >
+		<div class="carousel-item active">
+			<img th:src="@{${property.img1}}" class=" w-100" alt="...">
+		</div>
+		<div class="carousel-item">
+			<img th:src="@{${property.img2}}" class=" w-100" alt="...">
+		</div>
+		<div class="carousel-item">
+			<img th:src="@{${property.img3}}" class=" w-100" alt="...">
+		</div>
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button>
 </div>
 <div class="card-body">
-  <div class="property-info">
-    <p class="card-text">$<span th:text="${property.rent}"></span>      Square Feet <span th:text="${property.area}"></span></p>
-    <p class="card-text">
-      <span th:text="${property.beds}"></span> bedrooms,
-      <span th:text="${property.bath}"></span> bathrooms
-    </p>
-    <h5>Detail about property</h5>
-    <p class="card-text" th:text="${property.description}"></p>
-    <h5>Location On Map</h5>
-    <div class="container">
-      <div class="row">
-        <div id="map" class="map col" style="height: 500px;"></div>
-      </div>
-    </div>
-    <p class="card-text">Post Created On : <span th:text="${property.createdOn}"></span></p>
+	<div class="property-info">
+		<p class="card-text">$<span th:text="${property.rent}"></span>      Square Feet <span th:text="${property.area}"></span></p>
+		<p class="card-text">
+			<span th:text="${property.beds}"></span> bedrooms,
+			<span th:text="${property.bath}"></span> bathrooms
+		</p>
+		<h5>Detail about property</h5>
+		<p class="card-text" th:text="${property.description}"></p>
+		<h5>Location On Map</h5>
+		<div class="container">
+			<div class="row">
+				<div id="map" class="map col" style="height: 500px;"></div>
+			</div>
+		</div>
+		<p class="card-text">Post Created On : <span th:text="${property.createdOn}"></span></p>
 
-  </div>
-  <div th:replace="partials :: footer"/>
+	</div>
+	<div th:replace="partials :: footer"/>
 </div>
 <script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js}"></script>
 <script th:inline="javascript">const mapBoxKey = [[${mapBoxKey}]];

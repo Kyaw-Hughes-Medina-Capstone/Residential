@@ -55,7 +55,7 @@ public class InquiriesController {
 
 		emailService.sendAnInquiryEmail(inquiry, "You have an inquiry about a property!", "Check your account for more information.");
 
-		return "redirect:/property/" + id;
+		return "redirect:/property/" + id + "/detail";
 	}
 
 }

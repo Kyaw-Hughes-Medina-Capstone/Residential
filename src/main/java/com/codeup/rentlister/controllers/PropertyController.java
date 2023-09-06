@@ -85,6 +85,16 @@ public class PropertyController {
 	}
 	@GetMapping("/property/{id}/detail")
 	public String propertyDetail(@PathVariable long id, Model model) {
+
+		List<Inquiries> inquiries = inquiryDao.findInquiriesByPropertyId(id);
+		List<WorkOrder> workOrders = workOrderDao.findWorkOrderByPropertyId(id);
+		List<Review> reviews = reviewDao.findReviewsByPropertyId(id);
+
+		model.addAttribute("inquiries", inquiries);
+		model.addAttribute("workOrders", workOrders);
+		model.addAttribute("reviews", reviews);
+		model.addAttribute("mapBoxKey", mapBoxKey);
+
 		model.addAttribute("property", propertyDao.findById(id).get());
 		model.addAttribute("mapBoxKey", mapBoxKey);
 		return "property/detail";
@@ -122,8 +132,6 @@ public class PropertyController {
 		return "redirect:/property/" + id;
 	}
 
-
-
 	@GetMapping("/filtered-properties")
 	public String filterProperty(Model model) {
 		model.addAttribute("mapBoxKey", mapBoxKey);
@@ -155,20 +163,12 @@ public class PropertyController {
 		return"/contact";
 	}
 
-	@GetMapping("/property/{id}")
-	public String propertyView(@PathVariable long id, Model model) {
-		Property property = propertyDao.findPropertyById(id);
-
-		List<Inquiries> inquiries = inquiryDao.findInquiriesByPropertyId(id);
-		List<WorkOrder> workOrders = workOrderDao.findWorkOrderByPropertyId(id);
-		List<Review> reviews = reviewDao.findReviewsByPropertyId(id);
-
-		model.addAttribute("property", property);
-		model.addAttribute("inquiries", inquiries);
-		model.addAttribute("workOrders", workOrders);
-		model.addAttribute("reviews", reviews);
-		model.addAttribute("mapBoxKey", mapBoxKey);
-
-		return "property/show";
-	}
+//	@GetMapping("/property/{id}")
+//	public String propertyView(@PathVariable long id, Model model) {
+//		Property property = propertyDao.findPropertyById(id);
+//
+//
+//
+//		return "property/show";
+//	}
 }
