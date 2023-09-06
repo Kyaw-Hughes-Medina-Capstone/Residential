@@ -37,13 +37,14 @@
     <div class="card-content col-lg-2" th:each="property,limit : ${property}">
         <div class="landing-card" th:if="${limit.count} <= 6">
             <a th:href="@{/property/{id}(id=${property.id})}"></a>
+            <img th:src="${property.img1}" class="card-img-top" alt="..." height="200">
             <div class="card-body">
                 <h3 class="card-title">
                     <span th:text="${property.city}"></span>,
                     <span class="card-text" th:text="${property.state}"></span>
                 </h3>
                 <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
-                <a th:href="@{/property/{id}(id=${property.id})}" class="btn btn-secondary">see more</a>
+                <a th:href="@{/property/{id}/detail(id=${property.id})}" class="btn btn-secondary">see more</a>
             </div>
         </div>
     </div>
