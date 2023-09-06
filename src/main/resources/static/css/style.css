@@ -479,6 +479,14 @@ h3, h6{
     width: 25%;
 }
 
+a.signupbutton {
+    text-align: center;
+    left: 50%;
+    right: 50%;
+    margin-left: 45%;
+    margin-right: 45%;
+}
+
 .portfolio {
     margin: 70px;
 }
@@ -491,4 +499,12 @@ a {
 a:hover {
     color: red;
     text-decoration: none;
+}
+
+a.signupbutton {
+    text-align: center;
+    left: 50%;
+    right: 50%;
+    margin-left: 45%;
+    margin-right: 45%;
 }
