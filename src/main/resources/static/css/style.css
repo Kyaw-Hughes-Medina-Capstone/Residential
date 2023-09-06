@@ -458,3 +458,17 @@ hr {
     text-align: center;
     width: 25%;
 }
+
+.portfolio {
+    margin: 70px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: red;
+    text-decoration: none;
+}
