@@ -103,6 +103,7 @@ public class PropertyController {
 	public String propertyEdit(@PathVariable long id, Model model) {
 		Property propertyToEdit = propertyDao.findById(id).get();
 		model.addAttribute("property", propertyToEdit);
+		model.addAttribute("fileStackKey", fileStackKey);
 		return "property/edit";
 	}
 	@PostMapping("/property/{id}/edit")

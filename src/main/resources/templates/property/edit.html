@@ -124,7 +124,7 @@
 
 <div th:replace="partials :: footer"/>
 <script>
-    const client = filestack.init("Afw1icFjsRnymOg1l1uTQz");
+    const client = filestack.init("[[${fileStackKey}]]");
 
     // Add event listeners for each "Upload Photo" button
     for (let i = 1; i <= 4; i++) {
