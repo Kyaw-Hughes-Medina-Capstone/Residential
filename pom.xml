@@ -77,11 +77,6 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>com.afollestad</groupId>
-            <artifactId>inquiry</artifactId>
-            <version>5.0.0</version>
-        </dependency>
     </dependencies>
 
 	<build>
@@ -94,7 +89,3 @@
 	</build>
 
 </project>
-
-
-
-
