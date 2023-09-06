@@ -7,22 +7,42 @@
 <nav th:replace="~{partials :: navbar}"/>
 
 <fieldset>
-  <legend>Inquire about a property</legend>
-  <form th:action="@{'/property/' + ${id} + '/inquiry'}" th:method="post">
 
-    Start date:
-    <input type="date" name="start_date"/><br/>
-    End date:
-    <input type="date" name="end_date"/><br/>
-    People:
-    <input type="number" name="people"/><br/>
-    Pets:
-    <input type="text" name="pets"/><br/>
+	<legend class="page-title">Submit an Inquiry</legend>
 
-    <input type="hidden" name="id" th:value="${id}"/>
+	<form th:action="@{'/property/' + ${id} + '/inquiry'}" th:method="post">
 
-    <input type="submit" value="Submit" class="btn btn-secondary"/>
-  </form>
+		<div class="row d-flex">
+
+			<div class="col-8">
+				Start date:
+				<input type="date" name="start_date"/>
+			</div>
+
+			<div class="col-8">
+				End date:
+				<input type="date" name="end_date"/>
+			</div>
+
+			<div class="col-8">
+				People:
+				<input type="number" name="people"/><br/>
+			</div>
+
+			<div class="col-8">
+				Pets:
+				<select class="form-select" name="pets" id="pets" >
+					<option value="">Select</option>
+					<option>Yes</option>
+					<option>No</option>
+				</select>
+			</div>
+
+			<input type="hidden" name="id" th:value="${id}"/>
+		</div>
+
+		<input type="submit" value="Submit" class="btn btn-secondary"/>
+	</form>
 </fieldset>
 
 <div th:replace="~{partials :: footer}"/>

@@ -29,6 +29,8 @@ public class ReviewController {
 	public String showReviewForm(@PathVariable int id, Model model) {
 		com.codeup.rentlister.models.Property property = propertyDao.findPropertyById(id);
 		model.addAttribute("review", new Review());
+		model.addAttribute("property", property);
+
 		return "property/review" ;
 	}
 

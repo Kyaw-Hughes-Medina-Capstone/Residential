@@ -447,6 +447,7 @@ h3, h6{
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .text-entry{
@@ -471,7 +472,9 @@ h3, h6{
     width: 100%;
     text-align: center;
     text-decoration: none;
-
+}
+.review-entry{
+    margin: 10px 0;
 }
 
 #inquire{

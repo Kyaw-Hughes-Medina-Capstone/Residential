@@ -108,36 +108,35 @@ public class PropertyController {
 	}
 	@GetMapping("/property/{id}/edit")
 	public String propertyEdit(@PathVariable long id, Model model) {
-		Property propertyToEdit = propertyDao.findById(id).get();
-		model.addAttribute("property", propertyToEdit);
+		Property property = propertyDao.findById(id).get();
+		model.addAttribute("property", property);
 		model.addAttribute("fileStackKey", fileStackKey);
 		return "property/edit";
 	}
+
 	@PostMapping("/property/{id}/edit")
-	public String propertyEditPost(@PathVariable long id, @ModelAttribute Property property){
-		Property newProperty = propertyDao.findPropertyById(id);
+	public String propertyEditPost(@PathVariable long id, @ModelAttribute Property property) {
 
-		property.setType(newProperty.getType());
-		property.setRent(newProperty.getRent());
-		property.setArea(newProperty.getArea());
-		property.setType(newProperty.getType());
-		property.setBeds(newProperty.getBeds());
-		property.setBath(newProperty.getBath());
-		property.setImg1(newProperty.getImg1());
-		property.setImg2(newProperty.getImg2());
-		property.setImg3(newProperty.getImg3());
-		property.setImg4(newProperty.getImg4());
-		property.setAddress(newProperty.getAddress());
-		property.setCity(newProperty.getCity());
-		property.setState(newProperty.getState());
-		property.setZip(newProperty.getZip());
-		property.setPets(newProperty.isPets());
-		property.setDescription(newProperty.getDescription());
-		property.setUpdatedOn(newProperty.getUpdatedOn());
-		property.setCreatedOn(newProperty.getCreatedOn());
-		propertyDao.save(property);
+		Property editProperty = propertyDao.findById(id).orElse(null);
 
-		return "redirect:/property/" + id;
+			editProperty.setType(property.getType());
+			editProperty.setRent(property.getRent());
+			editProperty.setArea(property.getArea());
+			editProperty.setBeds(property.getBeds());
+			editProperty.setBath(property.getBath());
+			editProperty.setImg1(property.getImg1());
+			editProperty.setImg2(property.getImg2());
+			editProperty.setImg3(property.getImg3());
+			editProperty.setImg4(property.getImg4());
+			editProperty.setAddress(property.getAddress());
+			editProperty.setCity(property.getCity());
+			editProperty.setState(property.getState());
+			editProperty.setZip(property.getZip());
+			editProperty.setPets(property.isPets());
+			editProperty.setDescription(property.getDescription());
+			propertyDao.save(editProperty);
+
+		return "redirect:/property/" + id + "/detail";
 	}
 
 	@GetMapping("/filtered-properties")

@@ -1,128 +1,123 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <head th:replace="~{partials :: head}"/>
+<head th:replace="~{partials :: head}">
     <meta charset="UTF-8">
-    <title>Edit Property listing</title>
+    <title>Edit Property Listing</title>
 </head>
 <body>
-<nav th:replace="partials :: navbar"/>
+<nav th:replace="~{partials :: navbar}"/>
 
+<fieldset>
+    <div class="create-listings">
+        <h1>Edit the Property</h1>
 
-<div class="create-listings" >
-    <h1>List the Property</h1>
-<!--    <div class="card" style="margin: 20px 50px">-->
-<!--        <div class="card-body">-->
-    <form class="row g-3" th:action="@{/property}" th:object="${property}">
-
-        <!--        Property Type-->
-        <div class="col-md-3 propertyType">
-            <label for="propertyType" class="form-label propertyType" th:field="*{type}">Property Type</label>
-            <select class="form-select propertyType" id="propertyType" name="type">
-                <!--        <option selected disabled value="">Choose...</option>-->
-                <option>Single Family</option>
-                <option>Condo</option>
-                <option>Apartment</option>
-            </select>
-        </div>
-        <!--        Monthly Rent-->
-        <div class="col-md-3 rent">
-            <label for="rent" class="form-label">Monthly Rent</label>
-            <input type="text" class="form-control " id="rent" name="rent" th:field="*{rent}">
-        </div>
-        <!--        Sq Feet-->
-        <div class="col-md-2 area">
-            <label for="area" class="form-label">Square feet</label>
-            <input type="text" class="form-control " id="area" name="area" th:field="*{area}">
-        </div>
-        <!--    Bedroom-->
-        <div class="col-md-2 bedroom">
-            <label for="bedroom" class="form-label">Number of Bedrooms</label>
-            <input type="text" class="form-control " id="bedroom" name="beds" th:field="*{beds}">
-        </div>
-        <!--    Bathroom-->
-        <div class="col-md-2 bathroom">
-            <label for="bathroom" class="form-label">Number of Bathrooms</label>
-            <input type="text" class="form-control " id="bathroom" name="bath" th:field="*{bath}">
-        </div>
-
-        <!--    Photo 1-->
-        <div class=" d-grid col-md-3 img1">
-            <label for="img1" class="form-label">Photo 1</label>
-            <button id="pickPhoto1" class="btn btn-light ">Upload Photo</button>
-            <input type="hidden" id="img1" name="img1" th:field="*{img1}">
-        </div>
-        <div class=" d-grid col-md-3 img2">
-            <label for="img2" class="form-label">Photo 2</label>
-            <button id="pickPhoto2" class="btn btn-light">Upload Photo 2</button>
-            <input type="hidden" id="img2" name="img2" th:field="*{img2}">
-        </div>
-        <div class=" d-grid col-md-3 img3">
-            <label for="img3" class="form-label">Photo 3</label>
-            <button id="pickPhoto3" class="btn btn-light ">Upload Photo 3</button>
-            <input type="hidden" id="img3" name="img3" th:field="*{img3}">
-        </div>
-        <div class=" d-grid col-md-3 img4">
-            <label for="img4" class="form-label">Photo 4</label>
-            <button id="pickPhoto4" class="btn btn-light">Upload Photo 4</button>
-            <input type="hidden" id="img4" name="img4" th:field="*{img4}">
-        </div>
-
-        <!--    Street address-->
-        <div class="col-md-3 address">
-            <label for="address" class="form-label">Address</label>
-            <input type="text" class="form-control" id="address" name="address" th:field="*{address}">
-        </div>
-        <!--    city-->
-        <div class="col-md-3 city">
-            <label for="city" class="form-label">City</label>
-            <input type="text" class="form-control" id="city" name="city"  th:field="*{city}">
-        </div>
-        <!--    state-->
-        <div class="col-md-2 state">
-            <label for="state" class="form-label state" th:field="*{state}">State</label>
-            <select class="form-select state" id="state" name="state" >
-                <!--        <option selected disabled value="">Choose...</option>-->
-                <option>New York</option>
-                <option>California</option>
-                <option>Texas</option>
-                <option>Washington</option>
-                <option>New Jersey</option>
-            </select>
-        </div>
-        <!--    Zipcode-->
-        <div class="col-md-2 zipcode">
-            <label for="zipcode" class="form-label">Zip</label>
-            <input type="text" class="form-control" id="zipcode" name="zip" th:field="*{zip}" maxlength="5" pattern="[0-9]{5}" title="Please enter a 5-digit ZIP code" required>
-            <div class="invalid-feedback">
-                Please provide a valid 5-digit ZIP code.
+        <form class="row g-3" th:action="@{'/property/' + ${id} + '/edit'}" method="post" th:object="${property}">
+            <!-- Property Type -->
+            <div class="col-md-3">
+                <label for="propertyType" class="form-label" th:for="propertyType">Property Type</label>
+                <select class="form-select" id="propertyType" name="type" th:field="*{type}">
+                    <option value="Single Family" >Single Family</option>
+                    <option value="Condo" >Condo</option>
+                    <option value="Apartment" >Apartment</option>
+                </select>
             </div>
-        </div>
-        <!--    pets-->
-        <div class="col-md-2 pets">
-            <label for="pets" class="form-label pets" th:field="*{pets}">Pets</label>
-            <select class="form-select pets" id="pets" name="pets" >
-                <!--        <option selected disabled value="">Choose...</option>-->
-                <option>Yes</option>
-                <option>No</option>
-            </select>
-        </div>
-        <!--    Description-->
-        <div class="col-md-12 description">
-            <label for="description">Description</label>
-            <textarea class="form-control" rows="7" id="description" name="description"  th:field="*{description}"></textarea>
-        </div>
-        <!--    submit-->
-        <div class="d-grid col-2 mx-auto submit">
-            <button class="btn btn-secondary" name="submit" type="submit">Edit form</button>
-        </div>
-    </form>
-</div>
+            <!-- Monthly Rent -->
+            <div class="col-md-3">
+                <label for="rent" class="form-label" th:for="rent">Monthly Rent</label>
+                <input type="text" class="form-control" id="rent" name="rent" th:field="*{rent}">
+            </div>
+            <!-- Square Feet -->
+            <div class="col-md-2">
+                <label for="area" class="form-label" th:for="area">Square feet</label>
+                <input type="text" class="form-control" id="area" name="area" th:field="*{area}">
+            </div>
+            <!-- Number of Bedrooms -->
+            <div class="col-md-2">
+                <label for="bedroom" class="form-label" th:for="bedroom">Number of Bedrooms</label>
+                <input type="text" class="form-control" id="bedroom" name="beds" th:field="*{beds}">
+            </div>
+            <!-- Number of Bathrooms -->
+            <div class="col-md-2">
+                <label for="bathroom" class="form-label" th:for="bathroom">Number of Bathrooms</label>
+                <input type="text" class="form-control" id="bathroom" name="bath" th:field="*{bath}">
+            </div>
+
+            <!-- Photo 1 -->
+            <div class="d-grid col-md-3">
+                <label for="img1" class="form-label" th:for="img1">Photo 1</label>
+                <button id="pickPhoto1" class="btn btn-light" th:onclick="'return false;'">Upload Photo</button>
+                <input type="hidden" id="img1" name="img1" th:field="*{img1}">
+            </div>
+            <!-- Photo 2 -->
+            <div class="d-grid col-md-3">
+                <label for="img2" class="form-label" th:for="img2">Photo 2</label>
+                <button id="pickPhoto2" class="btn btn-light" th:onclick="'return false;'">Upload Photo 2</button>
+                <input type="hidden" id="img2" name="img2" th:field="*{img2}">
+            </div>
+            <!-- Photo 3 -->
+            <div class="d-grid col-md-3">
+                <label for="img3" class="form-label" th:for="img3">Photo 3</label>
+                <button id="pickPhoto3" class="btn btn-light" th:onclick="'return false;'">Upload Photo 3</button>
+                <input type="hidden" id="img3" name="img3" th:field="*{img3}">
+            </div>
+            <!-- Photo 4 -->
+            <div class="d-grid col-md-3">
+                <label for="img4" class="form-label" th:for="img4">Photo 4</label>
+                <button id="pickPhoto4" class="btn btn-light" th:onclick="'return false;'">Upload Photo 4</button>
+                <input type="hidden" id="img4" name="img4" th:field="*{img4}">
+            </div>
+
+            <!-- Street Address -->
+            <div class="col-md-3">
+                <label for="address" class="form-label" th:for="address">Address</label>
+                <input type="text" class="form-control" id="address" name="address" th:field="*{address}">
+            </div>
+            <!-- City -->
+            <div class="col-md-3">
+                <label for="city" class="form-label" th:for="city">City</label>
+                <input type="text" class="form-control" id="city" name="city" th:field="*{city}">
+            </div>
+            <!-- State -->
+            <div class="col-md-2">
+                <label for="state" class="form-label" th:for="state">State</label>
+                <select class="form-select" id="state" name="state" th:field="*{state}">
+                    <option value="New York" >New York</option>
+                    <option value="California" >California</option>
+                    <option value="Texas" >Texas</option>
+                    <option value="Washington" >Washington</option>
+                    <option value="New Jersey" >New Jersey</option>
+                </select>
+            </div>
+            <!-- Zipcode -->
+            <div class="col-md-2">
+                <label for="zipcode" class="form-label" th:for="zipcode">Zip</label>
+                <input type="text" class="form-control" id="zipcode" name="zip" th:field="*{zip}" maxlength="5" pattern="[0-9]{5}" title="Please enter a 5-digit ZIP code" required>
+                <div class="invalid-feedback">
+                    Please provide a valid 5-digit ZIP code.
+                </div>
+            </div>
+            <!-- Pets -->
+            <div class="col-md-2">
+                <label for="pets" class="form-label" th:for="pets">Pets</label>
+                <select class="form-select" id="pets" name="pets" th:field="*{pets}">
+                    <option value="true" >Yes</option>
+                    <option value="false" >No</option>
+                </select>
+            </div>
+            <!-- Description -->
+            <div class="col-md-12">
+                <label for="description" th:for="description">Description</label>
+                <textarea class="form-control" rows="7" id="description" name="description" th:field="*{description}"></textarea>
+            </div>
+            <!-- Submit Button -->
+            <div class="d-grid col-2 mx-auto">
+                <button class="btn btn-secondary" name="submit" type="submit">Submit</button>
+            </div>
+        </form>
     </div>
-</div>
+</fieldset>
 
-
-<div th:replace="partials :: footer"/>
+<div th:replace="~{partials :: footer}"/>
 <script>
     const client = filestack.init("[[${fileStackKey}]]");
 
@@ -146,7 +141,6 @@
             client.picker(options).open();
         });
     }
-
 </script>
 </body>
 </html>
