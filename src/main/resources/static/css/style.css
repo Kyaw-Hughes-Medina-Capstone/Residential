@@ -481,10 +481,7 @@ h3, h6{
 
 a.signupbutton {
     text-align: center;
-    left: 50%;
-    right: 50%;
-    margin-left: 45%;
-    margin-right: 45%;
+    display: block;
 }
 
 .portfolio {
@@ -501,10 +498,4 @@ a:hover {
     text-decoration: none;
 }
 
-a.signupbutton {
-    text-align: center;
-    left: 50%;
-    right: 50%;
-    margin-left: 45%;
-    margin-right: 45%;
-}
+
