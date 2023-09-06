@@ -20,8 +20,10 @@
         <div class="row" id="admin-panel"><!--    admin panel-->
 
             <div class="col-12">
-                <h3>MANAGER PANEL</h3>
-                <a th:href="@{/property/{id}/edit(id=${property.id})}">Edit property listing</a>
+                <div th:class="row">
+                    <h3 class="col-6">MANAGER PANEL</h3>
+                    <a class="col-6" th:href="@{/property/{id}/edit(id=${property.id})}">Edit</a>
+                </div>
             </div>
             <div th:class="col-6">
                 <div>
@@ -34,6 +36,7 @@
                             <th>Pets</th>
                             <th>Email</th>
                             <th>Number</th>
+                            <th>123123</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -44,9 +47,44 @@
                             <td th:text="${inquiry.pets}"></td>
                             <td th:text="${inquiry.tenant.email}"></td>
                             <td th:text="${inquiry.tenant.number}"></td>
+                            <td>
+                                <button
+                                        type="button"
+                                        class="btn btn-primary assign-button"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#tenantModal"
+                                        data-inquiry-tenant-id="${inquiry.tenant.id}"
+                                        data-property-id="${property.id}">
+                                    <p th:text="${inquiry.tenant.id}"></p>
+                                </button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
+
+                    <form id="assign-form" method="POST" action="/property/{id}">
+                        <input type="hidden" name="tenantId" id="tenantId">
+                        <input type="hidden" name="propertyId" id="propertyId">
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="modal fade" id="tenantModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Assign tenant?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Clicking "Assign" will set the tenant of the property to the creator of this inquiry. Proceed?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Assign</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -111,10 +149,9 @@
     </div>
 </div>
 
-
 <script th:inline="javascript">
-    const latitude = /*[[${property.latitude}]]*/ null;
-    const longitude = /*[[${property.longitude}]]*/ null;
+    const latitude = 0;
+    const longitude = 0;
 
     function initializeMap() {
         if (latitude !== null && longitude !== null) {

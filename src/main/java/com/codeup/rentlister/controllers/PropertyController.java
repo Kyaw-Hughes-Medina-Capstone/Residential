@@ -171,4 +171,19 @@ public class PropertyController {
 
 		return "property/show";
 	}
+
+	@PostMapping("/property/{id}")
+	public String setTenant(@PathVariable long id,
+							@RequestParam int tenantId,
+							@RequestParam int propertyId,
+							Model model) {
+		Property property = propertyDao.findPropertyById(propertyId);
+		User tenant = property.setTenant(userDao.findUserById(tenantId));
+		model.addAttribute("property", property);
+
+		propertyDao.save(property);
+
+		return "property/show";
+	}
+
 }
