@@ -49,6 +49,13 @@ function updateMap(address) {
 map.on('load', () => {
     const bounds = new mapboxgl.LngLatBounds();
     markers.forEach(marker => bounds.extend(marker.getLngLat()));
-    map.fitBounds(bounds, { padding: 50 });
-});
 
+    // Set a maximum zoom level (e.g., 10) to limit the zooming
+    const maxZoom = 10;
+
+    // Use the fitBounds method with the maxZoom option
+    map.fitBounds(bounds, {
+        padding: 50,
+        maxZoom: maxZoom
+    });
+});

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <head th:replace="~{partials :: head}">
+    <head th:replace="partials :: head">
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
         <title>All property listings</title>
     </head>
 </head>
 <body>
-<nav th:replace="~{partials :: navbar}"/>
+<nav th:replace="partials :: navbar"/>
 
 <div>
     <div class="search">
@@ -44,16 +44,15 @@
 
     <div class="content-container">
         <div id="map" class="map"></div>
-
         <div class="row properties">
             <div id="property-data" class="card-content col-lg-6" th:each="property : ${property}"
                  data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
-<!--                            <div class="card-content col-lg-6" th:each="property : ${property}">-->
                 <div class="card">
                     <a th:href="@{/property/{id}(id=${property.id})}"></a>
+                    <img th:src="@{${property.img1}}" alt="Property Image" class="img-top" height="200"/>
                     <div class="card-body">
                         <h4 class="card-address"
-                            th:text="${property.address + ', ' + property.city + ', '+ property.state + ', ' + property.zip}">
+                            th:text="${property.address + ', ' + property.city + ', ' + property.state + ', ' + property.zip}">
                         </h4>
                         <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
                         <p class="card-text">
@@ -61,18 +60,21 @@
                             <span th:text="${property.bath}"></span> bathrooms
                         </p>
                         <a th:href="@{/property/{id}/detail(id=${property.id})}" class="btn btn-secondary">see more</a>
+                        <a th:href="@{/property/{id}/edit(id=${property.id})}" class="btn btn-secondary">edit</a>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
+
 
 <script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js}"></script>
 <script th:inline="javascript">const mapBoxKey = [[${mapBoxKey}]];
 console.log(mapBoxKey);</script>
 <script type="text/javascript" th:src="@{/js/map.js}"></script>
-<div th:replace="~{partials :: footer}"/>
+<div th:replace="partials :: footer"/>
 
 </body>
 </html>
