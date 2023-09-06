@@ -48,19 +48,12 @@ public class PropertyController {
 	@GetMapping("/home")
 	public String landing(Model model){
 		model.addAttribute("property", propertyDao.findAll());
-		return "home";
+		return "/home";
 	}
-
-	@GetMapping("/")
-	public String home(Model model){
-		model.addAttribute("property", propertyDao.findAll());
-		return "home";
-	}
-
 	@GetMapping("/about")
 	public String about(Model model){
 		model.addAttribute("property", propertyDao.findAll());
-		return "about";
+		return "/about";
 	}
 
 
@@ -92,16 +85,6 @@ public class PropertyController {
 	}
 	@GetMapping("/property/{id}/detail")
 	public String propertyDetail(@PathVariable long id, Model model) {
-
-		List<Inquiries> inquiries = inquiryDao.findInquiriesByPropertyId(id);
-		List<WorkOrder> workOrders = workOrderDao.findWorkOrderByPropertyId(id);
-		List<Review> reviews = reviewDao.findReviewsByPropertyId(id);
-
-		model.addAttribute("inquiries", inquiries);
-		model.addAttribute("workOrders", workOrders);
-		model.addAttribute("reviews", reviews);
-		model.addAttribute("mapBoxKey", mapBoxKey);
-
 		model.addAttribute("property", propertyDao.findById(id).get());
 		model.addAttribute("mapBoxKey", mapBoxKey);
 		return "property/detail";
@@ -110,7 +93,6 @@ public class PropertyController {
 	public String propertyEdit(@PathVariable long id, Model model) {
 		Property propertyToEdit = propertyDao.findById(id).get();
 		model.addAttribute("property", propertyToEdit);
-		model.addAttribute("fileStackKey", fileStackKey);
 		return "property/edit";
 	}
 	@PostMapping("/property/{id}/edit")
@@ -140,10 +122,12 @@ public class PropertyController {
 		return "redirect:/property/" + id;
 	}
 
+
+
 	@GetMapping("/filtered-properties")
 	public String filterProperty(Model model) {
 		model.addAttribute("mapBoxKey", mapBoxKey);
-		return "filtered-properties";
+		return "/filtered-properties";
 	}
 	@PostMapping("/filtered-properties")
 	public String filterProperties(
@@ -164,19 +148,42 @@ public class PropertyController {
 		List<Property> filteredProperties = propertyService.filterProperties(type, city, zip, minBedrooms, minBathrooms, maxPrice, minPrice);
 		model.addAttribute("filteredProperty", filteredProperties);
 		model.addAttribute("mapBoxKey", mapBoxKey);
-		return "property/filter";
+		return "/property/filter";
 	}
 	@GetMapping("/contact")
 	public String contact(){
-		return"contact";
+		return"/contact";
 	}
 
-//	@GetMapping("/property/{id}")
-//	public String propertyView(@PathVariable long id, Model model) {
-//		Property property = propertyDao.findPropertyById(id);
-//
-//
-//
-//		return "property/show";
-//	}
+	@GetMapping("/property/{id}")
+	public String propertyView(@PathVariable long id, Model model) {
+		Property property = propertyDao.findPropertyById(id);
+
+		List<Inquiries> inquiries = inquiryDao.findInquiriesByPropertyId(id);
+		List<WorkOrder> workOrders = workOrderDao.findWorkOrderByPropertyId(id);
+		List<Review> reviews = reviewDao.findReviewsByPropertyId(id);
+
+		model.addAttribute("property", property);
+		model.addAttribute("inquiries", inquiries);
+		model.addAttribute("workOrders", workOrders);
+		model.addAttribute("reviews", reviews);
+		model.addAttribute("mapBoxKey", mapBoxKey);
+
+		return "property/show";
+	}
+
+	@PostMapping("/property/{id}")
+	public String setTenant(@PathVariable long id,
+							@RequestParam int tenantId,
+							@RequestParam int propertyId,
+							Model model) {
+		Property property = propertyDao.findPropertyById(propertyId);
+		User tenant = property.setTenant(userDao.findUserById(tenantId));
+		model.addAttribute("property", property);
+
+		propertyDao.save(property);
+
+		return "property/show";
+	}
+
 }

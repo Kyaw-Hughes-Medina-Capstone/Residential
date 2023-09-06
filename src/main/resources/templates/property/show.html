@@ -1,141 +1,141 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org"-->
-<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">-->
-<!--<head>-->
-<!--    <head th:replace="~{partials :: head}"/>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" />-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
+<head>
+    <head th:replace="~{partials :: head}"/>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" />
 
-<!--</head>-->
-<!--<body>-->
-<!--<nav th:replace="~{partials :: navbar}"/>-->
+</head>
+<body>
+<nav th:replace="~{partials :: navbar}"/>
 
-<!--<div th:if="${#authorization.expression('isAuthenticated()')}">-->
+<div th:if="${#authorization.expression('isAuthenticated()')}">
 
-<!--    <div class="review">-->
-<!--        <a th:href="@{/property/{id}/review(id=${property.id})}">Submit a review for this property listing</a>-->
-<!--    </div>-->
+    <div class="review">
+        <a th:href="@{/property/{id}/review(id=${property.id})}">Submit a review for this property listing</a>
+    </div>
 
-<!--    <div th:if="${property.manager.id == #authentication.principal.id}">-->
-<!--        <div class="row" id="admin-panel">&lt;!&ndash;    admin panel&ndash;&gt;-->
+    <div th:if="${property.manager.id == #authentication.principal.id}">
+        <div class="row" id="admin-panel"><!--    admin panel-->
 
-<!--            <div class="col-12">-->
-<!--                <h3>MANAGER PANEL</h3>-->
-<!--                <a th:href="@{/property/{id}/edit(id=${property.id})}">Edit property listing</a>-->
-<!--            </div>-->
-<!--            <div th:class="col-6">-->
-<!--                <div>-->
-<!--                    <table class="table table-bordered">-->
-<!--                        <thead>-->
-<!--                        <tr>-->
-<!--                            <th>Start</th>-->
-<!--                            <th>End</th>-->
-<!--                            <th>People</th>-->
-<!--                            <th>Pets</th>-->
-<!--                            <th>Email</th>-->
-<!--                            <th>Number</th>-->
-<!--                        </tr>-->
-<!--                        </thead>-->
-<!--                        <tbody>-->
-<!--                        <tr th:each="inquiry : ${inquiries}">-->
-<!--                            <td th:text="${inquiry.start_date}"></td>-->
-<!--                            <td th:text="${inquiry.end_date}"></td>-->
-<!--                            <td th:text="${inquiry.people}"></td>-->
-<!--                            <td th:text="${inquiry.pets}"></td>-->
-<!--                            <td th:text="${inquiry.tenant.email}"></td>-->
-<!--                            <td th:text="${inquiry.tenant.number}"></td>-->
-<!--                        </tr>-->
-<!--                        </tbody>-->
-<!--                    </table>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="col-12">
+                <h3>MANAGER PANEL</h3>
+                <a th:href="@{/property/{id}/edit(id=${property.id})}">Edit property listing</a>
+            </div>
+            <div th:class="col-6">
+                <div>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>People</th>
+                            <th>Pets</th>
+                            <th>Email</th>
+                            <th>Number</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="inquiry : ${inquiries}">
+                            <td th:text="${inquiry.start_date}"></td>
+                            <td th:text="${inquiry.end_date}"></td>
+                            <td th:text="${inquiry.people}"></td>
+                            <td th:text="${inquiry.pets}"></td>
+                            <td th:text="${inquiry.tenant.email}"></td>
+                            <td th:text="${inquiry.tenant.number}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-<!--            &lt;!&ndash; Display Work Orders &ndash;&gt;-->
-<!--            <div th:class="col-6">-->
-<!--                <div>-->
-<!--                    <table class="table table-bordered">-->
-<!--                        <thead>-->
-<!--                        <tr>-->
-<!--                            <th>Date</th>-->
-<!--                            <th>Description</th>-->
-<!--                        </tr>-->
-<!--                        </thead>-->
-<!--                        <tbody>-->
-<!--                        <tr th:each="workorder : ${workOrders}">-->
-<!--                            <td th:text="${workorder.date}"></td>-->
-<!--                            <td th:text="${workorder.description}"></td>-->
-<!--                        </tr>-->
-<!--                        </tbody>-->
-<!--                    </table>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+            <!-- Display Work Orders -->
+            <div th:class="col-6">
+                <div>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="workorder : ${workOrders}">
+                            <td th:text="${workorder.date}"></td>
+                            <td th:text="${workorder.description}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!--</div>-->
+</div>
 
-<!--<div class="row">-->
+<div class="row">
 
-<!--    <div id="map" class="map-listing col-6"></div>-->
-<!--    <div class="col-6">-->
-<!--        Posted by:-->
-<!--        <p th:text="${property.manager.firstname}"></p>-->
-<!--        Monthly cost:-->
-<!--        <p th:text="${property.rent}"></p>-->
-<!--        Type:-->
-<!--        <p th:text="${property.type}"></p>-->
-<!--        Bedrooms:-->
-<!--        <p th:text="${property.beds}"></p>-->
-<!--        Bathrooms:-->
-<!--        <p th:text="${property.bath}"></p>-->
-<!--        Pets:-->
-<!--        <p th:text="${property.pets}"></p>-->
+    <div id="map" class="map-listing col-6"></div>
+    <div class="col-6">
+        Posted by:
+        <p th:text="${property.manager.firstname}"></p>
+        Monthly cost:
+        <p th:text="${property.rent}"></p>
+        Type:
+        <p th:text="${property.type}"></p>
+        Bedrooms:
+        <p th:text="${property.beds}"></p>
+        Bathrooms:
+        <p th:text="${property.bath}"></p>
+        Pets:
+        <p th:text="${property.pets}"></p>
 
-<!--        <div>-->
-<!--            Address:-->
-<!--            <p th:text="${property.address}">Address:</p>-->
-<!--            <p th:text="${property.city}"></p>-->
-<!--            <p th:text="${property.state}"></p>-->
-<!--            <p th:text="${property.zip}"></p>-->
-<!--        </div>-->
+        <div>
+            Address:
+            <p th:text="${property.address}">Address:</p>
+            <p th:text="${property.city}"></p>
+            <p th:text="${property.state}"></p>
+            <p th:text="${property.zip}"></p>
+        </div>
 
-<!--        <div th:if="${#authorization.expression('isAuthenticated()')}">-->
-<!--            <a th:unless="${#authentication.principal.id == property.manager.id}" th:href="@{/property/{id}/inquiry(id=${property.id})}" class="btn btn-secondary" th:class="inquire" >Inquire</a>-->
-<!--        </div>-->
-<!--    </div>-->
+        <div th:if="${#authorization.expression('isAuthenticated()')}">
+            <a th:unless="${#authentication.principal.id == property.manager.id}" th:href="@{/property/{id}/inquiry(id=${property.id})}" class="btn btn-secondary" th:class="inquire" >Inquire</a>
+        </div>
+    </div>
 
-<!--    <div th:each="review: ${reviews}" class="card col-4">-->
-<!--        <p>Reviewer: <span th:text="${review.tenant.firstname}"></span> </p>-->
-<!--        <p>Review Rating: <span th:text="${review.rating}"></span></p>-->
-<!--        <p>Review Description: <span th:text="${review.description}"></span></p>-->
-<!--    </div>-->
-<!--</div>-->
+    <div th:each="review: ${reviews}" class="card col-4">
+        <p>Reviewer: <span th:text="${review.tenant.firstname}"></span> </p>
+        <p>Review Rating: <span th:text="${review.rating}"></span></p>
+        <p>Review Description: <span th:text="${review.description}"></span></p>
+    </div>
+</div>
 
 
-<!--<script th:inline="javascript">-->
-<!--    const latitude = 0;-->
-<!--    const longitude = 0;-->
+<script th:inline="javascript">
+    const latitude = /*[[${property.latitude}]]*/ null;
+    const longitude = /*[[${property.longitude}]]*/ null;
 
-<!--    function initializeMap() {-->
-<!--        if (latitude !== null && longitude !== null) {-->
-<!--            mapboxgl.accessToken = mapBoxKey;-->
+    function initializeMap() {
+        if (latitude !== null && longitude !== null) {
+            mapboxgl.accessToken = mapBoxKey;
 
-<!--            const map = new mapboxgl.Map({-->
-<!--                container: 'map',-->
-<!--                style: 'mapbox://styles/mapbox/streets-v12',-->
-<!--                center: [longitude, latitude],-->
-<!--                zoom: 12-->
-<!--            });-->
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v12',
+                center: [longitude, latitude],
+                zoom: 12
+            });
 
-<!--            new mapboxgl.Marker().setLngLat([longitude, latitude]).addTo(map);-->
-<!--        }-->
-<!--    }-->
-<!--    window.onload = initializeMap;-->
-<!--</script>-->
+            new mapboxgl.Marker().setLngLat([longitude, latitude]).addTo(map);
+        }
+    }
+    window.onload = initializeMap;
+</script>
 
-<!--<script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js}"></script>-->
-<!--<script th:inline="javascript">const mapBoxKey = [[${mapBoxKey}]];</script>-->
+<script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js}"></script>
+<script th:inline="javascript">const mapBoxKey = [[${mapBoxKey}]];</script>
 
-<!--<div th:replace="~{partials :: footer}"/>-->
-<!--</body>-->
-<!--</html>-->
+<div th:replace="~{partials :: footer}"/>
+</body>
+</html>
