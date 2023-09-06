@@ -434,27 +434,41 @@ hr {
 }
 
 #admin-panel {
-    background-color: lightslategray;
+    background-color: #A98A74;
     height: 200px; /* Fixed height */
     overflow-y: auto;
-    margin: 15px;
+    margin: 70px;
     border: #3d3f41 solid 2px;
     font-size: small;
 }
 
 #admin-panel h3 {
-    color: black;
+    color: var(--primary-color);
 }
 
 .review{
-    background-color: yellow;
+    color: var(--nav--color);
     width: 100%;
     text-align: center;
     text-decoration: none;
-    color: black;
+
 }
 
 #inquire{
     text-align: center;
     width: 25%;
+}
+
+.portfolio {
+    margin: 70px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: red;
+    text-decoration: none;
 }
