@@ -11,23 +11,42 @@
 <nav th:replace="~{partials :: navbar}"/>
 
 <div>
+
     <div class="search">
         <form class="filter-form row g-3 " th:action="@{/filtered-properties}" method="post">
             <h3>Available Properties</h3>
             <div class="col-md-4">
-                <input type="text" class="form-control-filter " id="type" name="type" placeholder="Any Type">
+                <select class="form-select" name="type" id="type" >
+                    <option selected disabled value="">TYPE</option>
+                    <option>Single Family</option>
+                    <option>Condo</option>
+                    <option>Apartment</option>
+                </select>
             </div>
             <div class="col-md-4">
                 <input type="text" class="form-control-filter " id="propertyCities" name="city" placeholder="Any Cities">
             </div>
-            <!--            <div class="col-md-4">-->
-            <!--                <input type="text" class="form-control-filter" id="zip" name="zip" placeholder="Zip Code" >-->
-            <!--            </div>-->
             <div class="col-md-4">
-                <input type="text" class="form-control-filter " id="beds" name="minBedrooms" placeholder="Any Bed">
+                <select class="form-select" name="minBedrooms" id="minBedrooms" >
+                    <option value="">ANY BEDS</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control-filter" id="bath" name="minBathrooms" placeholder="Any Bath">
+                <select class="form-select" name="minBathrooms" id="minBathrooms" >
+                    <option value="">ANY BATHS</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
             </div>
             <div class="col-md-4">
                 <input type="text" class="form-control-filter" id="priceMin" name="minPrice" placeholder="Price Min">
@@ -39,34 +58,40 @@
                 <button class="btn btn-secondary" type="submit">Search</button>
             </div>
         </form>
-
     </div>
 
     <div class="content-container">
         <div id="map" class="map"></div>
         <div class="row properties">
+            <!-- PROPERTY CARD -->
             <div id="property-data" class="card-content col-lg-6" th:each="property : ${property}"
                  data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
                 <div class="card">
-                    <a th:href="@{/property/{id}(id=${property.id})}"></a>
-                    <img th:src="@{${property.img1}}" alt="Property Image" class="img-top" height="200"/>
+                    <img th:src="@{${property.img1}}" alt="Property Image" class="img-top"/>
                     <div class="card-body">
                         <h4 class="card-address"
                             th:text="${property.address + ', ' + property.city + ', ' + property.state + ', ' + property.zip}">
                         </h4>
                         <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
-                        <p class="card-text">
-                            <span th:text="${property.beds}"></span> bedrooms,
-                            <span th:text="${property.bath}"></span> bathrooms
-                        </p>
-                        <a th:href="@{/property/{id}/detail(id=${property.id})}" class="btn btn-secondary">see more</a>
-                        <a th:href="@{/property/{id}/edit(id=${property.id})}" class="btn btn-secondary">edit</a>
+                        <div class="card-text property-card">
+                            <div class="property-card-info">
+                                <span th:text="${property.beds}"></span> bedrooms<br>
+                                <span th:text="${property.bath}"></span> bathrooms
+                            </div>
+                            <div class="col-6">
+                                <span th:text="${property.area}"></span> square ft<br>
+                                <span th:text="${property.type}"></span>
+                            </div>
+                        </div>
+                        <div style="display: flex">
+                            <a th:href="@{/property/{id}/detail(id=${property.id})}" class="btn btn-secondary property-card-btn">view</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
+
 </div>
 
 

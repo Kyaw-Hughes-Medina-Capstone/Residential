@@ -10,29 +10,45 @@
 <body>
 <nav th:replace="partials :: navbar"/>
 
-<div >
+<div>
     <div class="search">
-        <!--    <div class="mapSearch">-->
-        <!--      <input type="text" id="zipcodeInput" name="keyword" placeholder="Enter City/State/Zip Code" class="searchBar">-->
-        <!--      <button id="searchButton" type="button" class="searchButton">Search</button>-->
-        <!--    </div>-->
         <form class="filter-form row g-3 " th:action="@{/filtered-properties}" method="post">
-            <h2>Available Properties</h2>
+            <h3>Available Properties</h3>
             <div class="col-md-4">
-                <input type="text" class="form-control-filter " id="type" name="type" placeholder="Any Type">
+                <select class="form-select" name="type" id="type" >
+                    <option selected disabled value="">TYPE</option>
+                    <option>Single Family</option>
+                    <option>Condo</option>
+                    <option>Apartment</option>
+                </select>
             </div>
             <div class="col-md-4">
                 <input type="text" class="form-control-filter " id="propertyCities" name="city" placeholder="Any Cities">
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control-filter " id="beds" name="minBedrooms" placeholder="Any Bed">
+                <select class="form-select" name="minBedrooms" id="minBedrooms" >
+                    <option value="">ANY BEDS</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control-filter" id="bath" name="minBathrooms" placeholder="Any Bath">
+                <select class="form-select" name="minBathrooms" id="minBathrooms" >
+                    <option value="">ANY BATHS</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
             </div>
-
             <div class="col-md-4">
-                <input type="text" class="form-control-filter " id="priceMin" name="minPrice" placeholder="Price Min">
+                <input type="text" class="form-control-filter" id="priceMin" name="minPrice" placeholder="Price Min">
             </div>
             <div class="col-md-4">
                 <input type="text" class="form-control-filter" id="priceMax" name="maxPrice" placeholder="Price Max">
@@ -41,6 +57,7 @@
                 <button class="btn btn-secondary" type="submit">Search</button>
             </div>
         </form>
+
     </div>
 
 

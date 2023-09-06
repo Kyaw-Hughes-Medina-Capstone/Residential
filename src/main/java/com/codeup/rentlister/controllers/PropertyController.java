@@ -50,6 +50,13 @@ public class PropertyController {
 		model.addAttribute("property", propertyDao.findAll());
 		return "home";
 	}
+
+	@GetMapping("/")
+	public String home(Model model){
+		model.addAttribute("property", propertyDao.findAll());
+		return "home";
+	}
+
 	@GetMapping("/about")
 	public String about(Model model){
 		model.addAttribute("property", propertyDao.findAll());

@@ -26,12 +26,6 @@
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-            <a href="https://github.com/Kyaw-Hughes-Medina-Capstone/Residential" target="_blank" class="nav-link">
-                <li class="nav-item">
-                    <i class="fa fa-github" aria-hidden="true"></i>
-                </li>
-            </a>
-
             <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
                 <a class="nav-link" th:text="'Hello,  ' + ${#authentication.principal.firstname}" th:href="@{/home}"></a>
             <li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
@@ -72,19 +66,9 @@
 <div th:fragment="footer" class="footer">
     <footer class="footer">
 
-        <div class="footer-icons">
-            <ul class="social-media-list">
-
-            </ul>
-        </div>
-
-
-
-<!--        <div class="footer-left">-->
-<!--        </div>-->
-<!--        <div class="footer-right">-->
-
-<!--        </div>-->
+        <a href="https://github.com/Kyaw-Hughes-Medina-Capstone/Residential" target="_blank" class="footer-icon">
+                <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
 
     <script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
