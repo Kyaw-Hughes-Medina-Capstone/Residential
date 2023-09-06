@@ -492,3 +492,11 @@ a:hover {
     color: red;
     text-decoration: none;
 }
+
+a.signupbutton {
+    text-align: center;
+    left: 50%;
+    right: 50%;
+    margin-left: 45%;
+    margin-right: 45%;
+}
