@@ -546,5 +546,11 @@ a:hover {
     color: red;
     text-decoration: none;
 }
+.upload-status {
+    visibility: hidden;
+    height: 20px;
+    color: green;
+    font-size: 15px;
+}
 
 

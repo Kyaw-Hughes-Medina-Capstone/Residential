@@ -32,7 +32,9 @@ function updateMap(address) {
                 const coordinates = geocodeResponse.features[0].center;
 
                 // Create a marker for each property
-                const marker = new mapboxgl.Marker()
+                const marker = new mapboxgl.Marker({
+                    color: '#334252'
+                })
                     .setLngLat(coordinates)
                     .addTo(map);
                 console.log(coordinates);
