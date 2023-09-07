@@ -4,6 +4,7 @@
     --primary-color: #f8f3d4;
     --secondary-color: #76717D;
 }
+
 @media (max-width: 500px) {
     .about-cards .row .card {
         width: calc(100% - 50px);
@@ -569,11 +570,12 @@ a:hover {
     margin-top: 30px;
 }
 .detailImage{
-    width: 80%;
+    width: 75%;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
 .property-info{
     margin: 25px 75px;
 }
