@@ -4,6 +4,51 @@
     --primary-color: #f8f3d4;
     --secondary-color: #76717D;
 }
+@media (max-width: 500px) {
+    .about-cards .row .card {
+        width: calc(100% - 50px);
+
+    }
+}
+
+@media (min-width: 501px) and (max-width: 767px) {
+    .about-cards .row .card {
+        margin: 25px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 859px) {
+    .about-cards .row .card {
+        width: calc(35% - 25px);
+    }
+    .container{
+        max-width: 95%;
+    }
+    .row{
+    }
+    .card{
+        margin: 5px;
+    }
+}
+
+@media (min-width: 860px) and (max-width: 991px) {
+    .about-cards .card{
+        width: calc(35% - 10px);
+        margin: 10px;
+    }
+    .row{
+        flex-wrap: nowrap;
+    }
+}
+
+@media (min-width: 992px) {
+    .about-cards .row .card {
+        width: calc(35% - 50px);
+        margin: 10px;
+
+    }
+}
+
 .light-theme{
     --background--color: #f8ecec;
     --nav--color: #cca3a3;
@@ -21,6 +66,7 @@
 
 body{
     background-color: var(--background--color);
+    min-width: 375px;
 }
 
 .navbar{
@@ -101,25 +147,24 @@ option{
     display: flex;
 }
 .card{
-    margin:0 10px 10px 30px;
-    padding:5px;
+    padding:15px;
     width: 100%;
-    height: 550px;
     background-color: var(--secondary-color);
+}
+
+.card-body{
+    margin: 0;
+    padding: 0;
 }
 .card-address{
     margin: 3px;
 }
 .property-card{
+    margin: 0 15px 15px 15px;
+    height: 550px;
+    text-align: center;
+    justify-content: space-around;
     display: flex;
-}
-
-.property-card-btn{
-
-}
-
-.property-card-info{
-    margin: auto;
 }
 
 #map {
@@ -414,15 +459,16 @@ hr {
     text-transform: none;
     text-align: left;
 }
-.about, h5{
-    padding: 10px 10px;
-}
+
 .about-us{
     margin: 0 50px 0 50px;
+}
+.about-cards{
 }
 
 h3, h6{
     margin: 5px auto;
+    text-align: center;
 }
 
 .nav-button {

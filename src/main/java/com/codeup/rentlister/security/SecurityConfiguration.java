@@ -44,17 +44,17 @@ public class SecurityConfiguration {
 
                          * anyone can visit the home page, register, login, and view ads */
 
-                        .requestMatchers("/", "/property", "/property/*","/about", "/sign-up", "/login", "/owner/portfolio", "/property/*/detail").permitAll()
+//                        .requestMatchers("/", "/property", "/property/*","/about", "/sign-up", "/login", "/owner/portfolio", "/property/*/detail").permitAll()
 
                    
 
 
 //                          anyone can visit the home page, register, login, and view
-                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/landing.mov", "/chip.png", "/property/*/detail").permitAll()
+//                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/landing.mov", "/chip.png", "/property/*/detail").permitAll()
 
 
 //                          anyone can visit the home page, register, login, and view
-                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/tenant/*", "/contact","/filtered-properties", "/property/*/detail").permitAll()
+                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/tenant/*", "/contact","/filtered-properties", "/property/*/detail" ).permitAll()
 
                         // allow loading of static resources
                                 .requestMatchers("/css/**", "/js/**", "/img/**", "/pdf/**", "/landing.mov", "/residentialLease.pdf").permitAll()
