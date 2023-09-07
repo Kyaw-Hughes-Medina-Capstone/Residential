@@ -43,8 +43,8 @@
                     <span th:text="${property.city}"></span>,
                     <span class="card-text" th:text="${property.state}"></span>
                 </h3>
-                <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
-                <a th:href="@{/property/{id}/detail(id=${property.id})}" class="btn btn-secondary">see more</a>
+                <h5 class="card-text card-rent">$<span th:text="${property.rent}"></span></h5>
+                <a th:href="@{/property/{id}/detail(id=${property.id})}" class="btn btn-secondary">view</a>
             </div>
         </div>
     </div>
