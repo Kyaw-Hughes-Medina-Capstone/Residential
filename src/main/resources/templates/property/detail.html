@@ -12,9 +12,9 @@
 
 <div th:if="${#authorization.expression('isAuthenticated()')}">
 
-	<div class="review">
-		<a th:href="@{/property/{id}/review(id=${property.id})}">Submit a review for this property listing</a>
-	</div>
+<!--	<div class="review">-->
+<!--		<a th:href="@{/property/{id}/review(id=${property.id})}">Submit a review for this property listing</a>-->
+<!--	</div>-->
 
 	<div th:if="${property.manager.id == #authentication.principal.id}">
 		<div class="row" id="admin-panel"><!--    admin panel-->
@@ -86,13 +86,13 @@
 	</div>
 	<div class="carousel-inner" >
 		<div class="carousel-item active">
-			<img th:src="@{${property.img1}}" class=" w-100" alt="...">
+			<img th:src="@{${property.img1}}" class="detailImage" alt="...">
 		</div>
 		<div class="carousel-item">
-			<img th:src="@{${property.img2}}" class=" w-100" alt="...">
+			<img th:src="@{${property.img2}}" class="detailImage" alt="...">
 		</div>
 		<div class="carousel-item">
-			<img th:src="@{${property.img3}}" class=" w-100" alt="...">
+			<img th:src="@{${property.img3}}" class="detailImage" alt="...">
 		</div>
 	</div>
 	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
