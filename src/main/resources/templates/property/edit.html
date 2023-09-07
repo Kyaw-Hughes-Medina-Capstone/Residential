@@ -47,24 +47,28 @@
                 <label for="img1" class="form-label" th:for="img1">Photo 1</label>
                 <button id="pickPhoto1" class="btn btn-light" th:onclick="'return false;'">Upload Photo</button>
                 <input type="hidden" id="img1" name="img1" th:field="*{img1}">
+                <span id="uploadStatus1" class="upload-status"></span>
             </div>
             <!-- Photo 2 -->
             <div class="d-grid col-md-3">
                 <label for="img2" class="form-label" th:for="img2">Photo 2</label>
                 <button id="pickPhoto2" class="btn btn-light" th:onclick="'return false;'">Upload Photo 2</button>
                 <input type="hidden" id="img2" name="img2" th:field="*{img2}">
+                <span id="uploadStatus2" class="upload-status"></span>
             </div>
             <!-- Photo 3 -->
             <div class="d-grid col-md-3">
                 <label for="img3" class="form-label" th:for="img3">Photo 3</label>
                 <button id="pickPhoto3" class="btn btn-light" th:onclick="'return false;'">Upload Photo 3</button>
                 <input type="hidden" id="img3" name="img3" th:field="*{img3}">
+                <span id="uploadStatus3" class="upload-status"></span>
             </div>
             <!-- Photo 4 -->
             <div class="d-grid col-md-3">
                 <label for="img4" class="form-label" th:for="img4">Photo 4</label>
                 <button id="pickPhoto4" class="btn btn-light" th:onclick="'return false;'">Upload Photo 4</button>
                 <input type="hidden" id="img4" name="img4" th:field="*{img4}">
+                <span id="uploadStatus4" class="upload-status"></span>
             </div>
 
             <!-- Street Address -->
@@ -120,11 +124,15 @@
 <div th:replace="~{partials :: footer}"/>
 <script>
     const client = filestack.init("[[${fileStackKey}]]");
+    function updateUploadStatus(statusElement, message) {
+        statusElement.textContent = message;
+        statusElement.style.visibility = 'visible';
+    }
 
-    // Add event listeners for each "Upload Photo" button
     for (let i = 1; i <= 4; i++) {
         const pickPhotoButton = document.getElementById(`pickPhoto${i}`);
         const imgInput = document.getElementById(`img${i}`);
+        const uploadStatus = document.getElementById(`uploadStatus${i}`);
 
         pickPhotoButton.addEventListener('click', function (event) {
             event.preventDefault();
@@ -135,6 +143,7 @@
 
                     // Set the value of the corresponding hidden input field with the modified URL
                     imgInput.value = file.url;
+                    updateUploadStatus(uploadStatus, 'Image edited successfully');
                 }
             }
 
