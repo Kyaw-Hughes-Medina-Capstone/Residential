@@ -53,9 +53,9 @@ public class InquiriesController {
 		Inquiries inquiry = new Inquiries(tenant, manager, property, start_date, end_date, people, pets);
 		inquiriesDao.save(inquiry);
 
-		emailService.sendAnInquiryEmail(inquiry, "You have an inquiry about a property!", "Check your account for more information.");
+//		emailService.sendAnInquiryEmail(inquiry, "You have an inquiry about a property!", "Check your account for more information.");
 
-		return "redirect:/property/" + id + "/detail";
+		return "redirect:/property/" + id;
 	}
 
 }

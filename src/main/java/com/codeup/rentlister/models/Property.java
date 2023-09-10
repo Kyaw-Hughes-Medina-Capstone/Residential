@@ -13,9 +13,17 @@ import java.time.LocalDateTime;
 public class Property {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 
-	@Column(nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "manager", referencedColumnName = "id")
+	private User manager;
+
+	@OneToOne
+	@JoinColumn(name = "tenant", referencedColumnName = "id")
+	private User tenant;
+
+	@Column
 	private String type;
 
 	@Column
@@ -30,91 +38,44 @@ public class Property {
 	@Column
 	private int bath;
 
-
-	@Column(name = "img1", nullable = false)
+	@Column(name = "img1")
 	private String img1;
 
-	@Column(name = "img2", nullable = false)
+	@Column(name = "img2")
 	private String img2;
 
-	@Column(name = "img3", nullable = false)
+	@Column(name = "img3")
 	private String img3;
 
-	@Column(name = "img4", nullable = false)
+	@Column(name = "img4")
 	private String img4;
 
-	@Column(nullable = false)
+	@Column()
 	private String address;
 
-	@Column(nullable = false)
+	@Column()
 	private String city;
 
-	@Column(nullable = false)
+	@Column()
 	private String state;
 
-	@Column(nullable = false)
+	@Column()
 	private int zip;
+
 	@Column
 	private boolean pets;
 
-	@Column(nullable = false, columnDefinition = "MEDIUMTEXT")
+	@Column()
 	private String description;
+
 	@CreationTimestamp
 	private LocalDateTime createdOn;
+
 	@UpdateTimestamp
 	private LocalDateTime updatedOn;
-	@ManyToOne
-	@JoinColumn(name = "manager", referencedColumnName = "id")
-	private User manager;
-	@OneToOne
-	@JoinColumn(name = "tenant", referencedColumnName = "id")
-	private User tenant;
 
-	public Property(String type, int rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, boolean pets, String description, LocalDateTime createdOn, LocalDateTime updatedOn) {
-		this.type = type;
-		this.rent = rent;
-		this.area = area;
-		this.beds = beds;
-		this.bath = bath;
-		this.img1 = img1;
-		this.img2 = img2;
-		this.img3 = img3;
-		this.img4 = img4;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.pets = pets;
-		this.description = description;
-		this.createdOn = createdOn;
-		this.updatedOn = updatedOn;
-	}
-
-	public Property(long id, String type, int rent, int area, int beds, int bath, String img1, String img2, String img3, String img4, String address, String city, String state, int zip, boolean pets, String description, LocalDateTime createdOn, LocalDateTime updatedOn) {
-		this.id = id;
-		this.type = type;
-		this.rent = rent;
-		this.area = area;
-		this.beds = beds;
-		this.bath = bath;
-		this.img1 = img1;
-		this.img2 = img2;
-		this.img3 = img3;
-		this.img4 = img4;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.pets = pets;
-		this.description = description;
-		this.createdOn = createdOn;
-		this.updatedOn = updatedOn;
-	}
 	public Property(){
-
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -142,11 +103,11 @@ public class Property {
 				'}';
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

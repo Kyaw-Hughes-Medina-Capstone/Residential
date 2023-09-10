@@ -10,26 +10,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String number;
 
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    @Column(nullable = false)
+    @Column
     private String firstname;
 
-    @Column(nullable = false)
+    @Column
     private String lastname;
-
-    @Column(nullable = false)
-    private boolean is_mgr;
 
     @Column
     private int people;
@@ -80,14 +77,6 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public boolean isIs_mgr() {
-        return is_mgr;
-    }
-
-    public void setIs_mgr(boolean is_mgr) {
-        this.is_mgr = is_mgr;
     }
 
     public String getUsername() {

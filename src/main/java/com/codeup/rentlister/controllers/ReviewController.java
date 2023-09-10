@@ -18,6 +18,10 @@ public class ReviewController {
 	private final ReviewRepository reviewDao;
 	private final UserRepository userDao;
 
+	private User getCurrentUser() {
+		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
+
 	public ReviewController(ReviewRepository reviewDao, PropertyRepository propertyDao, EmailService emailService, UserRepository userDao) {
 		this.reviewDao = reviewDao;
 		this.emailService = emailService;
@@ -26,8 +30,11 @@ public class ReviewController {
 	}
 
 	@GetMapping("/property/{id}/review")
-	public String showReviewForm(@PathVariable int id, Model model) {
-		com.codeup.rentlister.models.Property property = propertyDao.findPropertyById(id);
+	public String showReviewForm(
+			@PathVariable int id, Model model) {
+
+		Property property = propertyDao.findPropertyById(id);
+
 		model.addAttribute("review", new Review());
 		model.addAttribute("property", property);
 
@@ -35,11 +42,12 @@ public class ReviewController {
 	}
 
 	@PostMapping("/property/{id}/review")
-	public String createReview(@PathVariable int id,
-							   @RequestParam int rating,
-							   @RequestParam String description) {
+	public String createReview(
+			@PathVariable int id,
+			@RequestParam int rating,
+			@RequestParam String description) {
 
-		User tenant = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User tenant = getCurrentUser();
 		Property property = propertyDao.findPropertyById(id);
 
 		Review review = new Review(tenant, property, rating, description);

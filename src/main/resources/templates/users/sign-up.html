@@ -21,6 +21,7 @@
 
 		<label for="lastname">Last name</label>
 		<input id="lastname" th:field="*{lastname}" />
+
 	</div>
 
 	<div class="col-6">
@@ -34,11 +35,6 @@
 		<input id="password" type="password" th:field="*{password}" />
 	</div>
 </div>
-
-	<div class="form-check form-switch" id="mgrswitch">
-		<label class="form-check-label" for="flexSwitchCheckDefault">Property Manager</label>
-		<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" th:field="*{is_mgr}" th:checked="${user.is_mgr}" />
-	</div>
 
 	<input value="Sign me up!" type="submit" id="signupbutton"/>
 

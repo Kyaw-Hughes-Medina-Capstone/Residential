@@ -7,20 +7,12 @@ import com.codeup.rentlister.repositories.PropertyRepository;
 import com.codeup.rentlister.repositories.UserRepository;
 import com.codeup.rentlister.repositories.WorkOrderRepository;
 import com.codeup.rentlister.services.EmailService;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import org.hibernate.jdbc.Work;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Controller
@@ -43,7 +35,9 @@ public class WorkOrderController {
 	}
 
 	@GetMapping("/property/workorder")
-	public String WorkOrder(Model model){
+	public String WorkOrder(
+			Model model){
+
 		model.addAttribute("workorder", workOrderDao);
 		return "property/workorder";
 	}
@@ -63,7 +57,7 @@ public class WorkOrderController {
 
 		workOrderDao.save(workOrder);
 
-		emailService.sendAWorkOrderEmail(workOrder, "A work order has been submitted to one of your properties!", "Check your account for more information.");
+//		emailService.sendAWorkOrderEmail(workOrder, "A work order has been submitted to one of your properties!", "Check your account for more information.");
 
 		return "redirect:/property/workorder";
 	}

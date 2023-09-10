@@ -13,22 +13,22 @@ public class WorkOrder {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "tenant", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "tenant", referencedColumnName = "id")
     private User tenant;
 
     @ManyToOne
-    @JoinColumn(name = "manager", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "manager", referencedColumnName = "id")
     private User manager;
 
     @ManyToOne
-    @JoinColumn(name = "property", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "property", referencedColumnName = "id")
     private Property property;
 
-    @Column(nullable = false)
+    @Column
     private String description;
 
     @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
+    @Column
     private String date;
 
     public WorkOrder() {

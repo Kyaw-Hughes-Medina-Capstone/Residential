@@ -74,6 +74,7 @@ body{
     background-color: var(--nav--color);
     color: var(--primary-color);
     width: 100%;
+    height: 30px;
 }
 .nav-link{
     color: var(--primary-color);
@@ -83,6 +84,7 @@ body{
 }
 .logo{
     margin-left: 40px;
+    margin-top: 60px;
 }
 #navbarSupportedContent{
     margin-right:40px;

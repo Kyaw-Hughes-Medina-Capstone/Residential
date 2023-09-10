@@ -23,8 +23,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="property : ${ownerProperties}">
-        <td><a th:href="@{/property/{id}/detail(id=${property.id})}"><p th:text="${property.address}"></p></a></td>
+    <tr th:each="property : ${properties}">
+        <td><a th:href="@{/property/{id}(id=${property.id})}"><p th:text="${property.address}"></p></a></td>
         <td th:text="${property.bath}"></td>
         <td th:text="${property.beds}"></td>
         <td th:text="${property.city}"></td>

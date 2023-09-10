@@ -11,14 +11,14 @@ public class Review {
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "tenant", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "tenant", referencedColumnName = "id")
 	private User tenant;
 
 	@ManyToOne
-	@JoinColumn(name = "property", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "property", referencedColumnName = "id")
 	private Property property;
 
-	@Column(name = "rating", nullable = false)
+	@Column(name = "rating")
 	private int rating;
 
 	@Column(name = "description")

@@ -12,18 +12,17 @@ public class Inquiries {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "tenant", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "tenant", referencedColumnName = "id")
     private User tenant;
 
     @ManyToOne
-    @JoinColumn(name = "manager", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "manager", referencedColumnName = "id")
     private User manager;
 
     @ManyToOne
-    @JoinColumn(name = "property", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "property", referencedColumnName = "id")
     private Property property;
 
-    //Nullable values
     @Column
     private String start_date;
     @Column
