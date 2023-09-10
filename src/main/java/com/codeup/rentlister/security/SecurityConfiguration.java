@@ -50,14 +50,14 @@ public class SecurityConfiguration {
 
 
 //                          anyone can visit the home page, register, login, and view
-//                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/landing.mov", "/chip.png", "/property/*/detail").permitAll()
+//                        .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/landing.mp4", "/chip.png", "/property/*/detail").permitAll()
 
 
 //                          anyone can visit the home page, register, login, and view
                         .requestMatchers("/", "/property", "/property/*", "/sign-up", "/login", "/about", "/home", "/tenant/*", "/contact","/filtered-properties", "/property/*/detail" ).permitAll()
 
                         // allow loading of static resources
-                                .requestMatchers("/css/**", "/js/**", "/img/**", "/pdf/**", "/landing.mov", "/residentialLease.pdf").permitAll()
+                                .requestMatchers("/css/**", "/js/**", "/img/**", "/pdf/**", "/landing.mp4", "/residentialLease.pdf").permitAll()
                 )
                 /* Login configuration */
                 .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/home"))
