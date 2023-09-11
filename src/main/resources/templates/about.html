@@ -7,11 +7,11 @@
 <body>
 
 <nav th:replace="~{partials :: navbar}"/>
+<h1 class="page-header">About us</h1>
 
-<div class="page-body">
-    <h1 class="page-header">About us</h1>
-    <div class="container">
-        <div class="row">
+<div class="about-body">
+
+    <div style="display: flex">
 
             <div class="card col creator-card">
                 <img th:src="@{img/khinememe.JPG}" class="card-img-top creator-image" alt="...">
@@ -43,7 +43,6 @@
                     </div>
             </div>
 
-        </div>
     </div>
     <div>
         <h2>Welcome to KXZ Residentials, your trusted partner in property management!</h2>
