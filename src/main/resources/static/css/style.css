@@ -89,6 +89,9 @@ h2{
 .about-body{
     margin: 0 5%;
 }
+.login-body{
+    margin: 0 5%;
+}
 
 .page-body{
     margin: 0 5%;
@@ -96,6 +99,7 @@ h2{
     border-radius: 5% 5% 0 0;
 }
 .page-header{
+    color: var(--primary-color);
     text-align: end;
     margin: 0 13% 1% 0;
     border-bottom: 3px solid var(--nav--color);
@@ -166,6 +170,23 @@ h2{
     background-color: var(--primary-color);
 }
 
+.login-page{
+    text-align: center;
+    display: block;
+}
+#username{
+
+}
+#password{
+
+}
+#login-btn{
+
+}
+#login-signup{
+
+}
+
 .login-form{
     background-color: var(--background--color);
     color: var(--primary-color);
@@ -179,6 +200,41 @@ h2{
 .login-entry{
     margin: 0 15px;
 }
+.logout-btn-modal{
+    margin: 15px auto;
+}
+.modal-content-logout{
+    background-color: var(--background--color);
+    text-align: center;
+    margin-top: 45%;
+    padding: 10px;
+    border-radius: 25px 10px;
+    border: 10px solid var(--nav--color);
+}
+.modal-content-login{
+    background-color: var(--background--color);
+    text-align: center;
+    width: 100%;
+    margin-top: 45%;
+    padding: 10px;
+    border-radius: 25px 10px;
+    border: 10px solid var(--nav--color);
+}
+.modal-content-login-btn{
+    margin: 5px;
+
+}
+.modal-content-login-signup{
+    margin: 5px;
+
+}
+.modal-content-login-text{
+    margin: 5px;
+}
+#modal-content-p{
+    margin-top: 15px;
+}
+
 
 #signup-link{
     margin: 0 15%;
@@ -241,4 +297,12 @@ h2{
     padding: 20px 35px 35px 35px;
     margin: -1px 0 15px 15px;
     border-radius: 0 0 25px 25px;
+}
+
+.nav-item.dropdown a.nav-link-drop:hover {
+    cursor: pointer;
+}
+
+.nav-item a.nav-link[data-bs-toggle="modal"][data-bs-target="#logoutModal"]:hover {
+    cursor: pointer;
 }

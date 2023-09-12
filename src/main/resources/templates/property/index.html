@@ -95,8 +95,7 @@
 
 
 <script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js}"></script>
-<script th:inline="javascript">const mapBoxKey = [[${mapBoxKey}]];
-console.log(mapBoxKey);</script>
+<script th:inline="javascript">const mapBoxKey = [[${mapBoxKey}]];</script>
 <script type="text/javascript" th:src="@{/js/map.js}"></script>
 <div th:replace="~{partials :: footer}"/>
 

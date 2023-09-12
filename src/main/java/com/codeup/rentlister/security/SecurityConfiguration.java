@@ -62,7 +62,7 @@ public class SecurityConfiguration {
                 /* Login configuration */
                 .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/home"))
                 /* Logout configuration */
-                .logout((logout) -> logout.logoutSuccessUrl("/login"))
+                .logout((logout) -> logout.logoutSuccessUrl("/home"))
                 .httpBasic(withDefaults());
         return http.build();
     }
