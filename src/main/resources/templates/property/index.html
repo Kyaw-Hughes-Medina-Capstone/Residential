@@ -71,7 +71,7 @@
 
             <!-- PROPERTY CARD -->
 
-            <div class="property-card" th:each="property : ${property}" data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
+            <div id="property-data" class="property-card" th:each="property : ${property}" data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
 
                 <a th:href="@{/property/{id}(id=${property.id})}">
 
@@ -81,7 +81,9 @@
                         </div>
 
                         <div class="property-card-text">
-                            <span th:text="${property.city + ', ' + property.state + ', ' + property.zip}"></span>
+
+                            <span class="card-address" th:text="${property.address + ', ' + property.city + ', ' + property.state + ', ' + property.zip}"></span>
+
                             <span th:text="${property.rent}"></span>
                             <span th:text="${property.beds}"></span>
                             <span th:text="${property.bath}"></span>
