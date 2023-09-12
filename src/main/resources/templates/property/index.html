@@ -63,34 +63,33 @@
         </form>
     </div>
 
-    <div class="content-container">
-        <div id="map" class="map"></div>
-        <div class="row properties">
+    <div class="property-row">
+
+        <div id="map" class="map col-6"></div>
+
+        <div class="properties col-6">
+
             <!-- PROPERTY CARD -->
-            <div id="property-data" class="card-content col-lg-6" th:each="property : ${property}"
-                 data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
-                <div class="card">
-                    <img th:src="@{${property.img1}}" alt="Property Image" class="img-top"/>
-                    <div class="card-body">
-                        <h4 class="card-address"
-                            th:text="${property.address + ', ' + property.city + ', ' + property.state + ', ' + property.zip}">
-                        </h4>
-                        <h5 class="card-text">$<span th:text="${property.rent}"></span></h5>
-                        <div class="card-text property-card">
-                            <div class="property-card-info">
-                                <span th:text="${property.beds}"></span> bedrooms<br>
-                                <span th:text="${property.bath}"></span> bathrooms
-                            </div>
-                            <div class="col-6">
-                                <span th:text="${property.area}"></span> square ft<br>
-                                <span th:text="${property.type}"></span>
-                            </div>
-                        </div>
+
+            <div class="property-card" th:each="property : ${property}" data-properties="${#strings.escapeJavaScript(#json.encode(property))}">
+
+                <a th:href="@{/property/{id}(id=${property.id})}">
+
+                    <div class="property-card-info">
                         <div>
-                            <a th:href="@{/property/{id}(id=${property.id})}" class="btn btn-secondary property-card-btn">view</a>
+                            <img th:src="@{${property.img1}}" alt="Property Image" class="property-card-image" style="height: 75px; width: 100px"/>
+                        </div>
+
+                        <div class="property-card-text">
+                            <span th:text="${property.city + ', ' + property.state + ', ' + property.zip}"></span>
+                            <span th:text="${property.rent}"></span>
+                            <span th:text="${property.beds}"></span>
+                            <span th:text="${property.bath}"></span>
+                            <span th:text="${property.area}"></span>
+                            <span th:text="${property.type}"></span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>

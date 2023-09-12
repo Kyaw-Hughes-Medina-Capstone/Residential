@@ -112,6 +112,9 @@ h2{
     margin: 15px auto 0px;
     text-align: end;
 }
+.portfolio-body{
+    margin: 0 10%;
+}
 
 .page-body{
     margin: 0 5%;
@@ -326,6 +329,32 @@ h2{
 
 .nav-item a.nav-link[data-bs-toggle="modal"][data-bs-target="#logoutModal"]:hover {
     cursor: pointer;
+}
+
+.property-row{
+    display: flex;
+    justify-content: space-around;
+}
+
+.property-card{
+    margin: 15px 0;
+    background-color: var(--background--color);
+    border-radius: 3px;
+}
+.property-info{
+
+}
+.property-card-info{
+    display: flex;
+}
+.property-card-text{
+    text-decoration: none;
+}
+.property-card-btn{
+
+}
+.property-card-image{
+    margin: 5px;
 }
 
 footer{
