@@ -70,7 +70,7 @@
             <li class="nav-item dropdown" th:if="${#authorization.expression('isAnonymous()')}">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownLogin" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownLogin">
-                    <form th:action="@{/login}" method="post" class="login-form">
+                    <form th:action="@{/login}" th:method="post" class="login-form">
 
                         <div>
                             <div>
@@ -109,7 +109,7 @@
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-content-login">
-                <form th:action="@{/login}" method="post" >
+                <form th:action="@{/login}" th:method="post" >
                     <div>
                         <div>
                             <div th:if="${param.error}">
@@ -154,11 +154,7 @@
 </nav>
 
 <footer th:fragment="footer" class="footer">
-
-    <a href="https://github.com/Kyaw-Hughes-Medina-Capstone/Residential" target="_blank" id="github-repo">
-                <i class="fa fa-github" aria-hidden="true"></i>
-        </a>
-
+    <a href="https://github.com/Kyaw-Hughes-Medina-Capstone/Residential" target="_blank" id="github-repo"><i class="fa fa-github" aria-hidden="true"></i></a>
     <script th:src="@{https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 

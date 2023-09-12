@@ -13,7 +13,7 @@
 
 <!-- test -->
 <div class="login-body">
-	<form th:action="@{/login}" method="post">
+	<form th:action="@{/login}" th:method="post">
 		<div class="login-page">
 			<div>
 				<div th:if="${param.error}">
@@ -25,12 +25,12 @@
 				</div>
 
 				<label for="username" class="text-entry"></label>
-				<input id="username" name="username" placeholder="Username" type="text" />
+				<input id="username" name="username" placeholder="Username" type="text"/>
 			</div>
 
 			<div>
 				<label for="password" class="text-entry"></label>
-				<input id="password" name="password" placeholder="Password" type="password" />
+				<input id="password" name="password" placeholder="Password" type="password"/>
 			</div>
 
 			<div>

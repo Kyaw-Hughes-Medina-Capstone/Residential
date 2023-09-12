@@ -6,25 +6,29 @@
 <body>
 <nav th:replace="~{partials :: navbar}"/>
 
-<fieldset>
-	<legend class="page-title">Submit a work order</legend>
-	<form th:action="@{/property/workorder}" th:method="post">
+<h1 class="page-header">Submit a Work Order</h1>
 
-		<div class="row d-flex">
-			<div class="col-8 workOrderMargin">
-				Date:
+<div class="workOrder-body">
+
+		<form th:action="@{/property/workorder}" th:method="post">
+
+			<div class="workOrder-form">
+
+				<h6>Date:</h6>
 				<input type="date" name="date"/><br/>
-			</div>
-			<div class="col-8 workOrderMargin">
-				Description:
-				<textarea class="form-control" style="width: 99%" rows="7" id="description" name="description" ></textarea>
-			</div>
-		</div>
 
-		<input type="submit" value="Submit" class="btn btn-secondary"/>
-	</form>
+				<h6>Description:</h6>
+				<textarea class="form-control" rows="7" id="description" name="description" ></textarea>
 
-</fieldset>
+				<div class="workOrder-submit-btn">
+				<input type="submit" value="Submit" class="btn btn-secondary" />
+				</div>
+
+			</div>
+
+		</form>
+
+</div>
 
 <div th:replace="~{partials :: footer}"/>
 </body>

@@ -83,6 +83,7 @@ h2{
     text-align: center;
     margin: 50px ;
 }
+
 .home-body{
     margin: 0 5%;
 }
@@ -91,6 +92,25 @@ h2{
 }
 .login-body{
     margin: 0 5%;
+}
+.workOrder-body{
+    margin: 0 10%;
+}
+.workOrder-form{
+    display: block;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 40px 5px;
+    border: 5px solid var(--nav--color);
+    background-color: var(--background--color);
+}
+.workOrder-form > h6{
+    margin: 5px 0;
+}
+
+.workOrder-submit-btn{
+    margin: 15px auto 0px;
+    text-align: end;
 }
 
 .page-body{
@@ -253,6 +273,7 @@ h2{
 }
 
 .creator-card{
+    color: var(--primary-color);
     margin: 10px;
     background-color: var(--nav--color);
     padding: 0;
@@ -305,4 +326,10 @@ h2{
 
 .nav-item a.nav-link[data-bs-toggle="modal"][data-bs-target="#logoutModal"]:hover {
     cursor: pointer;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
